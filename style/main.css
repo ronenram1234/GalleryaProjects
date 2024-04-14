@@ -1,0 +1,628 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Viewport 1920*1080 */
+/* Design size 1920*4151 */
+/* 12pt = 16px = 1em */
+/* Header section */
+/* ---------------------------------------- */
+header {
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  border-top: 2px solid rgba(19, 232, 241, 0.3882352941);
+}
+
+#flex-container {
+  display: flex;
+  align-items: center;
+}
+
+#profileImage {
+  width: 62px;
+  /* height: 62px; */
+  margin-left: 15%;
+  border-radius: 31px;
+}
+
+#myName {
+  width: 79px;
+  height: 35px;
+}
+
+.hamburger, #checkHamburger {
+  display: none;
+}
+
+nav {
+  margin-left: 40%;
+}
+
+.dropDown {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  /*  flex-direction: row; */
+}
+
+.dropDown li a {
+  display: block;
+  width: 100px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2em;
+  color: #639;
+  font-family: "Heebo";
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+/* ---------------------------------------- */
+/* path1 */
+/* ---------------------------------------- */
+.path1 {
+  padding-top: 100px;
+  /* width: 100%; */
+  /* height: 461px; */
+  background: rgba(19, 232, 241, 0.3882352941) 0% 0% no-repeat padding-box;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#path1H2 {
+  /* width: 404px; */
+  /* height: 118px; */
+  text-align: center;
+  /* font: normal normal 900 80px/118px Heebo; */
+  font-family: "Heebo";
+  font-size: 5rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 900;
+  /* line-height: 7.3rem; */
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
+}
+
+#path1P {
+  /* top: 342px;
+  left: 538px; */
+  width: 44%;
+  /* height: 60px; */
+  text-align: center;
+  /* font: normal normal 500 20px/30px Heebo; */
+  font-family: "Heebo";
+  font-size: 1.25rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  /* font: normal normal 900 20px/30px Heebo; */
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
+}
+
+/* rectangle22 */
+/* ---------------------------------------- */
+.rectangle22 {
+  top: 541px;
+  left: 0px;
+  /* width: 100%; */
+  /* height: 130px; */
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+  opacity: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.rectangle22Image {
+  width: 100px;
+  height: 100px;
+}
+
+/* rectangle56 */
+/* ---------------------------------------- */
+.rectangle56 {
+  width: 100%;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group167 {
+  padding-top: 100px;
+  width: 41.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profileImage1 {
+  width: 141px;
+  border-radius: 141px;
+  text-align: center;
+}
+
+.rectangle56H2 {
+  width: 234px;
+  text-align: center;
+  font: normal normal 900 2rem Heebo;
+  color: #3a3a3a;
+}
+
+#rectangle56P1 {
+  /* width: 100%; */
+  text-align: center;
+  font: normal normal normal 1.3rem Heebo;
+  color: #3a3a3a;
+}
+
+#rectangle56Button {
+  width: 260px;
+  background-color: #1ae0ec;
+  border: none;
+  border-radius: 25px;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  color: #3a3a3a;
+  font: normal normal bold 1.3rem Heebo;
+}
+
+#rectangle56Button:hover {
+  background-color: RoyalBlue;
+}
+
+/* rectangle55 */
+/* ---------------------------------------- */
+.rectangle55 {
+  /* padding-top: 100px; */
+  /* width: 100%; */
+  /* height: 1558px; */
+  padding-top: 150px;
+  background: #f6f6f6 0% 0% no-repeat padding-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-evenly; */
+}
+
+.rectangle55H2 {
+  font: normal normal 900 2rem Heebo;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  opacity: 1;
+}
+
+#rectangle55P {
+  width: 576px;
+  font: normal normal normal 1.3rem Heebo;
+  letter-spacing: 0px;
+  color: #3a3a3a;
+  text-align: center;
+}
+
+.rectangle55Grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.itemGrid {
+  width: 405px;
+  height: 518px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1607843137);
+  border-radius: 10px;
+  opacity: 1;
+}
+
+.projectImage {
+  width: 405px;
+  height: 223px;
+}
+
+.projectFlex {
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projectTitle {
+  /* width: 21%; */
+  font-family: "Heebo";
+  font-size: 1.25em;
+  text-align: center;
+}
+
+.projectText {
+  /* width: 20%; */
+  font-family: "Heebo";
+  font-size: 1em;
+  text-align: center;
+}
+
+.projectImageTech {
+  width: 122px;
+  /* height: 26px; */
+  /* UI Properties */
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.projectImageTechIcon {
+  width: 26px;
+}
+
+.projectLinkButton {
+  width: 150px;
+  /* height: 21px; */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  background-color: #1ae0ec;
+  border: none;
+  border-radius: 1.3%;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  color: #3a3a3a;
+  /* font: normal normal bold 20px Heebo; */
+  font-family: "Heebo";
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.projectLinkButton:hover {
+  background-color: RoyalBlue;
+}
+
+/* rectangle17 */
+/* ---------------------------------------- */
+.rectangle17 {
+  width: 100%;
+  height: 959px;
+  background: #3a3a3a 0% 0% no-repeat padding-box;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: row;
+}
+
+/* .recyangle17Img{
+  width: 500px;;
+  display: inline-block;
+} */
+.rectangle17Img {
+  width: 40%;
+  height: 62%;
+  margin-left: 5%;
+}
+
+.rectangle17Input {
+  width: 549px;
+  height: 646px;
+  display: inline-block;
+  /* position: absolute; */
+  padding-top: 10%;
+  margin-left: 20%;
+  margin-right: 5%;
+}
+
+.formInput {
+  direction: rtl;
+  width: 541px;
+  height: 50px;
+}
+
+.formInput1 {
+  direction: rtl;
+  width: 541px;
+}
+
+.formInputSubmit {
+  float: right;
+  width: 166px;
+  /* height: 50px; */
+  /* UI Properties */
+  background: #1ae0ec 0% 0% no-repeat padding-box;
+  border-radius: 25px;
+  font-family: "Heebo";
+  font-size: 1.3rem;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: bold;
+  /* line-height: 30px; */
+}
+
+.rectangle17InputH2 {
+  color: #ffffff;
+  direction: rtl;
+  font: normal;
+  font: normal normal 900 2rem Heebo;
+}
+
+.rectangle17InputP1 {
+  direction: rtl;
+  font: normal normal normal 1.3rem Heebo;
+  color: #ffffff;
+  padding-bottom: 72px;
+}
+
+.labels {
+  direction: rtl;
+  font: normal normal bold 1rem Heebo;
+  color: #ffffff;
+}
+
+/* rectangle6 */
+/* ---------------------------------------- */
+.socialMedia {
+  width: 100%;
+  height: 200px;
+  /* UI Properties */
+  background: #1ae0ec 0% 0% no-repeat padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.socialMediaGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 50px 40px 40px 70px;
+}
+
+.emptyLine {
+  grid-column: 1/7;
+  grid-row: 1;
+}
+
+.socialMediaItemGrid {
+  text-align: center;
+  font: normal normal normal 0.9rem Heebo;
+  letter-spacing: 0px;
+  color: #2c2c2c;
+}
+
+.socialMediaItemGridIcon {
+  justify-self: center;
+}
+
+.socialMediaItemGridText {
+  justify-self: center;
+  font: normal normal normal 0.9rem Heebo;
+  color: #2c2c2c;
+}
+
+/* rectangle43 */
+/* ---------------------------------------- */
+.rectangle43 {
+  width: 100%;
+  height: 51px;
+  /* UI Properties */
+  background: #000000 0% 0% no-repeat padding-box;
+} 
+@media only screen and (max-width: 1600px) {
+  .rectangle17Input {
+    margin-left: 10%;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .hamburger {
+    display: block;
+    font-size: 54px;
+    color: black;
+    text-align: center;
+  }
+  .dropDown {
+    flex-direction: column-reverse;
+    float: left;
+    display: none;
+  }
+  .dropDown li a {
+    width: 100%;
+    text-align: right;
+  }
+  .dropDown li a {
+    background-color: #f8f7f3;
+    border-bottom: 1px solid #000;
+  }
+  input[type=checkbox]:checked ~ .dropDown {
+    display: block;
+  }
+  .rectangle55Grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  socialMediaGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .rectangle17Img {
+    width: 185px;
+    height: 161px;
+    margin-left: 0%;
+    margin-right: 60%;
+  }
+  .rectangle17 {
+    height: 642px;
+    width: 100%;
+    display: inline-block;
+  }
+  .rectangle17Input {
+    padding-top: 0%;
+    width: 310px;
+    padding-top: 0%;
+    margin-left: 50%;
+    display: inline-block;
+  }
+  .rectangle17InputH2 {
+    font: normal normal 900 25px Heebo;
+  }
+  .rectangle17InputP1 {
+    font: normal normal normal 15px Heebo;
+    padding-bottom: 72px;
+  }
+  .formInputSubmit {
+    float: right;
+    width: 166px;
+    /* height: 50px; */
+    /* UI Properties */
+    background: #1ae0ec 0% 0% no-repeat padding-box;
+    font-size: 12px;
+  }
+  .rectangle17InputH2 {
+    font: normal normal 900 2rem Heebo;
+  }
+  .rectangle17InputP1 {
+    font: normal normal normal 1.3rem Heebo;
+    padding-bottom: 31px;
+  }
+  .rectangle17InputP2 {
+    font: normal normal bold 12px Heebo;
+  }
+  .formInput {
+    direction: rtl;
+    width: 300px;
+    height: 28px;
+    margin-left: 10px;
+  }
+  .formInput1 {
+    width: 300px;
+    height: 57px;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 820px) {
+  #profileImage {
+    margin-left: 1%;
+  }
+  .rectangle17Input {
+    margin-left: 10%;
+  }
+  .rectangle55Grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .rectangle17Img {
+    width: 185px;
+    height: 161px;
+    margin-left: 0%;
+    margin-right: 60%;
+  }
+  .rectangle17 {
+    height: 642px;
+    width: 100%;
+    display: inline-block;
+  }
+  .rectangle17Input {
+    padding-top: 0%;
+    width: 310px;
+    padding-top: 0%;
+    margin-left: 10%;
+    display: inline-block;
+  }
+  .rectangle17InputH2 {
+    font-size: 25px;
+  }
+  .rectangle17InputP1 {
+    font-size: 15px;
+    padding-bottom: 72px;
+  }
+  .formInputSubmit {
+    float: right;
+    width: 166px;
+    /* height: 50px; */
+    /* UI Properties */
+    background: #1ae0ec 0% 0% no-repeat padding-box;
+    font-size: 12px;
+  }
+  .rectangle17InputH2 {
+    font: normal normal 900 2rem Heebo;
+  }
+  .rectangle17InputP1 {
+    font: normal normal normal 1.3rem Heebo;
+    padding-bottom: 31px;
+  }
+  .rectangle17InputP2 {
+    font-size: 12px;
+  }
+  .formInput {
+    direction: rtl;
+    width: 300px;
+    height: 28px;
+    margin-left: 10px;
+  }
+  .formInput1 {
+    width: 300px;
+    height: 57px;
+    margin-left: 10px;
+  }
+  .socialMedia {
+    width: 100%;
+    height: 428px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .emptyLine {
+    grid-column: 1/3;
+    grid-row: 1;
+    display: none;
+  }
+  .socialMediaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 20px;
+  }
+  #location1 {
+    grid-column: 1/2;
+    grid-row: 2;
+  }
+  #location2 {
+    grid-column: 2/2;
+    grid-row: 2;
+  }
+  #location3 {
+    grid-column: 1/2;
+    grid-row: 4;
+  }
+  #location4 {
+    grid-column: 2/2;
+    grid-row: 4;
+  }
+  #location5 {
+    grid-column: 1/2;
+    grid-row: 6;
+  }
+  #location6 {
+    grid-column: 2/2;
+    grid-row: 6;
+  }
+}/*# sourceMappingURL=main.css.map */
