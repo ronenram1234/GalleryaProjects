@@ -1,0 +1,48 @@
+.inputFormContainer {
+  background: #3a3a3a 0% 0% no-repeat padding-box;
+}
+
+/* tobr remove start */
+/* .imageContainer { */
+  /* background-color: yellow; */
+/* } */
+/* .formContainer { */
+  /* background-color: lightgreen; */
+/* } */
+
+/* .formTextContainer { */
+  /* background-color: beige; */
+/* } */
+
+/* .formTextLabel { */
+  /* width: 100vw; */
+  /* float: right; */
+  /* background-color: lightcyan; */
+/* } */
+
+.h2Font {
+  font: normal normal 900 36px/53px Heebo;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+
+.pFont {
+  font: normal normal normal 20px/29px Heebo;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.labelFont {
+  font: normal normal bold 16px/24px Heebo;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.submitFont{
+    font: normal normal bold 22px/30px Heebo;
+letter-spacing: 0.33px;
+color: #2C2C2C;
+opacity: 1;
+}
+

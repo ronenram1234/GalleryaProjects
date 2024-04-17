@@ -65,32 +65,7 @@ nav {
   height: fit-content;
 }
 
-// .nav {
-//   text-decoration: none;
-//   text-align: center;
-//   font: normal normal normal 1.5em Heebo;
-//   color: #000000;
-// }
 
-// .nav1 {
-//   /* width: 88px; */
-//   margin-left: 35.1%;
-// }
-
-// .nav2 {
-//   /* width: 86px; */
-//   margin-left: 3%;
-// }
-
-// .nav3 {
-//   /* width: 60px; */
-//   margin-left: 3%;
-// }
-
-// .nav4 {
-//   margin-left: 3%;
-//   color: #1ae0ec;
-// }
 
 /* ---------------------------------------- */
 /* path1 */
@@ -331,83 +306,137 @@ nav {
 
 /* rectangle17 */
 /* ---------------------------------------- */
-.rectangle17 {
-  width: 100%;
-  height: 959px;
+
+.inputFormContainer {
   background: #3a3a3a 0% 0% no-repeat padding-box;
-  display: flex;
-
-  /* justify-content: space-between; */
-  flex-direction: row;
 }
 
-/* .recyangle17Img{
-  width: 500px;;
-  display: inline-block;
-} */
+/* tobr remove start */
+// .imageContainer {
+  
+// }
+// .formContainer {
+//    background-color: lightgreen; 
+// }
 
-.rectangle17Img {
-  width: 40%;
-  height: 62%;
-  margin-left: 5%;
-}
+// .formTextContainer {
 
-.rectangle17Input {
-  width: 549px;
-  height: 646px;
-  display: inline-block;
-  /* position: absolute; */
-  padding-top: 10%;
-  margin-left: 20%;
-  margin-right: 5%;
-}
+// }
 
-.formInput {
-  direction: rtl;
-  width: 541px;
-  height: 50px;
-}
+// .formTextLabel {
+  
+// }
 
-.formInput1 {
-  direction: rtl;
-  width: 541px;
-}
-
-.formInputSubmit {
-  float: right;
-  width: 166px;
-  /* height: 50px; */
-  /* UI Properties */
-  background: #1ae0ec 0% 0% no-repeat padding-box;
-  border-radius: 25px;
-
-  font-family: "Heebo";
-  font-size: 1.3rem;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: bold;
-  /* line-height: 30px; */
-}
-
-.rectangle17InputH2 {
+.h2Font {
+  font: normal normal 900 36px/53px Heebo;
+  letter-spacing: 0px;
   color: #ffffff;
-  direction: rtl;
-  font: normal;
-  font: normal normal 900 2rem Heebo;
+  opacity: 1;
 }
 
-.rectangle17InputP1 {
-  direction: rtl;
-  font: normal normal normal 1.3rem Heebo;
+.pFont {
+  font: normal normal normal 20px/29px Heebo;
+  letter-spacing: 0px;
   color: #ffffff;
-  padding-bottom: 72px;
+  opacity: 1;
+}
+.labelFont {
+  font: normal normal bold 16px/24px Heebo;
+  letter-spacing: 0px;
+  color: #ffffff;
+  opacity: 1;
+}
+.submitFont{
+    font: normal normal bold 22px/30px Heebo;
+letter-spacing: 0.33px;
+color: #2C2C2C;
+opacity: 1;
 }
 
-.labels {
-  direction: rtl;
-  font: normal normal bold 1rem Heebo;
-  color: #ffffff;
-}
+
+
+
+
+
+
+
+// .rectangle17 {
+//   width: 100%;
+//   height: 959px;
+//   background: #3a3a3a 0% 0% no-repeat padding-box;
+//   display: flex;
+
+//   /* justify-content: space-between; */
+//   flex-direction: row;
+// }
+
+// /* .recyangle17Img{
+//   width: 500px;;
+//   display: inline-block;
+// } */
+
+// .rectangle17Img {
+//   width: 40%;
+//   height: 62%;
+//   margin-left: 5%;
+// }
+
+// .rectangle17Input {
+//   width: 549px;
+//   height: 646px;
+//   display: inline-block;
+//   /* position: absolute; */
+//   padding-top: 10%;
+//   margin-left: 20%;
+//   margin-right: 5%;
+// }
+
+// .formInput {
+//   direction: rtl;
+//   width: 541px;
+//   height: 50px;
+// }
+
+// .formInput1 {
+//   direction: rtl;
+//   width: 541px;
+// }
+
+// .formInputSubmit {
+//   float: right;
+//   width: 166px;
+//   /* height: 50px; */
+//   /* UI Properties */
+//   background: #1ae0ec 0% 0% no-repeat padding-box;
+//   border-radius: 25px;
+
+//   font-family: "Heebo";
+//   font-size: 1.3rem;
+//   font-style: normal;
+//   font-variant: normal;
+//   font-weight: bold;
+//   /* line-height: 30px; */
+// }
+
+// .rectangle17InputH2 {
+//   color: #ffffff;
+//   direction: rtl;
+//   font: normal;
+//   font: normal normal 900 2rem Heebo;
+// }
+
+// .rectangle17InputP1 {
+//   direction: rtl;
+//   font: normal normal normal 1.3rem Heebo;
+//   color: #ffffff;
+//   padding-bottom: 72px;
+// }
+
+// .labels {
+//   direction: rtl;
+//   font: normal normal bold 1rem Heebo;
+//   color: #ffffff;
+// }
 
 /* rectangle6 */
 /* ---------------------------------------- */
