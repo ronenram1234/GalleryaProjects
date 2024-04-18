@@ -5,8 +5,6 @@
 }
 
 @media only screen and (max-width: 1300px) {
-  // .hamburger, #checkHamburger{
-
   .hamburger {
     display: block;
     font-size: 54px;
@@ -15,8 +13,7 @@
   }
 
   .dropDown {
-
-    flex-direction:column-reverse;
+    flex-direction: column-reverse;
     float: left;
     display: none;
   }
@@ -25,31 +22,17 @@
     width: 100%;
 
     text-align: right;
-
   }
 
   .dropDown li a {
     background-color: #f8f7f3;
 
     border-bottom: 1px solid #000;
-
   }
 
-
-  input[type="checkbox"]:checked ~ .dropDown{
+  input[type="checkbox"]:checked ~ .dropDown {
     display: block;
   }
-  // nav .hamburger + .dropDown {
-  //   display: none;
-  // }
-
-  // nav .hamburger:hover + .dropDown {
-  //   // max-height: 500px;
-
-  //   transition-delay: 3s;
-  //   display: block;
-  //   z-index: 100;
-  // }
 
   .rectangle55Grid {
     grid-template-columns: repeat(2, 1fr);
@@ -61,70 +44,6 @@
 
     gap: 20px;
   }
-
-  // .rectangle17Img {
-  //   width: 185px;
-  //   height: 161px;
-  //   margin-left: 0%;
-  //   margin-right: 60%;
-  // }
-  // .rectangle17 {
-  //   height: 642px;
-  //   width: 100%;
-  //   display: inline-block;
-  //   // align-items: center;
-  // }
-  // .rectangle17Input {
-  //   padding-top: 0%;
-  //   width: 310px;
-  //   padding-top: 0%;
-  //   margin-left: 50%;
-  //   display: inline-block;
-
-  //   // margin-left: 20%;
-  //   // margin-right: 5%;
-  // }
-  // .rectangle17InputH2 {
-  //   font: normal normal 900 25px Heebo;
-  // }
-  // .rectangle17InputP1 {
-  //   font: normal normal normal 15px Heebo;
-  //   padding-bottom: 72px;
-  // }
-
-  // .formInputSubmit {
-  //   float: right;
-  //   width: 166px;
-  //   /* height: 50px; */
-  //   /* UI Properties */
-  //   background: #1ae0ec 0% 0% no-repeat padding-box;
-  //   font-size: 12px;
-  // }
-
-  // .rectangle17InputH2 {
-  //   font: normal normal 900 2rem Heebo;
-  // }
-
-  // .rectangle17InputP1 {
-  //   font: normal normal normal 1.3rem Heebo;
-
-  //   padding-bottom: 31px;
-  // }
-
-  // .rectangle17InputP2 {
-  //   font: normal normal bold 12px Heebo;
-  // }
-  // .formInput {
-  //   direction: rtl;
-  //   width: 300px;
-  //   height: 28px;
-  //   margin-left: 10px;
-  // }
-  // .formInput1 {
-  //   width: 300px;
-  //   height: 57px;
-  //   margin-left: 10px;
-  // }
 }
 
 @media only screen and (max-width: 820px) {
@@ -139,69 +58,6 @@
   .rectangle55Grid {
     grid-template-columns: repeat(1, 1fr);
   }
-  // .rectangle17Img {
-  //   width: 185px;
-  //   height: 161px;
-  //   margin-left: 0%;
-  //   margin-right: 60%;
-  // }
-  // .rectangle17 {
-  //   height: 642px;
-  //   width: 100%;
-  //   display: inline-block;
-  //   // align-items: center;
-  // }
-  // .rectangle17Input {
-  //   padding-top: 0%;
-  //   width: 310px;
-  //   padding-top: 0%;
-  //   margin-left: 10%;
-  //   display: inline-block;
-
-  //   // margin-left: 20%;
-  //   // margin-right: 5%;
-  // }
-  // .rectangle17InputH2 {
-  //   font-size: 25px;
-  // }
-  // .rectangle17InputP1 {
-  //   font-size: 15px;
-  //   padding-bottom: 72px;
-  // }
-
-  // .formInputSubmit {
-  //   float: right;
-  //   width: 166px;
-  //   /* height: 50px; */
-  //   /* UI Properties */
-  //   background: #1ae0ec 0% 0% no-repeat padding-box;
-  //   font-size: 12px;
-  // }
-
-  // .rectangle17InputH2 {
-  //   font: normal normal 900 2rem Heebo;
-  // }
-
-  // .rectangle17InputP1 {
-  //   font: normal normal normal 1.3rem Heebo;
-
-  //   padding-bottom: 31px;
-  // }
-
-  // .rectangle17InputP2 {
-  //   font-size: 12px;
-  // }
-  // .formInput {
-  //   direction: rtl;
-  //   width: 300px;
-  //   height: 28px;
-  //   margin-left: 10px;
-  // }
-  // .formInput1 {
-  //   width: 300px;
-  //   height: 57px;
-  //   margin-left: 10px;
-  // }
 
   .socialMedia {
     width: 100%;
