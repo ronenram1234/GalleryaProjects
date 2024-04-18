@@ -1,0 +1,63 @@
+/* Project Name2< */
+
+/* תפריט  */
+#profileImage {
+  width: 62px;
+  /* height: 62px; */
+  /* margin-left: 15%; */
+  border-radius: 31px;
+}
+
+#myName {
+  width: 79px;
+  height: 35px;
+}
+
+/* שם פרויקט */
+
+.mainSection {
+  padding-top: 100px;
+  height: 461px;
+  background-color: #13e8f163;
+}
+.mainSectionH1 {
+  padding-top: 100px;
+}
+
+/* שורת אייקונים */
+
+.iconBar {
+  height: 130px;
+}
+
+.imageIcon{
+    width: 100px;
+}
+
+/* actual web site */
+
+.imageOfWebSite {
+    height: 80vh;
+    background: #ebfeff 0% 0% no-repeat padding-box;
+   
+  }
+
+.imageOfWebSiteInternal{
+height: 718px;
+/* height: 100%; */
+width: 1189px;
+display: flex;
+/* center hotizental */
+justify-content: center;
+/* center vertical */
+align-items: center;
+
+}
+
+/* תחתית הענוד */
+.footerStyle {
+  height: 51px;
+
+  background: #000000 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
