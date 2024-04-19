@@ -39,39 +39,72 @@ button {
   color: #1c1c1c;
 }
 
-
 .mainDiv {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.formDiv{
-    display: grid;
-    grid-template-columns: repeat (7,1fr);
-    grid-template-rows: auti auto;
-    background-color: lightgreen;
-    
-    /* flex-direction: row;
+.formDiv {
+  display: grid;
+  grid-template-columns:  4fr .5fr .5fr .5fr 4fr;
+  /* grid-template-rows: auto auto; */
+  /* gap: 20px; */
+  /* direction: rtl; */
+
+  /* flex-direction: row;
     justify-content: center;
     align-items: center; */
-
 }
 
-.nameLa{  
-    grid-column: 1/2;
-    grid-row: 1;
+.nameLa {
+  /* grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2; */
+  grid-column: 4;
+  grid-row: 1;
+  direction: rtl;
+  width: 20vw;
 }
-.nameIn{
-    grid-column: 3;
-    grid-row: 2;
+.nameIn {
+  /* grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 2;
+  grid-row-end: 3; */
+  grid-column: 4;
+  grid-row: 2;
+  width: 20vw;
+  direction: rtl;
 }
-.emailLa{ grid-column: 4/5;
-    grid-row: 1/1;}
-.emailIn{grid-column: 4/5;
-    grid-row: 2/2;}
-.buttonP{
-    grid-column: 2/3;
-    grid-row: 2/2;}
+.mailLa {
+  /* grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2; */
+  grid-column: 3;
+  grid-row: 1;
+  width: 20vw;
+  direction: rtl;
+}
+.mailIn {
+  /* grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3; */
+  grid-column: 3;
+  grid-row: 2;
+  width: 20vw;
+  direction: rtl;
+}
+.buttonP {
+  /* grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3; */
+  grid-column: 2;
+  grid-row: 2;
+  direction: rtl;
+  width: 10vw;
+}
