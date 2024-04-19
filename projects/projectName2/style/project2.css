@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 body {
   background: transparent linear-gradient(180deg, #281eff 0%, #2dff8c 100%) 0%
     0% no-repeat padding-box;
@@ -10,12 +11,15 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 h1 {
   font: normal normal normal 160px/231px Satisfy;
   letter-spacing: 0px;
   color: #ffffff;
   text-shadow: 0px 0px 36px #00000087;
+  padding-top: 30vh;
 }
+
 h2 {
   font: normal normal normal 32px/38px Varela Round;
   letter-spacing: 0px;
@@ -26,17 +30,26 @@ p {
   font: normal normal normal 16px/20px Varela Round;
   letter-spacing: 0px;
   color: #f9f9f9;
+  text-align: center;
 }
+
 label {
   font: normal normal normal 16px/20px Varela Round;
   letter-spacing: 0px;
   color: #f9f9f9;
 }
 
+input {
+  height: 4vh;
+  width: 20vw;
+}
+
 button {
   font: normal normal normal 16px/20px Varela Round;
   letter-spacing: 0px;
   color: #1c1c1c;
+  height: 4vh;
+  width: 10vw;
 }
 
 .mainDiv {
@@ -48,63 +61,111 @@ button {
 
 .formDiv {
   display: grid;
-  grid-template-columns:  4fr .5fr .5fr .5fr 4fr;
-  /* grid-template-rows: auto auto; */
-  /* gap: 20px; */
-  /* direction: rtl; */
-
-  /* flex-direction: row;
-    justify-content: center;
-    align-items: center; */
+  grid-template-columns: 4fr 0.5fr 0.5fr 0.5fr 4fr;
+  column-gap: 1vw;
+  padding-top: 20px;
 }
 
 .nameLa {
-  /* grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2; */
   grid-column: 4;
   grid-row: 1;
   direction: rtl;
   width: 20vw;
 }
 .nameIn {
-  /* grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 2;
-  grid-row-end: 3; */
   grid-column: 4;
   grid-row: 2;
   width: 20vw;
   direction: rtl;
 }
 .mailLa {
-  /* grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2; */
   grid-column: 3;
   grid-row: 1;
   width: 20vw;
   direction: rtl;
 }
 .mailIn {
-  /* grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 2;
-  grid-row-end: 3; */
   grid-column: 3;
   grid-row: 2;
   width: 20vw;
   direction: rtl;
 }
+
 .buttonP {
-  /* grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3; */
   grid-column: 2;
   grid-row: 2;
   direction: rtl;
   width: 10vw;
+}
+
+@media only screen and (max-width: 820px) {
+  h1 {
+    color: red;
+    font: normal normal normal 60px/86px Satisfy;
+    letter-spacing: 0px;
+    color: #ffffff;
+    text-shadow: 0px 0px 36px #00000087;
+  }
+  h2 {
+    font: normal normal normal 18px/22px Varela Round;
+    letter-spacing: 0px;
+    color: #ffffff;
+    padding-top: 1vh;
+  }
+  p {
+    font: normal normal normal 16px/20px Varela Round;
+    letter-spacing: 0px;
+    color: #f9f9f9;
+    padding-top: 1vh;
+  }
+
+  .formDiv {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 1vw;
+    padding-top: 20px;
+  }
+  input {
+    height: 4vh;
+    width: 100vw;
+  }
+  button {
+    font: normal normal normal 16px/20px Varela Round;
+    letter-spacing: 0px;
+    color: #1c1c1c;
+    height: 4vh;
+    width: 100vw;
+  }
+
+  .nameLa {
+    grid-column: 1;
+    grid-row: 1;
+    direction: rtl;
+    width: 100vw;
+  }
+  .nameIn {
+    grid-column: 1;
+    grid-row: 2;
+    width: 100vw;
+    direction: rtl;
+  }
+  .mailLa {
+    grid-column: 1;
+    grid-row: 3;
+    width: 100vw;
+    direction: rtl;
+  }
+  .mailIn {
+    grid-column: 1;
+    grid-row: 4;
+    width: 100vw;
+    direction: rtl;
+  }
+  .buttonP {
+    grid-column: 1;
+    grid-row: 5;
+    direction: rtl;
+    width: 100vw;
+  }
 }
