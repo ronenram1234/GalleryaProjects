@@ -1,15 +1,77 @@
-
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    
-  }
-  body{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background: transparent linear-gradient(180deg, #281eff 0%, #2dff8c 100%) 0%
+    0% no-repeat padding-box;
 
+  width: 100vw;
+  height: 100vh;
+}
+h1 {
+  font: normal normal normal 160px/231px Satisfy;
+  letter-spacing: 0px;
+  color: #ffffff;
+  text-shadow: 0px 0px 36px #00000087;
+}
+h2 {
+  font: normal normal normal 32px/38px Varela Round;
+  letter-spacing: 0px;
+  color: #ffffff;
+}
+
+p {
+  font: normal normal normal 16px/20px Varela Round;
+  letter-spacing: 0px;
+  color: #f9f9f9;
+}
+label {
+  font: normal normal normal 16px/20px Varela Round;
+  letter-spacing: 0px;
+  color: #f9f9f9;
+}
+
+button {
+  font: normal normal normal 16px/20px Varela Round;
+  letter-spacing: 0px;
+  color: #1c1c1c;
+}
+
+
+.mainDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formDiv{
+    display: grid;
+    grid-template-columns: repeat (7,1fr);
+    grid-template-rows: auti auto;
+    background-color: lightgreen;
     
-    background: transparent linear-gradient(180deg, #281EFF 0%, #2DFF8C 100%) 0% 0% no-repeat padding-box;
-   
-    width: 100vw;
-    height: 100vh; 
-  }
+    /* flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+
+}
+
+.nameLa{  
+    grid-column: 1/2;
+    grid-row: 1;
+}
+.nameIn{
+    grid-column: 3;
+    grid-row: 2;
+}
+.emailLa{ grid-column: 4/5;
+    grid-row: 1/1;}
+.emailIn{grid-column: 4/5;
+    grid-row: 2/2;}
+.buttonP{
+    grid-column: 2/3;
+    grid-row: 2/2;}
