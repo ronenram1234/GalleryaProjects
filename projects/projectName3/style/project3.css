@@ -65,6 +65,18 @@
   color: #2c2c2c;
 }
 
+.submitFont {
+  width: 166px;
+  height: 50px;
+  font: normal normal bold 22px/30px Heebo;
+  letter-spacing: 0.33px;
+  color: #ffffff;
+  background: #020253 0% 0% no-repeat padding-box;
+}
+.submitFont:hover{
+  background-color: #154563;
+}
+
 @media (max-width: 768px) {
   #container {
     flex-direction: column;
@@ -77,19 +89,23 @@
     height: 30vh;
     object-fit: cover;
   }
-  .form-control > input {
+
+  #email,
+  #name {
     width: 80vw;
-    /* height: 5vh; */
   }
 
   .container-form {
     width: 100%;
     margin-top: 5em;
   }
-  .form-control > label {
+  /* .form-control > label { */
+  .form-control-label {
     font: normal normal bold 10px/14px Heebo;
+    height: 14px;
 
     color: #2c2c2c;
+    margin-bottom: 5px;
   }
   .container-form-title > h1 {
     font: normal normal 900 28px/41px Heebo;
@@ -101,7 +117,11 @@
 
     color: #020253;
   }
-  .container-form-title{
+  .container-form-title {
     width: 78%;
+  }
+  .submitFont {
+    width: 80vw;
+    font: normal normal bold 14px/19px Heebo;
   }
 }
