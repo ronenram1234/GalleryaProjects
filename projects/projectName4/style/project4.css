@@ -8,73 +8,73 @@ html {
   scroll-behavior: smooth;
 }
 .mainBox {
-  width: 30vw;
-  height: 60vh;
-  background: #1a1a1ad4 0% 0% no-repeat padding-box;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  align-items: start;
-  padding-right: 4vw;
-  padding-top: 7vh ;
-  margin-top: 15vh;
-  margin-left:50vw;
+  margin-top: 26vh;
 }
 h1 {
-  font: normal normal 900  1.8em Heebo;
-  color: #ffffff;
-  width: 24vw;
+  font: normal normal bold 86px/113px Assistant;
+  letter-spacing: 0px;
+  color: #d3e10e;
 }
 p {
-  font: normal normal normal 1em Heebo;
+  font: normal normal normal 20px/26px Assistant;
+  letter-spacing: 0px;
   color: #f9f9f9;
-  width: 24vw;
-  
-  
+  /* margin-bottom: 38vh; */
 }
 
-.form-control {
-  display: flex;
-  flex-direction: column;
-  padding-top: 4vh;
-  /* margin: auto;
-  margin: 1em 0; */
+.gridForm{
+  display: grid;
+  grid-template-columns:  20vw 20vw 8vw;
+  grid-template-rows: auto auto ;
+  margin-top: 37vh;
+  gap: 3vw;
   
+  /* background-color: pink; */
+  /* gap: 20px; */
 }
-.form-control > input {
-  width: 24vw;
+
+.gridItem{
+  /* background-color: #f0f0f0; Light gray background */
+  /* border: 1px solid #ccc; Border for grid items */
+  /* padding: 10px; Add padding for spacing */
+}
+
+
+.form-control-input {
+  width: 20vw;
   height: 5vh;
+  /* height: 50px; */
   /* UI Properties */
-  background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 1px solid #D31C75;
+  background: #f6f6f6 0% 0% no-repeat padding-box;
+  /* margin-left: 20px; */
 }
 
-.form-control > label {
-  width: 3vw;
-height: 2vh;
-  font: normal normal bold 16px/24px Heebo;
-letter-spacing: 0px;
-color: #FFFFFF;
+.form-control-label {
+  font: normal normal bold 16px/21px Assistant;
+  letter-spacing: 0px;
+  color: #011560;
+  height: 5vh;
+  /* margin-left: 20px; */
 }
 
 .submitFont {
-  width: 9vw;
+  width: 8vw;
   height: 5vh;
-  font: normal normal bold 22px/30px Heebo;
+  font: normal normal bold 22px/30px Assistant;
   letter-spacing: 0.33px;
-  color: #FFFFFF;
-  background: #D31C75 0% 0% no-repeat padding-box;
-  margin-top: 4vh;
+  color: #011560;
+  background: #d3e10e 0% 0% no-repeat padding-box;
+  
 }
-.submitFont:hover{
-  background-color: #154563;
+.submitFont:hover {
+  background-color: lightyellow;
 }
-
-
 
 @media (max-width: 1200px) {
-
   .mainBox {
     width: 80vw;
     height: 70vh;
@@ -95,10 +95,10 @@ color: #FFFFFF;
     font: normal normal 900 1em Heebo;
     width: 70vw;
   }
-p{
-  font: normal normal normal 0.8em Heebo;
-  width: 70vw;
-}
+  p {
+    font: normal normal normal 0.8em Heebo;
+    width: 70vw;
+  }
   #email,
   #name {
     width: 70vw;
@@ -115,8 +115,8 @@ p{
     /* height: 14px; */
 
     color: #2c2c2c;
-    
-    margin-bottom: 5px;
+
+    /* margin-bottom: 5px; */
   }
   .container-form-title > h1 {
     font: normal normal 900 28px/41px Heebo;
