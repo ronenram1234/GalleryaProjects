@@ -16,6 +16,8 @@ body {
 img {
   /* width: 296px;
   height: 271px; */
+  width: 15vw;
+  height: 20vh;
 }
 
 h1 {
@@ -37,14 +39,25 @@ p {
   text-align: center;
   width: 90%;
 }
-
+.main{
+  /* width: 1920px;
+  height: 2288px; */
+}
 .mainGrid {
+  width: 30vw;
+  height: 20vh;
   display: grid;
 
-  grid-template-columns: 337px 296px 296px 296px 296px 296px 337px;
+  /* grid-template-columns: 337px 296px 296px 296px 296px 296px 337px; */
+  grid-template-columns: 17vw 1fr 1fr 1fr 1fr  17vw;
   grid-template-rows: repeat(8, 1fr);
   justify-items: center;
-  gap: 1vw;
+  gap: 1vh;
+}
+.emptyRowOne{
+  grid-column: 1 / 2;
+  grid-row: 1 / 8;
+  border: 5px solid black;
 }
 
 #image515 {
@@ -58,7 +71,7 @@ p {
 .mainBox {
   grid-column: 4 / 6;
   grid-row: 2 / 6;
-  width: 32vw;
+  /* width: 98%; */
   height: 50%;
   /* height: 562px; */
   background: #020253 0% 0% no-repeat padding-box;
@@ -95,9 +108,8 @@ p {
 .formCard {
   grid-column: 2 / 4;
   grid-row: 5 / 8;
-
-  width: 613px;
-  height: 852px;
+  width: 30vw;
+  
   background: #8e097c 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
