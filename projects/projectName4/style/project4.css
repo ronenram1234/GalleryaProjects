@@ -7,132 +7,111 @@
 html {
   scroll-behavior: smooth;
 }
+
 .mainBox {
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 26vh;
+  margin-top: 16vh;
 }
 h1 {
   font: normal normal bold 86px/113px Assistant;
-  letter-spacing: 0px;
-  color: #d3e10e;
+   color: #d3e10e;
 }
 p {
   font: normal normal normal 20px/26px Assistant;
-  letter-spacing: 0px;
+  
   color: #f9f9f9;
   /* margin-bottom: 38vh; */
 }
 
-.gridForm{
+.gridForm {
   display: grid;
-  grid-template-columns:  20vw 20vw 8vw;
-  grid-template-rows: auto auto ;
-  margin-top: 37vh;
-  gap: 3vw;
+  grid-template-columns: 20vw 20vw 8vw;
+  grid-template-rows: auto auto;
+  margin-top: 50vh;
   
-  /* background-color: pink; */
-  /* gap: 20px; */
 }
-
-.gridItem{
-  /* background-color: #f0f0f0; Light gray background */
-  /* border: 1px solid #ccc; Border for grid items */
-  /* padding: 10px; Add padding for spacing */
-}
-
 
 .form-control-input {
-  width: 20vw;
+  width: 18vw;
   height: 5vh;
-  /* height: 50px; */
-  /* UI Properties */
+  
   background: #f6f6f6 0% 0% no-repeat padding-box;
-  /* margin-left: 20px; */
+  
+  border-bottom: 5px solid yellow;
 }
 
 .form-control-label {
+  width: 18vw;
   font: normal normal bold 16px/21px Assistant;
-  letter-spacing: 0px;
+  
   color: #011560;
-  height: 5vh;
-  /* margin-left: 20px; */
+  
 }
 
 .submitFont {
-  width: 8vw;
+  width: 166px;
   height: 5vh;
   font: normal normal bold 22px/30px Assistant;
   letter-spacing: 0.33px;
   color: #011560;
   background: #d3e10e 0% 0% no-repeat padding-box;
-  
+  color: #011560;
 }
 .submitFont:hover {
   background-color: lightyellow;
 }
 
-@media (max-width: 1200px) {
-  .mainBox {
-    width: 80vw;
-    height: 70vh;
-  }
+.imageForMobile {
+  display: none;
+}
 
-  #container {
-    flex-direction: column;
+/* @media (max-width: 1200px) { */
+@media (max-width: 768px) {
+  .imageForMobile {
+    display: block;
+    /* width: 100%; */
   }
-  .container-img {
-    width: 100vw;
+  .mainBox{
+    margin-top: 0vh;
   }
-  .container-img > img {
-    width: 100%;
-    height: 30vh;
-    object-fit: cover;
+  .bodyFormat {
+    background: none;
   }
   h1 {
-    font: normal normal 900 1em Heebo;
-    width: 70vw;
+    display: none;
   }
   p {
-    font: normal normal normal 0.8em Heebo;
-    width: 70vw;
-  }
-  #email,
-  #name {
-    width: 70vw;
-    height: 2.5vm;
+    display: none;
   }
 
-  .container-form {
-    width: 100%;
-    margin-top: 5em;
-  }
-  /* .form-control > label { */
-  .form-control-label {
-    font: normal normal bold 0.8em Heebo;
-    /* height: 14px; */
-
-    color: #2c2c2c;
-
-    /* margin-bottom: 5px; */
-  }
-  .container-form-title > h1 {
-    font: normal normal 900 28px/41px Heebo;
-
-    color: #020253;
-  }
-  .container-form-title > p {
+  form-control-label {
     font: normal normal normal 15px/22px Heebo;
+  }
 
-    color: #020253;
-  }
-  .container-form-title {
-    width: 78%;
-  }
   .submitFont {
-    width: 22vw;
-    font: normal normal bold 0.9em Heebo;
+    font: normal normal bold 14px/19px Heebo;
+  }
+
+  .gridForm {
+    display: grid;
+    grid-template-columns: 80vw;
+    margin-right:20vw;
+  }
+  .emailLabel {
+    grid-column: 1;
+    grid-row: 4/5;
+  }
+  .form-control-input,
+  .submitFont {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+  .gridForm {
+   
+    margin-top: 5vh;
+   
   }
 }
