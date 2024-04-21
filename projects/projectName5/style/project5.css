@@ -1,0 +1,157 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* width: 210vh; */
+  background: #e5eeff 0% 0% no-repeat padding-box;
+}
+
+img {
+  /* width: 296px;
+  height: 271px; */
+}
+
+h1 {
+  font: normal normal bold 3.8em Assistant;
+
+  color: #0ee1da;
+  text-align: center;
+}
+h2 {
+  font: normal normal bold 2em Assistant;
+
+  color: #ffffff;
+  text-align: center;
+}
+p {
+  font: normal normal normal 1.25em Assistant;
+  letter-spacing: 0px;
+  color: #f9f9f9;
+  text-align: center;
+  width: 90%;
+}
+
+.mainGrid {
+  display: grid;
+
+  grid-template-columns: 337px 296px 296px 296px 296px 296px 337px;
+  grid-template-rows: repeat(8, 1fr);
+  justify-items: center;
+  gap: 1vw;
+}
+
+#image515 {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+#image514 {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+.mainBox {
+  grid-column: 4 / 6;
+  grid-row: 2 / 6;
+  width: 32vw;
+  height: 50%;
+  /* height: 562px; */
+  background: #020253 0% 0% no-repeat padding-box;
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#image516 {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+#image506-2 {
+  grid-column: 3 / 4;
+  grid-row: 3 / 4;
+}
+#image506-5 {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+}
+#image506-4 {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+}
+#image506-3 {
+  grid-column: 4 / 5;
+  grid-row: 4 / 5;
+}
+#image506-1 {
+  grid-column: 5 / 6;
+  grid-row: 4 / 5;
+}
+.formCard {
+  grid-column: 2 / 4;
+  grid-row: 5 / 8;
+
+  width: 613px;
+  height: 852px;
+  background: #8e097c 0% 0% no-repeat padding-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 57px;
+}
+
+#image506-6 {
+  grid-column: 4 / 5;
+  grid-row: 5 / 6;
+}
+#image506-7 {
+  grid-column: 5 / 6;
+  grid-row: 5 / 6;
+}
+#image506-9 {
+  grid-column: 4 / 5;
+  grid-row: 6 / 7;
+}
+#image506-8 {
+  grid-column: 5 / 6;
+  grid-row: 6 / 7;
+}
+#image513 {
+  grid-column: 4 / 5;
+  grid-row: 7 / 8;
+}
+#image506-10 {
+  grid-column: 5 / 6;
+  grid-row: 7 / 8;
+}
+.form-control-label {
+  font: normal normal bold 16px/24px Heebo;
+  letter-spacing: 0px;
+  color: #0ee1da;
+}
+.form-control-input {
+  width: 500px;
+  /* height: 60px; */
+  /* UI Properties */
+  background: #e5eeff 0% 0% no-repeat padding-box;
+  margin-bottom: 30px;
+}
+
+.submitFont {
+  width: 501px;
+  height: 60px;
+  /* UI Properties */
+  background: #0ee1da 0% 0% no-repeat padding-box;
+  font: normal normal bold 24px/33px Heebo;
+  letter-spacing: 0.36px;
+  color: #011560;
+}
+
+/* @media (max-width: 1200px) { */
+@media (max-width: 768px) {
+}
