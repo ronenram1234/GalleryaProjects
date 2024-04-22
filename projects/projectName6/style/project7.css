@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* width: 210vh; */
+  /* background: #e5eeff 0% 0% no-repeat padding-box; */
+}
+
+.main{
+
+}
+.mainLeft{
+
+}
+,ainRight{
+  
+}
+
+/* @media (max-width: 1200px) { */
+@media (max-width: 768px) {
+ 
+}
