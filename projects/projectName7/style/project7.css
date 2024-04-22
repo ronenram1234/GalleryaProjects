@@ -1,0 +1,141 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* width: 1920px;  */
+  /* background: #e5eeff 0% 0% no-repeat padding-box; */
+}
+
+.mainHeader {
+  width: 100%;
+  height: 634px;
+
+  background: #0ee1e1 0% 0% no-repeat padding-box;
+  display: flex;
+  border: 5px solid black;
+}
+
+.iconWhatsapp {
+  width: 95px;
+  height: 95px;
+  margin: 65px 0 0 65px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imgW {
+  width: 54px;
+  height: 54px;
+}
+
+.headerText {
+  width: 787px;
+  height: 634px;
+  margin-left: 476px;
+  
+  display: flex;
+  flex-direction: column;
+  
+  /* justify-content: flex-end; */
+
+  border: 5px solid black;
+}
+
+.headerText > h1 {
+  margin-top: 232px;
+  font: normal normal 900 66px/97px Heebo;
+  color: #000000;
+}
+
+.headerText > p {
+  font: normal normal normal 20px/29px Heebo;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.iconBox{
+  /* margin-left: 182px; */
+  margin: 182px 0 0 182px;
+}
+
+.mainCard {
+  width: 100%;
+  height: 329px;
+  margin-top: 46px;
+
+  display: flex;
+  flex-flow: nowrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 450px;
+  height: 329px;
+  background: #f8f8f8 0% 0% no-repeat padding-box;
+  border: 5px solid black;
+}
+
+.MainContactMap {
+  /* width: 100%; */
+  /* height: 939px ; */
+  margin-top: 70px;
+  display: flex;
+  flex-direction: row;
+
+  /* border: 5px solid black; */
+}
+
+.MainContact {
+  width: 40%;
+  height: 939px;
+  /* height: 10px ; */
+  /* background-color: beige; */
+  border: 5px solid black;
+}
+
+.MainMap {
+  width: 60%;
+  height: 939px;
+  /* height: 10px ; */
+  background: #0ee1e1 0% 0% no-repeat padding-box;
+  /* border: 5px solid black; */
+}
+
+.mainFooterIcons {
+  width: 100%;
+  height: 95px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  /* background-color: lightcoral; */
+  /* border: 5px solid black; */
+}
+.icon {
+  width: 95px;
+  height: 95px;
+  margin-right: 37px;
+  background: #0ee1e1 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 5px solid black;
+}
+
+.mainFooterLine {
+  width: 100%;
+  height: 19px;
+
+  background: #0ee1e1 0% 0% no-repeat padding-box;
+}
+
+/* @media (max-width: 1200px) { */
+@media (max-width: 768px) {
+}
