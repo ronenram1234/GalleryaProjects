@@ -8,11 +8,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  /* width: 1920px;  */
-  /* background: #e5eeff 0% 0% no-repeat padding-box; */
-}
-
 .mainHeader {
   width: 100%;
   height: 634px;
@@ -34,20 +29,19 @@ body {
   align-items: center;
   border-radius: 48px;
 }
-.iconWhatsapp > img{
+.iconWhatsapp > img {
   width: 54px;
   /* height: 54px; */
 }
-
 
 .headerText {
   width: 787px;
   height: 634px;
   margin-left: 476px;
-  
+
   display: flex;
   flex-direction: column;
-  
+
   /* justify-content: flex-end; */
 
   border: 5px solid black;
@@ -66,7 +60,7 @@ body {
   color: #000000;
 }
 
-.iconBox{
+.iconBox {
   /* margin-left: 182px; */
   margin: 182px 0 0 182px;
 }
@@ -90,32 +84,25 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
-
 }
-.card > h1{
+.card > h1 {
   margin-top: 30px;
   font: normal normal 900 30px/44px Heebo;
   letter-spacing: 0px;
-  color: #0EE1E1;
+  color: #0ee1e1;
 }
-.card > p{
+.card > p {
   font: normal normal normal 15px/22px Heebo;
-letter-spacing: 0px;
-color: #000000;
-width: 293px;
+  letter-spacing: 0px;
+  color: #000000;
+  width: 293px;
 }
 
-.card > img
-{
+.card > img {
   width: 33px;
-  
 }
 
-
-
-
-.MainContactMap {
+.mainContactMap {
   /* width: 100%; */
   /* height: 939px ; */
   margin-top: 70px;
@@ -125,20 +112,90 @@ width: 293px;
   /* border: 5px solid black; */
 }
 
-.MainContact {
+.mainContact {
   width: 40%;
   height: 939px;
+  /* margin-left: 185px; */
   /* height: 10px ; */
   /* background-color: beige; */
   border: 5px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.MainMap {
+.mainContactForm {
+  /* width: 40%;
+  height: 939px; */
+  height: 614px;
+  width: 427px;
+  /* margin-left: 30%; */
+  /* height: 10px ; */
+  /* background-color: beige; */
+  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContactForm > h1 {
+  font: normal normal 900 46px/67px Heebo;
+  letter-spacing: 0px;
+  color: #090909;
+}
+
+.mainContactForm > p {
+  font: normal normal normal 15px/22px Heebo;
+  letter-spacing: 0px;
+  color: #000000;
+  width: 100%;
+}
+
+.mainContactForm > label {
+  font: normal normal bold 13px/19px Heebo;
+  letter-spacing: 0px;
+  color: #2c2c2c;
+  margin-top: 23px;
+}
+
+.mainContactForm > input {
+  background: #e5eeff 0% 0% no-repeat padding-box;
+  /* width: 100%; */
+  height: 51px;
+}
+
+.mainContactForm > textarea {
+  background: #e5eeff 0% 0% no-repeat padding-box;
+  height: 145px;
+}
+
+.mainContactForm > button {
+  margin-top: 23px;
+  /* width: 427px; */
+  height: 51px;
+  background: #0ee1e1 0% 0% no-repeat padding-box;
+  font: normal normal bold 20px/28px Heebo;
+  letter-spacing: 0.3px;
+  color: #000000;
+}
+
+.mainMap {
   width: 60%;
   height: 939px;
-  /* height: 10px ; */
+
   background: #0ee1e1 0% 0% no-repeat padding-box;
-  /* border: 5px solid black; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mainMap > img 
+{
+  width: 943px;
+  height: 768px;
+
+  background: transparent url("img/Rectangle 522.png") 0% 0% no-repeat
+    padding-box;
+  border: 5px solid black;
 }
 
 .mainFooterIcons {
@@ -163,10 +220,10 @@ width: 293px;
 }
 .icon > img {
   width: 30px;
-  
+
   margin: 0 auto;
-  
-/* height: 36px; */
+
+  /* height: 36px; */
 }
 
 .mainFooterLine {
