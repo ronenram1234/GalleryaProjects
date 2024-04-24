@@ -32,11 +32,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 48px;
 }
-.imgW {
+.iconWhatsapp > img{
   width: 54px;
-  height: 54px;
+  /* height: 54px; */
 }
+
 
 .headerText {
   width: 787px;
@@ -104,9 +106,13 @@ color: #000000;
 width: 293px;
 }
 
-.cardIcon{
+.card > img
+{
   width: 33px;
+  
 }
+
+
 
 
 .MainContactMap {
@@ -152,6 +158,15 @@ width: 293px;
   background: #0ee1e1 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px #00000029;
   border: 5px solid black;
+  display: flex;
+  border-radius: 48px;
+}
+.icon > img {
+  width: 30px;
+  
+  margin: 0 auto;
+  
+/* height: 36px; */
 }
 
 .mainFooterLine {
