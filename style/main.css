@@ -372,10 +372,16 @@ nav {
     color: black;
     text-align: center;
   }
+  nav {
+    margin-left: 0%;
+  }
   .dropDown {
     flex-direction: column-reverse;
     float: left;
     display: none;
+  }
+  .dropDown {
+    padding-right: 200px;
   }
   .dropDown li a {
     width: 100%;
@@ -411,6 +417,13 @@ nav {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+  }
+  .labelFont {
+    font: normal normal bold 1em Heebo;
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
   }
   .emptyLine {
     grid-column: 1/3;
