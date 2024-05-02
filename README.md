@@ -1,1 +1,1 @@
-need to be updated
+Project Gallery is landing page for multiple projects.
