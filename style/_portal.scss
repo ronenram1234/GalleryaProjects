@@ -4,9 +4,14 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overflow-x: hidden;
+}
 html {
   scroll-behavior: smooth;
+ 
 }
+
 
 /* Header section */
 /* ---------------------------------------- */
@@ -311,6 +316,8 @@ nav {
   color: #2c2c2c;
   opacity: 1;
 }
+
+
 
 /* rectangle6 */
 /* ---------------------------------------- */
