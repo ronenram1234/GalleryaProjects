@@ -156,14 +156,14 @@ nav {
 }
 
 #rectangle56P1 {
-  /* width: 100%; */
   text-align: center;
   font: normal normal normal 1.3rem Heebo;
   color: #3a3a3a;
 }
 
-#rectangle56Button {
+#downloadResumeButton {
   width: 260px;
+  text-align: center;
   background-color: #1ae0ec;
   border: none;
   border-radius: 25px;
@@ -193,11 +193,10 @@ nav {
   font: normal normal 900 2rem Heebo;
   letter-spacing: 0px;
   color: #3a3a3a;
-  opacity: 1;
 }
 
 #rectangle55P {
-  width: 576px;
+  width: 40%;
   font: normal normal normal 1.3rem Heebo;
   letter-spacing: 0px;
   color: #3a3a3a;
@@ -397,6 +396,9 @@ nav {
   }
   input[type=checkbox]:checked ~ .dropDown {
     display: block;
+  }
+  #rectangle55P {
+    width: 70%;
   }
   .rectangle55Grid {
     grid-template-columns: repeat(2, 1fr);
