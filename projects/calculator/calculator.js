@@ -4,7 +4,7 @@ let operatorSign = "";
 let calcDisplay = document.querySelector("#calcDisplay");
 let charInput = "";
 let stringInput = "";
-let currentNumber = 0;
+let result = 0;
 let firstNumber = 0;
 let pointFlag = false;
 let firstTimeKeyAfterEquel = false;
@@ -14,8 +14,8 @@ let selectedOperated = "";
 
 function initNewInput() {
   charInput = 0;
-  currentNumber = 0;
-  stringInput = 0;
+  result = 0;
+  stringInput = "";
   pointFlag = false;
   //   calcDisplay.innerText="0"
 }
@@ -62,9 +62,68 @@ function clickCalc(event) {
     case "+":
     case "-":
     case "*":
-    case ".":
-    case "+":
-      firstNumber = currentNumber;
+    case "/":
+    case "**":
+    case "mod":
+      firstNumber = Number(stringInput);
+      selectedOperated = charInput;
+      console.log(firstNumber);
       initNewInput();
+      break;
+    case "sin":
+      calcDisplay.innerText = Math.sin(Number(stringInput));
+      console.log(stringInput);
+      console.log(Number(stringInput));
+      console.log(Math.sin(Number(stringInput)));
+      initNewInput();
+      break;
+    case "cos":
+      calcDisplay.innerText = Math.cos(Number(stringInput));
+      initNewInput();
+      break;
+    case "=":
+      switch (selectedOperated) {
+        case "+":
+          result = firstNumber + Number(stringInput);
+          calcDisplay.innerText = result;
+          initNewInput();
+          break;
+        case "-":
+          result = firstNumber - Number(stringInput);
+          calcDisplay.innerText = result;
+          initNewInput();
+          break;
+        case "*":
+          result = firstNumber * Number(stringInput);
+          calcDisplay.innerText = result;
+          initNewInput();
+          break;
+        case "/":
+          if (stringInput != "0" && stringInput != "") {
+            result = firstNumber / Number(stringInput);
+            calcDisplay.innerText = result;
+          } else {
+            calcDisplay.innerText = "wrong operator";
+          }
+          initNewInput();
+          break;
+        case "**":
+          result = firstNumber ** Number(stringInput);
+          calcDisplay.innerText = result;
+          initNewInput();
+          break;
+        case "mod":
+          if (stringInput != "0" && stringInput != "") {
+            result = firstNumber % Number(stringInput);
+            calcDisplay.innerText = result;
+          } else {
+            calcDisplay.innerText = "wrong operator";
+          }
+          initNewInput();
+          break;
+      }
+
+      selectedOperated = "";
+      break;
   }
 }
