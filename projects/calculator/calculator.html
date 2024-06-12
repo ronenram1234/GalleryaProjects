@@ -6,13 +6,12 @@
     <title>Calculator</title>
     <style>
       .btn-custome {
-        width: 65px;
+        width: 75px;
       }
       .main {
         padding: 20px;
       }
-      .card-custom {
-      }
+     
     </style>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -24,20 +23,21 @@
   <body>
     
     <div class="main d-flex align-items-center justify-content-center">
-      <div class="card bg-light card-custom " style="width: rem">
+      <div class="card bg-light" style="width: 22rem">
     
-        <div class="card-body ">
+        <div class="card-body " id="card-custome">
           <h5 class="card-title">Calculator</h5>
 
-          <!-- <div class="container text-center" onclick="keyClicked(this)"> -->
+          
           <div class="container text-center" >
             <div class="row">
     
-              <div class="col-9 gy-2 gx-2 text-center fs-3" >000000</div>
+              <div class="col-9 gy-2 gx-2 text-center fs-3" id="calcDisplay">000000</div>
               <div class="col-3 gy-2 gx-2">
                 <button
                   type="button"
                   class="btn btn-secondary btn-lg btn-custome btn-custome  data-tab='C'"
+                  onclick="clickCalc(this)"
                 >
                   C
                 </button>
@@ -47,7 +47,9 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome data-tab='1'"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
+                  
                 >
                   1
                 </button>
@@ -55,7 +57,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome data-tab='2'"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   2
                 </button>
@@ -63,7 +66,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome  data-tab='3'"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   3
                 </button>
@@ -72,6 +76,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome  data-tab='D'"
+                  onclick="clickCalc(this)"
                 >
                   /
                 </button>
@@ -81,7 +86,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   4
                 </button>
@@ -89,7 +95,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   5
                 </button>
@@ -97,7 +104,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   6
                 </button>
@@ -106,6 +114,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
                   *
                 </button>
@@ -116,7 +125,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   7
                 </button>
@@ -124,7 +134,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   8
                 </button>
@@ -132,7 +143,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   9
                 </button>
@@ -141,6 +153,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
                   -
                 </button>
@@ -151,7 +164,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   0
                 </button>
@@ -159,7 +173,8 @@
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
-                  class="btn btn-primary btn-lg btn-custome"
+                     class="btn btn-primary btn-lg btn-custome "
+                  onclick="clickCalc(this)"
                 >
                   .
                 </button>
@@ -168,6 +183,7 @@
                 <button
                   type="button"
                   class="btn btn-success btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
                   =
                 </button>
@@ -176,6 +192,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
                   +
                 </button>
@@ -188,14 +205,16 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
-                  %
+                  mod
                 </button>
               </div>
               <div class="col col-3 gy-2 gx-2">
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
                   ^
                 </button>
@@ -204,6 +223,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                                   >
                   cos
                 </button>
@@ -212,6 +232,7 @@
                 <button
                   type="button"
                   class="btn btn-warning btn-lg btn-custome"
+                  onclick="clickCalc(this)"
                 >
                   sin
                 </button>
