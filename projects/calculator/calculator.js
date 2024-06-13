@@ -7,7 +7,7 @@ let stringInput = "";
 let result = 0;
 let firstNumber = 0;
 let pointFlag = false;
-let secondTimeAfterEquel = false;
+let OperatorAfterEquel = false;
 let selectedOperated = "";
 
 // calcDisplay.innerText = "0";
@@ -41,6 +41,8 @@ function clickCalc(event) {
     case "C":
       initNewInput();
       calcDisplay.innerText = "0";
+      OperatorAfterEquel = false;
+      firstNumber = 0;
       break;
     case "0":
     case "1":
@@ -69,70 +71,51 @@ function clickCalc(event) {
     case "/":
     case "**":
     case "mod":
-      
+      // if (!(OperatorAfterEquel)){
       firstNumber = Number(stringInput);
       selectedOperated = charInput;
       console.log(firstNumber);
       initNewInput();
+      // }
       break;
     case "sin":
-      calcDisplay.innerText = (Math.sin(Number(stringInput))).toFixed(4);
+      calcDisplay.innerText = Math.sin(Number(stringInput)).toFixed(4);
 
       firstNumber = 0;
       selectedOperated = "";
       initNewInput();
       break;
     case "cos":
-      calcDisplay.innerText = (Math.cos(Number(stringInput))).toFixed(4);
+      calcDisplay.innerText = Math.cos(Number(stringInput)).toFixed(4);
       firstNumber = 0;
       selectedOperated = "";
       initNewInput();
       break;
     case "=":
-      switch (selectedOperated) {
-        case "+":
-          result = firstNumber + Number(stringInput);
-          calcDisplay.innerText = result;
-
-          break;
-        case "-":
-          result = firstNumber - Number(stringInput);
-          calcDisplay.innerText = result;
-
-          break;
-        case "*":
-          result = firstNumber * Number(stringInput);
-          calcDisplay.innerText = result;
-
-          break;
-        case "/":
-          if (stringInput != "0" && stringInput != "") {
-            result = (firstNumber / Number(stringInput)).toFixed(4);
-            calcDisplay.innerText = result;
-          } else {
-            calcDisplay.innerText = "wrong operator";
-          }
-
-          break;
-        case "**":
-          result = firstNumber ** Number(stringInput);
-          calcDisplay.innerText = result;
-
-          break;
-        case "mod":
-          if (stringInput != "0" && stringInput != "") {
-            result = firstNumber % Number(stringInput);
-            calcDisplay.innerText = result;
-          } else {
-            calcDisplay.innerText = "wrong operator";
-          }
-
-          break;
-      }
-      // init counters
+      console.log("=");
+      result= parseFloat(eval(`firstNumber${selectedOperated!="mod" ? selectedOperated : "%"}Number(stringInput)`).toFixed(4))
+      console.log(result);
+      
+      calcDisplay.innerText = result;
       initNewInput();
-      firstNumber = 0;
+
+      firstNumber = result;
+      OperatorAfterEquel = true;
       selectedOperated = "";
       break;
   }
 }
+
+const butt = document.querySelectorAll("button");
+
+let ops="-"
+console.log(ops);
+console.log(eval(`2${ops}1`));
+
+
+butt.forEach((b) =>
+  b.addEventListener("click", function (e) {
+    clickCalc(e.target);
+    console.log(e.target);
+  })
+);
