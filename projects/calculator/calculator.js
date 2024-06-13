@@ -7,7 +7,8 @@ let stringInput = "";
 let result = 0;
 let firstNumber = 0;
 let pointFlag = false;
-let OperatorAfterEquel = false;
+let multipleOperatorInput = false;
+let lastOperatorWasEquel = false;
 let selectedOperated = "";
 
 // calcDisplay.innerText = "0";
@@ -26,7 +27,12 @@ HL design
     - pointFlag will ensure only one point added to teh number
 - pressing any operator (excluding "C" and "=")will move stringInput to firstnumber to be saved
 - pressing ("C") - clear all data - run initNewInput
-- pressing ("=") = calculate using firstNumber, currentNumber, SelectedOperated
+- pressing ("=") = calculate using firstNumber, currentNumber, and SelectedOperated
+
+- operator switch should handle
+  first time - i.e:x+y ->display show y
+  multiple numbers and ops - i.e: "x+y-z+n-" display show calculate result  
+  operator after "=" - i.e x+y"="  +z
 
 
 */
@@ -34,14 +40,15 @@ HL design
 function clickCalc(event) {
   // console.log(event);
   charInput = event.innerText;
-  console.log(charInput);
+  // console.log(charInput);
+  // console.log(`firstnumber - ${firstNumber}`);
   //   if (isNaN(Number(charInput))) {
 
   switch (charInput) {
     case "C":
       initNewInput();
       calcDisplay.innerText = "0";
-      OperatorAfterEquel = false;
+      multipleOperatorInput = false;
       firstNumber = 0;
       break;
     case "0":
@@ -54,6 +61,10 @@ function clickCalc(event) {
     case "7":
     case "8":
     case "9":
+      if (!multipleOperatorInput) {
+        multipleOperatorInput = false;
+        stringInput = "";
+      }
       stringInput += charInput;
       calcDisplay.innerText = stringInput;
 
@@ -65,18 +76,57 @@ function clickCalc(event) {
         pointFlag = true;
       }
       break;
+    case "=":
+      // console.log(selectedOperated);
+      // console.log(firstNumber);
+      // console.log(stringInput);
+      result = parseFloat(
+        eval(
+          `${firstNumber}${
+            selectedOperated != "mod" ? selectedOperated : "%"
+          }${Number(stringInput)}`
+        ).toFixed(4)
+      );
+      console.log(result);
+      calcDisplay.innerText = result;
+      pointFlag = false;
+      firstNumber = result;
+      // multipleOperatorInput = true;
+      lastOperatorWasEquel = true;
+      selectedOperated = "";
+      stringInput = "";
+      break;
     case "+":
     case "-":
     case "*":
     case "/":
     case "**":
     case "mod":
-      // if (!(OperatorAfterEquel)){
-      firstNumber = Number(stringInput);
-      selectedOperated = charInput;
-      console.log(firstNumber);
-      initNewInput();
-      // }
+      if (!multipleOperatorInput) {
+        firstNumber = Number(stringInput);
+        selectedOperated = charInput;
+
+        initNewInput();
+        multipleOperatorInput = true;
+      } else {
+        if (!lastOperatorWasEquel) {
+          result = parseFloat(
+            eval(
+              `${firstNumber}${
+                selectedOperated != "mod" ? selectedOperated : "%"
+              }${Number(stringInput)}`
+            ).toFixed(4)
+          );
+
+          calcDisplay.innerText = result;
+          // initNewInput();
+          firstNumber = result;
+          stringInput = "";
+        }
+        lastOperatorWasEquel = false;
+        multipleOperatorInput = true;
+        selectedOperated = charInput;
+      }
       break;
     case "sin":
       calcDisplay.innerText = Math.sin(Number(stringInput)).toFixed(4);
@@ -91,31 +141,14 @@ function clickCalc(event) {
       selectedOperated = "";
       initNewInput();
       break;
-    case "=":
-      console.log("=");
-      result= parseFloat(eval(`firstNumber${selectedOperated!="mod" ? selectedOperated : "%"}Number(stringInput)`).toFixed(4))
-      console.log(result);
-      
-      calcDisplay.innerText = result;
-      initNewInput();
-
-      firstNumber = result;
-      OperatorAfterEquel = true;
-      selectedOperated = "";
-      break;
   }
 }
 
 const butt = document.querySelectorAll("button");
 
-let ops="-"
-console.log(ops);
-console.log(eval(`2${ops}1`));
-
-
 butt.forEach((b) =>
   b.addEventListener("click", function (e) {
     clickCalc(e.target);
-    console.log(e.target);
+    // console.log(e.target);
   })
 );
