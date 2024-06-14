@@ -12,16 +12,14 @@
       crossorigin="anonymous"
     />
     <style>
+      .row:nth-child(odd) {
+        background-color: #f2f2f2; /* Light grey color */
+      }
 
-.row:nth-child(odd) {
-  background-color: #f2f2f2; /* Light grey color */
-}
-
-/* Selects even rows */
-.row:nth-child(even) {
-  background-color: #e6e6e6; /* Darker grey color */
-}
-
+      /* Selects even rows */
+      .row:nth-child(even) {
+        background-color: #e6e6e6; /* Darker grey color */
+      }
 
       .flex-img-container {
         display: flex;
@@ -68,7 +66,11 @@
           </div>
 
           <div class="col-md-4">
-            <button class="btn btn-primary btn-md w-100" type="submit">
+            <button
+              class="btn btn-primary btn-md w-100"
+              type="submit"
+              onclick="addNewLine()"
+            >
               Add
             </button>
           </div>
@@ -150,10 +152,10 @@
       </form>
     </div>
 
-    <div style=" height: 2rem"></div>
+    <div style="height: 2rem"></div>
 
-    <div class="container" style="background-color: bisque">
-      <div class="row g-1">
+    <div class="container" style="background-color: bisque" id="allTable">
+      <div class="row g-1" id="tableLine">
         <div class="col col-md-2">Name</div>
         <div class="col col-md-2">Price</div>
         <div class="col col-md-2">Category</div>
@@ -161,16 +163,14 @@
         <div class="col col-md-2">Grade</div>
         <div class="col col-md-2">Availability</div>
       </div>
-      <div class="row g-1">
+      <!-- <div class="row g-1" >
         <div class="col col-md-2" id="col1">1</div>
         <div class="col col-md-2" id="col2">2</div>
         <div class="col col-md-2" id="col3">3</div>
         <div class="col col-md-2" id="col4">4</div>
         <div class="col col-md-2" id="col5">5</div>
         <div class="col col-md-2" id="col6">6</div>
-      </div>
-      
-      
+      </div> -->
     </div>
 
     <script src="product.js"></script>
