@@ -13,13 +13,15 @@
     />
     <style>
 
-.row:nth-child(odd) {
-  background-color: #f2f2f2; /* Light grey color */
+.allTable:nth-child(odd):not(:first-child) {
+  background-color: lightgray; 
+  /* Light grey color */
 }
 
 /* Selects even rows */
-.row:nth-child(even) {
-  background-color: #e6e6e6; /* Darker grey color */
+.allTable:nth-child(even) {
+  background-color: lightcyan; 
+  /* Darker grey color */
 }
 
 
@@ -152,8 +154,9 @@
 
     <div style=" height: 2rem"></div>
 
-    <div class="container grid-container" id="tableLine" style="background-color: bisque">
-      <div class="row g-1" id="allTable">
+    <!-- <div class="container grid-container" id="tableLine" style="background-color: bisque"> -->
+    <div class="container grid-container" id="tableLine" >
+      <div class="row g-1 allTable" style="font-weight: bold;" >
         <div class="col col-md-2">Name</div>
         <div class="col col-md-2">Price</div>
         <div class="col col-md-2">Category</div>

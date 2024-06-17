@@ -8,13 +8,14 @@ const grade = document.querySelector("#grade");
 
 const inStock = document.querySelector("#inStockYes");
 const tableLine = document.querySelector("#tableLine");
-const allTable = document.querySelector("#allTable");
+
 
 
 function createNewRow(name, price, category, description, grade, availability) {
 
   var newRow = document.createElement("div");
-  newRow.className = "row g-1";
+  newRow.className = "row g-1 allTable";
+  
   newRow.innerHTML = `
       <div class="col col-md-2">${name}</div>
       <div class="col col-md-2">${price}</div>
@@ -31,7 +32,7 @@ function createNewRow(name, price, category, description, grade, availability) {
 function addNewLine() {
   let price = Number(itemPrice.value);
   console.log(tableLine.innerHTML);
-  console.log(allTable.innerHTML);
+  
 
   if (itemName.value != "" && price != 0) {
     
