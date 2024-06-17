@@ -25,13 +25,87 @@
   <body>
     <!-- topBar (design change ) is אזור עליון:-->
     <header class="topBar">
-      <!-- migrate to Bootstrap old code -->
-      <!-- <div id="headerTopLineTopBar"></div> -->
-      <div id="flex-container">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <!-- <div class="container-fluid"> -->
+
+<!-- example of grid and navbar -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="#">Brand</a>
+    <!-- Toggler/collapsible Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="row w-100">
+        <div class="col">
+          <!-- Left-aligned links -->
+        </div>
+        <div class="col">
+          <!-- Center-aligned links -->
+        </div>
+        <div class="col">
+          <!-- Right-aligned links -->
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- end of exmample -->
+
+
+
+
+
+        <img
+          src="images/profile-image.jpeg"
+          alt="profile"
+          class="img-fluid"
+          id="profileImage"
+        />
+        <img
+          src="images/myName.png"
+          alt="my name"
+          class="img-fluid"
+          id="myName"
+        />
+
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+          </ul>
+        </div>
+        <!-- </div> -->
+      </nav>
+
+      <!-- <div id="flex-container">
         <img src="images/profile-image.jpeg" alt="profile" id="profileImage" />
         <img src="images/myName.png" alt="my name" id="myName" />
         <nav>
-          <!-- <div class="hamburger">&#9776;</div> -->
+          
           <label for="checkHamburger" class="labels"
             ><div class="hamburger">&#9776;</div></label
           >
@@ -43,7 +117,7 @@
             <li><a href="#">ראשי</a></li>
           </ul>
         </nav>
-      </div>
+      </div> -->
     </header>
 
     <!-- path1 (design change ) is אזור פתיחה:-->
@@ -125,7 +199,7 @@
           מנהל ותיק בתחום ההיטק שהחליט ללמוד את הטכנולוגיות העדכניות בשוק
           הישראלי.
         </p>
-        
+
         <a
           id="downloadResumeButton"
           href="./RonenResume.pdf"
