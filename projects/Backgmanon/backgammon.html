@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backgammon Board</title>
+<style>
+  #backgammon-board {
+    display: flex;
+    flex-wrap: wrap;
+    width: 900px;
+    /* height: 800px; */
+    background-color: #deb887;
+    border: 2px solid #000;
+  }
+  .point {
+    width: 50px;
+    height: 200px;
+
+    /* width: 0;
+    height: 100px;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid ; */
+
+
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .triangleB {
+    /* width: 10px; */
+    /* height: 200px; */
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 200px solid #000;
+  }
+
+
+  .triangleT {
+    /* width: 10px; */
+    /* height: 200px; */
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 200px solid #000;
+  }
+
+  .point:nth-child(odd) { background-color: #fff; }
+  .point:nth-child(even) { background-color: gray; }
+
+  #bar {
+    width: 10px;
+    height: 200px;
+    background-color: #8b4513;
+    margin: auto; /* Centers the bar */
+  }
+  #home1, #home2 {
+    width: 100%;
+    height: 50px;
+    background-color: #f4a460;
+    border-top: 2px solid #000;
+  }
+
+
+
+</style>
+</head>
+<body>
+    <div class="triangle"></div>
+
+<div id="backgammon-board">
+    <!-- Points -->
+    <div id="home1"></div>
+    <div class="point " id="point1"><div class="triangleB"></div></div>
+    <div class="point " id="point2"><div class="triangleT"></div></div>
+    
+    <div class="point" id="point3"><div class="triangleB"></div></div>
+    <div class="point" id="point4"></div>
+    <div class="point" id="point5"></div>
+    <div class="point" id="point6"></div>
+    
+    <div id="bar"></div>
+    <!-- ... add all 24 points ... -->
+    <div class="point " id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point24"></div>
+
+    <!-- Bar -->
+    
+
+    <!-- Home for player 1 -->
+    
+
+    <!-- Home for player 2 -->
+
+
+    <div class="point " id="point1"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div id="bar"></div>
+    <!-- ... add all 24 points ... -->
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point2"></div>
+    <div class="point" id="point24"></div>
+
+    <div id="home2"></div>
+</div>
+
+</body>
+</html>
