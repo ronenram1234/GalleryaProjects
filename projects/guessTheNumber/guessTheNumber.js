@@ -69,6 +69,7 @@ function randomNum() {
 function startAgain() {
   randomNum();
   answers.innerHTML = "";
+  inputGuess.value = "";
   flagGameWon = false;
   count = 0;
 }
