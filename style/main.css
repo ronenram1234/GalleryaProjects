@@ -38,20 +38,8 @@ header {
   height: 35px;
 }
 
-.hamburger,
-#checkHamburger {
-  display: none;
-}
-
 nav {
   margin-left: 40%;
-}
-
-.dropDown {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
-  /*  flex-direction: row; */
 }
 
 .dropDown li a {

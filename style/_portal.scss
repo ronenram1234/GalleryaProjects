@@ -42,21 +42,21 @@ header {
   height: 35px;
 }
 
-.hamburger,
-#checkHamburger {
-  // hide reponsive menu
-  display: none;
-}
+// .hamburger,
+// #checkHamburger {
+//   // hide reponsive menu
+//   display: none;
+// }
 nav {
   margin-left: 40%;
 }
-.dropDown {
-  list-style-type: none;
-  display: flex;
-  flex-direction: row;
+// .dropDown {
+//   list-style-type: none;
+//   display: flex;
+//   flex-direction: row;
 
-  /*  flex-direction: row; */
-}
+//   /*  flex-direction: row; */
+// }
 
 .dropDown li a {
   display: block;
