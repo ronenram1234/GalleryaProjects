@@ -28,7 +28,6 @@ header {
 
 #profileImage {
   width: 62px;
-  /* height: 62px; */
   margin-left: 15%;
   border-radius: 31px;
 }
@@ -36,10 +35,6 @@ header {
 #myName {
   width: 79px;
   height: 35px;
-}
-
-nav {
-  margin-left: 40%;
 }
 
 .dropDown li a {
@@ -362,9 +357,6 @@ nav {
     font-size: 54px;
     color: black;
     text-align: center;
-  }
-  nav {
-    margin-left: 0%;
   }
   .dropDown {
     flex-direction: column-reverse;
