@@ -37,16 +37,10 @@ header {
   height: 35px;
 }
 
-.dropDown li a {
-  display: block;
-  width: 100px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.2em;
+.menueItem {
+  font-size: 1.2rem;
   color: #639;
   font-family: "Heebo";
-  height: -moz-fit-content;
-  height: fit-content;
 }
 
 /* ---------------------------------------- */

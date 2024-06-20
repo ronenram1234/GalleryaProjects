@@ -41,7 +41,7 @@ function userGuess() {
   count++;
 
   //   process input
-//   console.log(count);
+  //   console.log(count);
 
   switch (true) {
     case guess == computerNum:
@@ -62,7 +62,7 @@ function userGuess() {
 }
 
 function randomNum() {
-  computerNum = Math.floor(Math.random(10) * 10) + 1;
+  computerNum = Math.ceil(Math.random(10) * 10);
   console.log(computerNum);
 }
 
