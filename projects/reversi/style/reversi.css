@@ -66,3 +66,16 @@ table {
   align-items: center;
   justify-content: center;
 }
+
+
+
+.customCol{
+    border: 1px solid grey;
+    padding: 5px;
+    
+}
+
+.customRow{
+    
+    
+}
