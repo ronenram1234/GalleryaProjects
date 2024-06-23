@@ -1,0 +1,74 @@
+:root {
+  --circle-width: 56px;
+  --circle-hight: 56px;
+  --cell-width: 70px;
+  --cell-hight: 70px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.stoneWhite {
+  /* stone */
+  width: var(--circle-width);
+  height: var(--circle-hight);
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid black;
+  
+}
+
+.stoneBlack {
+  /* stone */
+  width: var(--circle-width);
+  height: var(--circle-hight);
+  background-color: black;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+table {
+    border-collapse: collapse; /* Removes space between cells */
+    
+}
+
+.cellR {
+  border: 2px solid black;
+  width: var(--cell-width);
+  height: var(--cell-hight);
+  
+
+
+}
+.tableReversi{
+    
+    /* position: absolute; */
+ 
+    background-color: rgba(255, 255, 255, 0.5); /*Adjust the color and opacity*/
+    
+    
+}
+.divTable{
+    background-image: url("./../images/background1.jpg") ;
+    
+    background-size: cover;
+    /* opacity: 0.5; */
+    
+   
+    /* background-color: blanchedalmond; */
+    
+    padding: var(--cell-width);
+
+}
+
+
+.board{
+display:flex;
+justify-content: center;
+
+
+}
+
+
