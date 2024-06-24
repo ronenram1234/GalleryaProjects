@@ -1,13 +1,41 @@
 "use strict";
 
-// function positionNewPiece(col, row, color) {
-//   console.log(col, row, color);
-//   console.log(`.inLine${row}`);
-//   let rowP = document.querySelectorAll(`.inLine${row}`);
-//   console.log(rowP);
-// }
+function positionNewPiece(row, col, color) {
+  // translate array value to screen
+  col++;
+  row++;
+  let textS = "";
+  if (color == "White" || color == "Black") {
+    textS = ` <div class="centerCircle">
+                <div class="stone${color}"></div>
+              </div>`;
+  }
+  if (color == "Optional") {
+    textS = ` <div class="centerCircle">
+                <div class="stoneOptional"></div>
+              </div>`;
+              console.log('-------');
+  }
+  
 
-// positionNewPiece(2, 3, "white");
+  let rowP = document.querySelector(`#row${row}`);
+  rowP.children[col - 1].innerHTML = textS;
+  // console.log(rowP);
+}
+
+function removePiece(row, col) {
+  // translate array value to screen
+
+  col++;
+  row++;
+
+  let textS = ` <div class="centerCircle">
+              
+            </div>`;
+
+  let rowP = document.querySelector(`#row${row}`);
+  rowP.children[col - 1].innerHTML = textS;
+}
 
 function initBoard() {
   let arr = [];
@@ -22,6 +50,15 @@ function initBoard() {
   arr[3][4] = "b";
   arr[4][3] = "b";
   arr[4][4] = "w";
+  positionNewPiece(3, 3, "White");
+  positionNewPiece(3, 4, "Black");
+  positionNewPiece(4, 3, "Black");
+  positionNewPiece(4, 4, "White");
+  positionNewPiece(1, 1, "Optional");
+
+  // positionNewPiece(0, 0, "White");
+  // removePiece(0, 0);
+
   return arr;
 }
 
@@ -37,29 +74,23 @@ function checkOtherDirectionForPlayer(
   let sentenceL = "";
   let sentenceC = "";
   let sentence = "";
-  let c = 0;
-  let l = 0;
-  console.log('-----------');
-  console.log(line, col);
+  let c = col + colDirection;
+  let l = line + lineDirection;
 
-  if (lineDirection == -1) {
-    sentenceL = ` for (l=${line};l>=0;l--) `;
-  } else if (lineDirection == 1) {
-    sentenceL = ` for (l=${line};l<8;l++) `;
-  } else sentenceL = ` l=${line}; `;
-
-  if (colDirection == -1) {
-    sentenceC = ` for ( c=${col};c>=0;c--) `;
-  } else if (colDirection == 1) {
-    sentenceC = ` for ( c=${col};c<8;c++) `;
-  } else sentenceC = ` c=${col}; `;
-
-  // sentence=sentenceL +' { '+sentenceC + `console.log(arr[l][c],l,c)};`
-  sentence =
-    sentenceL + " { " + sentenceC + ` if (arr[l][c]==color) stat=true };`;
-  console.log(sentence);
-  eval(sentence);
-
+  // console.log(line, col, lineDirection, colDirection, color);
+  // console.log(l, c);
+  // console.log("-----------------");
+  while (l > 0 && l < 8 && c > 0 && c < 8) {
+    if (arr[l][c] === color) {
+      stat = true;
+      // console.log("---->", l, c);
+      break;
+    }
+    l += lineDirection;
+    c += colDirection;
+  }
+  // console.log("+++++++++++++++");
+  // console.log(stat);
   return stat;
 }
 
@@ -70,56 +101,74 @@ function getLoactions(line, col, curBoard, player, openentColor) {
 
   let options = [];
 
- 
-
   // checkUp - not 0 line && empty spot up && player piece somewhere down
- if (
+  if (
     line > 0 &&
     curBoard[line - 1][col] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, 0)
   )
-    options.push([line -1, col]);
+    options.push([line - 1, col]);
 
   // checkdown
   if (
-  line < 7 &&
+    line < 7 &&
     curBoard[line + 1][col] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, 0)
   )
-    options.push([line +1, col]);
-
+    options.push([line + 1, col]);
 
   // checkRight
   if (
     col < 7 &&
-      curBoard[line][col+1] == "e" &&
-      checkOtherDirectionForPlayer(player, curBoard, line, col, 0, -1)
-    )
-      options.push([line, col+1]);
+    curBoard[line][col + 1] == "e" &&
+    checkOtherDirectionForPlayer(player, curBoard, line, col, 0, -1)
+  )
+    options.push([line, col + 1]);
 
   // checkUp
   if (
-    col >0 &&
-      curBoard[line][col-1] == "e" &&
-      checkOtherDirectionForPlayer(player, curBoard, line, col, 0, +1)
-    )
-      options.push([line, col-1]);
+    col > 0 &&
+    curBoard[line][col - 1] == "e" &&
+    checkOtherDirectionForPlayer(player, curBoard, line, col, 0, +1)
+  )
+    options.push([line, col - 1]);
+
   // checkDiagonalRightUp;
-  console.log(line,col,openentColor, line + 1,col-1,curBoard[line + 1][col-1]);
-  console.log(curBoard);
   if (
-    line > 0 && col < 7 &&
-    curBoard[line - 1][col+1] == "e" &&
-    curBoard[line + 1][col-1] == player &&
+    line > 0 &&
+    col < 7 &&
+    curBoard[line - 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, -1)
   )
-    options.push([line -1, col]);
-  // checkDiagonalRightDown;
-  // checkDiagonalLefttUp;
-  // checkDiagonalLeftDown;
+    options.push([line - 1, col + 1]);
 
-  // console.log(line,col,options);
-  // console.log('---------------------------------');
+  // checkDiagonalRightDown;
+  if (
+    line < 7 &&
+    col < 7 &&
+    curBoard[line + 1][col + 1] == "e" &&
+    checkOtherDirectionForPlayer(player, curBoard, line, col, -1, -1)
+  )
+    options.push([line + 1, col + 1]);
+
+  // checkDiagonalLefttUp;
+  if (
+    line > 0 &&
+    col > 0 &&
+    curBoard[line - 1][col - 1] == "e" &&
+    checkOtherDirectionForPlayer(player, curBoard, line, col, +1, +1)
+  )
+    options.push([line - 1, col - 1]);
+
+  // checkDiagonalLeftDown;
+  if (
+    line < 7 &&
+    col > 0 &&
+    curBoard[line + 1][col - 1] == "e" &&
+    checkOtherDirectionForPlayer(player, curBoard, line, col, -1, +1)
+  )
+    options.push([line + 1, col - 1]);
+
   return options;
 }
 
@@ -127,7 +176,7 @@ function findPotentialNextPosition(playerColor, openentColor, curBoard) {
   // find all potential positions
   let arr = curBoard;
   let allPlayerLocations = [];
-  let options=[]
+  let options = [];
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++)
       if (arr[line][col] == openentColor) allPlayerLocations.push([line, col]);
@@ -135,13 +184,19 @@ function findPotentialNextPosition(playerColor, openentColor, curBoard) {
   // console.log(allPlayerLocations, playerColor, openentColor);
 
   for (let i = 0; i < allPlayerLocations.length; i++) {
-    options.push(...getLoactions(...allPlayerLocations[i], curBoard, playerColor, openentColor))
-      
+    options.push(
+      ...getLoactions(
+        ...allPlayerLocations[i],
+        curBoard,
+        playerColor,
+        openentColor
+      )
+    );
   }
-  for (let x=0; x<options.length;x++)
+  for (let x = 0; x < options.length; x++)
     // console.log(options[x][0],options[x][1]);
-    arr[options[x][0]][options[x][1]]=`${playerColor}o`
-// console.log(options);
+    arr[options[x][0]][options[x][1]] = `${playerColor}o`;
+  // console.log(options);
   return arr;
 }
 

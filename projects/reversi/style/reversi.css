@@ -1,6 +1,8 @@
 :root {
   --circle-width: 50px;
   --circle-hight: 50px;
+  --optional-w: 20px;
+  --optional-h: 20px;
   --cell-width: 70px;
   --cell-hight: 70px;
 }
@@ -26,6 +28,18 @@
   background-color: black;
   border-radius: 50%;
   border: 2px solid black;
+}
+
+.stoneOptional {
+  /* stone */
+  /* width: var(--circle-width);
+  height: var(--circle-hight); */
+  width: var(--optional-w);
+  height: var(--optional-h);
+  background-color: greenyellow;
+
+  border-radius: 50%;
+  border: 3px solid #612525;
 }
 
 table {
@@ -67,15 +81,7 @@ table {
   justify-content: center;
 }
 
-
-
-.customCol{
-    border: 1px solid grey;
-    padding: 5px;
-    
-}
-
-.customRow{
-    
-    
+.customCol {
+  border: 1px solid grey;
+  padding: 5px;
 }
