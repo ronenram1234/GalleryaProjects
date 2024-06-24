@@ -1,26 +1,30 @@
 "use strict";
 
+let board = [];
+let player = "w";
+let computer = "b";
+
 function positionNewPiece(row, col, color) {
   // translate array value to screen
   col++;
   row++;
+  let cColor = color;
   let textS = "";
-  if (color == "White" || color == "Black") {
+  if (cColor == "w") cColor = "White";
+  if (cColor == "b") cColor = "Black";
+  if (cColor == "White" || cColor == "Black") {
     textS = ` <div class="centerCircle">
-                <div class="stone${color}"></div>
+                <div class="stone${cColor}"></div>
               </div>`;
   }
   if (color == "Optional") {
     textS = ` <div class="centerCircle">
                 <div class="stoneOptional"></div>
               </div>`;
-              console.log('-------');
   }
-  
 
   let rowP = document.querySelector(`#row${row}`);
   rowP.children[col - 1].innerHTML = textS;
-  // console.log(rowP);
 }
 
 function removePiece(row, col) {
@@ -35,6 +39,49 @@ function removePiece(row, col) {
 
   let rowP = document.querySelector(`#row${row}`);
   rowP.children[col - 1].innerHTML = textS;
+}
+
+function cleanBoardOptions() {
+  for (let line = 0; line < 8; line++)
+    for (let col = 0; col < 8; col++)
+      if (board[line][col] == "wo" || board[line][col] == "bo") {
+        // flipLineToNewColor(line,col)
+        board[line][col] = "e";
+        removePiece(line, col)
+         
+      }
+}
+
+function clickedCell(event) {
+  // console.log(event);
+  let clickedElement;
+  if (event.target.classList[0] == "stoneOptional") {
+    clickedElement = event.target.parentNode.parentNode;
+  } else {
+    clickedElement = event.target;
+  }
+  const parentTd = clickedElement.parentNode;
+
+  // console.log(clickedElement);
+  // console.log(clickedElement.classList[0]);
+  // console.log(clickedElement.classList[1].slice(-1));
+  // console.log(parentTd.id.slice(-1));
+
+  let col = Number(clickedElement.classList[1].slice(-1)) - 1;
+  let line = Number(parentTd.id.slice(-1)) - 1;
+  // console.log(line, col);
+  if (board[line][col] == "wo" || board[line][col] == "bo") {
+    positionNewPiece(line, col, player);
+    board[line][col] = player;
+  }
+
+  cleanBoardOptions();
+
+  // console.log(clickedElement,parentTd);
+}
+
+function mouseOver() {
+  console.log("mouseOver");
 }
 
 function initBoard() {
@@ -54,10 +101,19 @@ function initBoard() {
   positionNewPiece(3, 4, "Black");
   positionNewPiece(4, 3, "Black");
   positionNewPiece(4, 4, "White");
-  positionNewPiece(1, 1, "Optional");
+  // positionNewPiece(1, 1, "Optional");
 
   // positionNewPiece(0, 0, "White");
   // removePiece(0, 0);
+  const cells = document.querySelectorAll(".cellR");
+
+  for (let i = 0; i < cells.length; i++) {
+    // console.log(i, cells[i]);
+
+    cells[i].addEventListener("click", clickedCell);
+
+    cells[i].addEventListener("mouseover", mouseOver);
+  }
 
   return arr;
 }
@@ -200,12 +256,18 @@ function findPotentialNextPosition(playerColor, openentColor, curBoard) {
   return arr;
 }
 
-let board = [];
-let player = "w";
-let computer = "b";
 board = initBoard();
 // console.log(board);
 
 findPotentialNextPosition(player, computer, board);
+
+for (let line = 0; line < 8; line++) {
+  for (let col = 0; col < 8; col++) {
+    if (board[line][col] == "wo" || board[line][col] == "bo") {
+      positionNewPiece(line, col, "Optional");
+    }
+  }
+}
+
 console.log(board);
 // console.log(findPotentialNextPosition(computer, player, board));
