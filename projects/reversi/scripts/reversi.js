@@ -3,6 +3,9 @@
 let board = [];
 let player = "w";
 let computer = "b";
+let options = [];
+let lineEnd = 0;
+let colEnd = 0;
 
 function positionNewPiece(row, col, color) {
   // translate array value to screen
@@ -41,14 +44,26 @@ function removePiece(row, col) {
   rowP.children[col - 1].innerHTML = textS;
 }
 
+function flipLineToNewColor(line, col) {
+  // console.log(options.length);
+  for (let i = 0; i < options.length; i++) {
+    if (options[i][0]==line && options[i][1]==col){
+      console.log(line,col);
+      console.log(options[i]);
+    }
+    
+  }
+}
+
 function cleanBoardOptions() {
+  console.log("----------");
+  console.log(options);
   for (let line = 0; line < 8; line++)
     for (let col = 0; col < 8; col++)
       if (board[line][col] == "wo" || board[line][col] == "bo") {
-        // flipLineToNewColor(line,col)
+        flipLineToNewColor(line, col);
         board[line][col] = "e";
-        removePiece(line, col)
-         
+        removePiece(line, col);
       }
 }
 
@@ -139,6 +154,13 @@ function checkOtherDirectionForPlayer(
   while (l > 0 && l < 8 && c > 0 && c < 8) {
     if (arr[l][c] === color) {
       stat = true;
+      lineEnd = l;
+      colEnd = c;
+      // console.log('+++++++++++++++++++');
+      // console.log(l,c);
+      // console.log('***************');
+      console.log(lineEnd, colEnd);
+      // console.log('+++++++++++++++++++');
       // console.log("---->", l, c);
       break;
     }
@@ -155,7 +177,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
 
    The piece must be laid adjacent to an opponent’s piece so that the opponent’s piece or a row of opponent’s pieces is flanked by the new piece and another piece of the player’s color.*/
 
-  let options = [];
+  let optionsL = [];
 
   // checkUp - not 0 line && empty spot up && player piece somewhere down
   if (
@@ -163,7 +185,9 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, 0)
   )
-    options.push([line - 1, col]);
+    // console.log('------------');
+    // console.log(lineEnd,colEnd);
+    optionsL.push([line - 1, col, lineEnd, colEnd]);
 
   // checkdown
   if (
@@ -171,7 +195,9 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, 0)
   )
-    options.push([line + 1, col]);
+    // console.log('------------');
+    // console.log(lineEnd,colEnd);
+    optionsL.push([line + 1, col, lineEnd, colEnd]);
 
   // checkRight
   if (
@@ -179,7 +205,9 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, 0, -1)
   )
-    options.push([line, col + 1]);
+    // console.log('------------');
+    // console.log(lineEnd,colEnd);
+    optionsL.push([line, col + 1, lineEnd, colEnd]);
 
   // checkUp
   if (
@@ -187,7 +215,9 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, 0, +1)
   )
-    options.push([line, col - 1]);
+    // console.log('------------');
+    // console.log(lineEnd,colEnd);
+    optionsL.push([line, col - 1, lineEnd, colEnd]);
 
   // checkDiagonalRightUp;
   if (
@@ -196,7 +226,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, -1)
   )
-    options.push([line - 1, col + 1]);
+    optionsL.push([line - 1, col + 1, lineEnd, colEnd]);
 
   // checkDiagonalRightDown;
   if (
@@ -205,7 +235,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, -1)
   )
-    options.push([line + 1, col + 1]);
+    optionsL.push([line + 1, col + 1, lineEnd, colEnd]);
 
   // checkDiagonalLefttUp;
   if (
@@ -214,7 +244,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, +1)
   )
-    options.push([line - 1, col - 1]);
+    optionsL.push([line - 1, col - 1, lineEnd, colEnd]);
 
   // checkDiagonalLeftDown;
   if (
@@ -223,16 +253,16 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, +1)
   )
-    options.push([line + 1, col - 1]);
+    optionsL.push([line + 1, col - 1, lineEnd, colEnd]);
 
-  return options;
+  return optionsL;
 }
 
 function findPotentialNextPosition(playerColor, openentColor, curBoard) {
   // find all potential positions
   let arr = curBoard;
   let allPlayerLocations = [];
-  let options = [];
+
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++)
       if (arr[line][col] == openentColor) allPlayerLocations.push([line, col]);
