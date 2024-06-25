@@ -31,11 +31,11 @@ function positionNewPiece(row, col, color) {
 }
 
 function removePiece(row, col) {
-  // translate array value to screen
+  /*following function remove the optional mark for next move from the board*/
 
+  // translate array value to screen
   col++;
   row++;
-
   let textS = ` <div class="centerCircle">
               
             </div>`;
@@ -44,31 +44,62 @@ function removePiece(row, col) {
   rowP.children[col - 1].innerHTML = textS;
 }
 
-function flipLineToNewColor(line, col) {
+function flipLineToNewColor(lineStart, colStart) {
+  /* once colors are flank bu last move - chang all colors to colors in head and tail*/
   // console.log(options.length);
+  console.log("flip to new color");
   for (let i = 0; i < options.length; i++) {
-    if (options[i][0]==line && options[i][1]==col){
-      console.log(line,col);
+    if (options[i][0] == lineStart && options[i][1] == colStart) {
+      console.log(lineStart, colStart);
       console.log(options[i]);
+
+      let lineDirection = options[i][4];
+      let colDirection = options[i][5];
+      let l = lineStart;
+      let c = colStart;
+      let lineEnd = options[i][2];
+      let colEnd = options[i][3];
+
+      // console.log(lineDirection, colDirection, l, c, lineEnd, colEnd);
+      // console.log("before the while");
+      // console.log(c != colEnd);
+      // console.log(l != lineEnd);
+      // console.log(l != lineEnd || c != colEnd);
+      while (c != colEnd || l != lineEnd) {
+        // console.log("in the while");
+        // console.log(lineDirection, colDirection, l, c, lineEnd, colEnd);
+        positionNewPiece(l, c, player);
+        l += lineDirection;
+        c += colDirection;
+      }
     }
-    
   }
 }
 
 function cleanBoardOptions() {
+  /* clean screen board  and clean also board array from all optuional*/
   console.log("----------");
   console.log(options);
   for (let line = 0; line < 8; line++)
     for (let col = 0; col < 8; col++)
       if (board[line][col] == "wo" || board[line][col] == "bo") {
-        flipLineToNewColor(line, col);
         board[line][col] = "e";
         removePiece(line, col);
       }
 }
 
 function clickedCell(event) {
+  /* accept user selection
+         check if selection is valid
+          mark selectio in screen and array board
+          flip all line in scrren and arrat to new color
+          activate options places cleanup procedure
+          call computer move fuction
+          present options on screen - findPotentialNextPosition /
+          */
+
   // console.log(event);
+
   let clickedElement;
   if (event.target.classList[0] == "stoneOptional") {
     clickedElement = event.target.parentNode.parentNode;
@@ -88,18 +119,24 @@ function clickedCell(event) {
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     positionNewPiece(line, col, player);
     board[line][col] = player;
+    flipLineToNewColor(line, col);
+    cleanBoardOptions();
+    // computerNextMove()
+    // findPotentialNextPosition()
   }
-
-  cleanBoardOptions();
 
   // console.log(clickedElement,parentTd);
 }
 
 function mouseOver() {
+  /* change over cell opicity*/
+
   console.log("mouseOver");
 }
 
 function initBoard() {
+  /* init game*/
+
   let arr = [];
   let oneLine = [];
   for (let line = 0; line < 8; line++) {
@@ -141,6 +178,8 @@ function checkOtherDirectionForPlayer(
   lineDirection,
   colDirection
 ) {
+  /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
+
   let stat = false;
   let sentenceL = "";
   let sentenceC = "";
@@ -159,7 +198,7 @@ function checkOtherDirectionForPlayer(
       // console.log('+++++++++++++++++++');
       // console.log(l,c);
       // console.log('***************');
-      console.log(lineEnd, colEnd);
+      // console.log(lineEnd, colEnd);
       // console.log('+++++++++++++++++++');
       // console.log("---->", l, c);
       break;
@@ -173,7 +212,8 @@ function checkOtherDirectionForPlayer(
 }
 
 function getLoactions(line, col, curBoard, player, openentColor) {
-  /* check on posistion if it is valid for next move, valid position
+  /* 
+    check 8 direction near any oponent piece on he board - creat areas of potential nect mov 
 
    The piece must be laid adjacent to an opponent’s piece so that the opponent’s piece or a row of opponent’s pieces is flanked by the new piece and another piece of the player’s color.*/
 
@@ -187,7 +227,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   )
     // console.log('------------');
     // console.log(lineEnd,colEnd);
-    optionsL.push([line - 1, col, lineEnd, colEnd]);
+    optionsL.push([line - 1, col, lineEnd, colEnd, +1, 0]);
 
   // checkdown
   if (
@@ -197,7 +237,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   )
     // console.log('------------');
     // console.log(lineEnd,colEnd);
-    optionsL.push([line + 1, col, lineEnd, colEnd]);
+    optionsL.push([line + 1, col, lineEnd, colEnd, -1, 0]);
 
   // checkRight
   if (
@@ -207,7 +247,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   )
     // console.log('------------');
     // console.log(lineEnd,colEnd);
-    optionsL.push([line, col + 1, lineEnd, colEnd]);
+    optionsL.push([line, col + 1, lineEnd, colEnd, 0, -1]);
 
   // checkUp
   if (
@@ -217,7 +257,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   )
     // console.log('------------');
     // console.log(lineEnd,colEnd);
-    optionsL.push([line, col - 1, lineEnd, colEnd]);
+    optionsL.push([line, col - 1, lineEnd, colEnd, 0, +1]);
 
   // checkDiagonalRightUp;
   if (
@@ -226,7 +266,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, -1)
   )
-    optionsL.push([line - 1, col + 1, lineEnd, colEnd]);
+    optionsL.push([line - 1, col + 1, lineEnd, colEnd, +1, -1]);
 
   // checkDiagonalRightDown;
   if (
@@ -235,7 +275,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, -1)
   )
-    optionsL.push([line + 1, col + 1, lineEnd, colEnd]);
+    optionsL.push([line + 1, col + 1, lineEnd, colEnd, -1, -1]);
 
   // checkDiagonalLefttUp;
   if (
@@ -244,7 +284,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, +1)
   )
-    optionsL.push([line - 1, col - 1, lineEnd, colEnd]);
+    optionsL.push([line - 1, col - 1, lineEnd, colEnd, +1, +1]);
 
   // checkDiagonalLeftDown;
   if (
@@ -253,7 +293,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, +1)
   )
-    optionsL.push([line + 1, col - 1, lineEnd, colEnd]);
+    optionsL.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
 
   return optionsL;
 }
@@ -279,15 +319,25 @@ function findPotentialNextPosition(playerColor, openentColor, curBoard) {
       )
     );
   }
-  for (let x = 0; x < options.length; x++)
-    // console.log(options[x][0],options[x][1]);
+
+  for (let x = 0; x < options.length; x++) {
     arr[options[x][0]][options[x][1]] = `${playerColor}o`;
-  // console.log(options);
+    positionNewPiece(options[x][0], options[x][1], "Optional");
+  }
+
   return arr;
 }
 
 board = initBoard();
 // console.log(board);
+
+// for (let line = 0; line < 8; line++) {
+//   for (let col = 0; col < 8; col++) {
+//     if (board[line][col] == "wo" || board[line][col] == "bo") {
+//       positionNewPiece(line, col, "Optional");
+//     }
+//   }
+// }
 
 findPotentialNextPosition(player, computer, board);
 
