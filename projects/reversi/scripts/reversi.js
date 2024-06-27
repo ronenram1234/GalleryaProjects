@@ -6,7 +6,8 @@ let computer = "b";
 let options = [];
 let lineEnd = 0;
 let colEnd = 0;
-let recursionLevel = 1;
+let recursionLevel = 3;
+let debugFlag = true;
 
 function positionNewPiece(row, col, color) {
   // translate array value to screen
@@ -111,7 +112,7 @@ function clickedCell(event) {
     board[line][col] = player;
     flipLineToNewColor(line, col, player);
     cleanBoardOptions();
-    // console.log(board, options);
+    console.log(board, options);
 
     computerNextMove();
     // findPotentialNextPosition()
@@ -338,9 +339,79 @@ function initGame() {
       }
     }
   }
+  // console.log(calculateBoardValueForComputerMove(player,computer, board));
 }
 
 /*-------------- Cumputer Move Execuation ---------------*/
+
+function debugDataSave(arr, level) {
+  if (!debugFlag) return;
+  let arrString = "";
+  let char=""
+  let lineString=""
+  
+
+  // const fs = require("fs");
+
+  const location = document.querySelector(".debugDiv");
+
+  // Stringify the array
+  // const arrString = location.innerText+"-".repeat(10 - level) + JSON.stringify(arr)+'\n';
+
+  for (let l = 0; l < 8; l++) {
+    for (let c = 1; c < 8; c++) {
+      switch (arr[l][c]) {
+        case "b":
+          char='⚫'
+          break;
+        case "w":
+          char='⚪'
+          break;
+        default:
+              char=String(`${l},${c}`)
+          break;
+          
+      }
+      lineString+="|"+char+"|"
+      
+      
+    }
+
+    arrString="=".repeat(10 - level)+">"+lineString+"\n"
+    location.innerText += "=".repeat(20 - level*3)+">"+lineString;
+    location.innerHTML+="<br>"
+    lineString=""
+    // console.log(arrString);
+  }
+location.innerHTML+="<br>"+"<br>"+"<br>"
+  arrString = location.innerText +arrString + "\n";
+  // console.log(arrString);
+   
+
+  // Write to the file
+  
+}
+
+function calculateBoardValueForComputerMove(player, computer, localBoard) {
+  const gradeP = localBoard.flat().filter((item) => item === player).length;
+  const gradeC = localBoard.flat().filter((item) => item === computer).length;
+  return gradeP - gradeC;
+}
+
+function calculateOptioTopGrade(result) {
+  // let localresult = JSON.parse(JSON.stringify(result));
+  let resultLine = [];
+  const grade = result.flat().filter((item) => item === computer).length;
+  let i = 0;
+  while (i < result.length) {
+    if (grade === result[i][0]) {
+      resultLine.push(result[i]);
+      break;
+    }
+    i++
+  }
+  return [grade, resultLine];
+}
 
 function flipLineToNewColorOnlyBoard(
   l,
@@ -352,7 +423,7 @@ function flipLineToNewColorOnlyBoard(
   Board,
   color
 ) {
-  var LocalBoard = JSON.parse(JSON.stringify(Board));
+  let LocalBoard = JSON.parse(JSON.stringify(Board));
 
   console.log("input", l, c, lineEnd, colEnd, lineDirection, colDirection);
   while (c != colEnd || l != lineEnd) {
@@ -365,24 +436,17 @@ function flipLineToNewColorOnlyBoard(
 }
 
 function playerMove(option, tempBoard, level, color) {
-  var localBoard = JSON.parse(JSON.stringify(tempBoard));
-  let gradePlayer=0
+  let localBoard = JSON.parse(JSON.stringify(tempBoard));
+  let grade = 0;
+  let result = [];
 
-  localBoard[option[0]][option[1]] = color;
-  localBoard = flipLineToNewColorOnlyBoard(...option, localBoard, color);
-  // console.log('playerMove',option,tempBoard,level);
-  calculateBestOption(level - 1, tempBoard);
-  return gradePlayer
-}
-
-function computerMove(option, tempBoard, level, color) {
-  var localBoard = JSON.parse(JSON.stringify(tempBoard));
-  let gradeComp = 0;
+  if (level == 0) return 0; //end recursion
 
   // tempBoard[option[0]][option[1]] = color;
-  console.log("option - ", option);
 
-  flipLineToNewColorOnlyBoard(...option, localBoard, color);
+  if (option != []) flipLineToNewColorOnlyBoard(...option, localBoard, color);
+
+  grade = calculateBoardValueForComputerMove(computer, player, localBoard);
 
   let cLocalOptions = findPotentialNextPosition(
     player,
@@ -390,42 +454,89 @@ function computerMove(option, tempBoard, level, color) {
     localBoard,
     true
   );
-  for (let i = 0; i < localOptions.length; i++) {
+
+  for (let i = 0; i < cLocalOptions.length; i++) {
     result.push(
-      computerMove(localOptions[i], localBoard, level, computer),
-      localOptions[i]
-    )};
-  return gradeComp;
+      computerMove(cLocalOptions[i], localBoard, level - 1, player),
+      cLocalOptions[i][0],
+      cLocalOptions[i][1]
+    );
+  }
+  /*  
+  following will find the best next move from teh result array
+  
+  result sructure example
+  [5, 2, 4]
+  [12,2, 4]
+  [value, line, col]
+  
+  */
+  console.log("result2 - ", result);
+  let nResult = calculateOptioTopGrade(result);
+  nResult[0] += grade;
+
+  console.log("result1 - ", result);
+  debugDataSave(localBoard, level);
+
+  return nResult;
 }
 
-function calculateBestOption(level, Board) {
-  let localOptions = [];
-  var localBoard = JSON.parse(JSON.stringify(Board));
+function computerMove(option, tempBoard, level, color) {
+  let localBoard = JSON.parse(JSON.stringify(tempBoard));
+  let grade = 0;
   let result = [];
-  // console.log('calculateBestOption',level,localBoard);
-  if (level == 0) console.log("need to be replaced with grading");
-  else {
-    localOptions = findPotentialNextPosition(
-      computer,
-      player,
-      localBoard,
-      true
-    );
-    for (let i = 0; i < localOptions.length; i++) {
-      result.push(
-        computerMove(localOptions[i], localBoard, level, computer),
-        localOptions[i]
-      );
-    }
-  }
 
-  // console.log(localOptions);
+  if (level == 0) return 0; //end recursion
+
+  // tempBoard[option[0]][option[1]] = color;
+  console.log(option.length > 0);
+
+  if (option.length > 0)
+    flipLineToNewColorOnlyBoard(...option, localBoard, color);
+
+  grade = calculateBoardValueForComputerMove(player, computer, localBoard);
+
+  let cLocalOptions = findPotentialNextPosition(
+    computer,
+    player,
+    localBoard,
+    true
+  );
+
+  for (let i = 0; i < cLocalOptions.length; i++) {
+    result.push([
+      playerMove(cLocalOptions[i], localBoard, level - 1, player),
+      cLocalOptions[i][0],
+      cLocalOptions[i][1],
+    ]);
+  }
+  /*  
+  following will find the best next move from teh result array
+  
+  result sructure example
+  [5, 2, 4]
+  [12,2, 4]
+  [value, line, col]
+  
+  */
+  console.log("result2 - ", result);
+  let nResult = calculateOptioTopGrade(result);
+  nResult[0] += grade;
+
+  console.log("result1 - ", result);
+  debugDataSave(localBoard, level);
+
+  return nResult;
 }
 
 function computerNextMove() {
   /* calculateBestOption will return update board with new move in Optional array   */
   // console.log("computer turn");
-  calculateBestOption(recursionLevel, board);
+  let localBoard = JSON.parse(JSON.stringify(board));
+  let result = [];
+
+  result = computerMove([], localBoard, recursionLevel, computer);
+  console.log("result - ", result);
 }
 
 /*-------------- Start Execuation ---------------*/
