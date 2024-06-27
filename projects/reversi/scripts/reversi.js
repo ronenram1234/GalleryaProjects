@@ -343,53 +343,37 @@ function initGame() {
 }
 
 /*-------------- Cumputer Move Execuation ---------------*/
+let tableNumber = 1;
 
 function debugDataSave(arr, level) {
   if (!debugFlag) return;
   let arrString = "";
-  let char=""
-  let lineString=""
-  
-
-  // const fs = require("fs");
-
+  let char = "";
+  let lineString = "";
   const location = document.querySelector(".debugDiv");
-
-  // Stringify the array
-  // const arrString = location.innerText+"-".repeat(10 - level) + JSON.stringify(arr)+'\n';
-
+  location.innerHTML += `<h1> Recursion Level - ${level}<br>  Table Number- ${tableNumber++}</h1><br>`;
   for (let l = 0; l < 8; l++) {
     for (let c = 1; c < 8; c++) {
       switch (arr[l][c]) {
         case "b":
-          char='⚫'
+          char = "⚫";
           break;
         case "w":
-          char='⚪'
+          char = "⚪";
           break;
         default:
-              char=String(`${l},${c}`)
+          char = String(`${l},${c}`);
           break;
-          
       }
-      lineString+="|"+char+"|"
-      
-      
+      lineString += "|" + char + "|";
     }
-
-    arrString="=".repeat(10 - level)+">"+lineString+"\n"
-    location.innerText += "=".repeat(20 - level*3)+">"+lineString;
-    location.innerHTML+="<br>"
-    lineString=""
-    // console.log(arrString);
+    arrString = "=".repeat(10 - level) + ">" + lineString + "\n";
+    location.innerText += "=".repeat(20 - level * 3) + ">" + lineString;
+    location.innerHTML += "<br>";
+    lineString = "";
   }
-location.innerHTML+="<br>"+"<br>"+"<br>"
-  arrString = location.innerText +arrString + "\n";
-  // console.log(arrString);
-   
-
-  // Write to the file
-  
+  location.innerHTML += "<br>" + "<br>" + "<br>";
+  arrString = location.innerText + arrString + "\n";
 }
 
 function calculateBoardValueForComputerMove(player, computer, localBoard) {
@@ -408,7 +392,7 @@ function calculateOptioTopGrade(result) {
       resultLine.push(result[i]);
       break;
     }
-    i++
+    i++;
   }
   return [grade, resultLine];
 }
@@ -423,7 +407,8 @@ function flipLineToNewColorOnlyBoard(
   Board,
   color
 ) {
-  let LocalBoard = JSON.parse(JSON.stringify(Board));
+  // let LocalBoard = JSON.parse(JSON.stringify(Board));
+  let LocalBoard = Board;
 
   console.log("input", l, c, lineEnd, colEnd, lineDirection, colDirection);
   while (c != colEnd || l != lineEnd) {
@@ -435,7 +420,7 @@ function flipLineToNewColorOnlyBoard(
   // return LocalBoard
 }
 
-function playerMove(option, tempBoard, level, color) {
+function playerMove(option, tempBoard, level, color, openentColor) {
   let localBoard = JSON.parse(JSON.stringify(tempBoard));
   let grade = 0;
   let result = [];
@@ -444,7 +429,8 @@ function playerMove(option, tempBoard, level, color) {
 
   // tempBoard[option[0]][option[1]] = color;
 
-  if (option != []) flipLineToNewColorOnlyBoard(...option, localBoard, color);
+  if (option.length > 0)
+    flipLineToNewColorOnlyBoard(...option, localBoard, openentColor);
 
   grade = calculateBoardValueForComputerMove(computer, player, localBoard);
 
@@ -457,7 +443,7 @@ function playerMove(option, tempBoard, level, color) {
 
   for (let i = 0; i < cLocalOptions.length; i++) {
     result.push(
-      computerMove(cLocalOptions[i], localBoard, level - 1, player),
+      computerMove(cLocalOptions[i], localBoard, level - 1, computer, player),
       cLocalOptions[i][0],
       cLocalOptions[i][1]
     );
@@ -471,17 +457,17 @@ function playerMove(option, tempBoard, level, color) {
   [value, line, col]
   
   */
-  console.log("result2 - ", result);
+  // console.log("result2 - ", result);
   let nResult = calculateOptioTopGrade(result);
   nResult[0] += grade;
 
-  console.log("result1 - ", result);
+  // console.log("result1 - ", result);
   debugDataSave(localBoard, level);
 
   return nResult;
 }
 
-function computerMove(option, tempBoard, level, color) {
+function computerMove(option, tempBoard, level, color, openentColor) {
   let localBoard = JSON.parse(JSON.stringify(tempBoard));
   let grade = 0;
   let result = [];
@@ -492,7 +478,7 @@ function computerMove(option, tempBoard, level, color) {
   console.log(option.length > 0);
 
   if (option.length > 0)
-    flipLineToNewColorOnlyBoard(...option, localBoard, color);
+    flipLineToNewColorOnlyBoard(...option, localBoard, openentColor);
 
   grade = calculateBoardValueForComputerMove(player, computer, localBoard);
 
@@ -505,7 +491,7 @@ function computerMove(option, tempBoard, level, color) {
 
   for (let i = 0; i < cLocalOptions.length; i++) {
     result.push([
-      playerMove(cLocalOptions[i], localBoard, level - 1, player),
+      playerMove(cLocalOptions[i], localBoard, level - 1, player, computer),
       cLocalOptions[i][0],
       cLocalOptions[i][1],
     ]);
@@ -535,8 +521,9 @@ function computerNextMove() {
   let localBoard = JSON.parse(JSON.stringify(board));
   let result = [];
 
+  debugDataSave(localBoard, recursionLevel);
   result = computerMove([], localBoard, recursionLevel, computer);
-  console.log("result - ", result);
+  // console.log("result - ", result);
 }
 
 /*-------------- Start Execuation ---------------*/
