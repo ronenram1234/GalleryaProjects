@@ -6,7 +6,7 @@ let computer = "b";
 let options = [];
 let lineEnd = 0;
 let colEnd = 0;
-let recursionLevel = 3;
+let recursionLevel = 4;
 let debugFlag = true;
 
 function positionNewPiece(row, col, color) {
@@ -112,7 +112,7 @@ function clickedCell(event) {
     board[line][col] = player;
     flipLineToNewColor(line, col, player);
     cleanBoardOptions();
-    console.log(board, options);
+    //(board, options);
 
     computerNextMove();
     // findPotentialNextPosition()
@@ -170,7 +170,7 @@ function checkOtherDirectionForPlayer(
   colDirection
 ) {
   /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
-  // if (color=='b') console.log('--------------------checkOtherDirectionForPlayer---------------');
+  // if (color=='b') //('--------------------checkOtherDirectionForPlayer---------------');
   let stat = false;
   let sentenceL = "";
   let sentenceC = "";
@@ -181,14 +181,14 @@ function checkOtherDirectionForPlayer(
   //
   //
   //
-  // if (color=='b')  console.log(color,line,col,lineDirection,colDirection,l,c);
+  // if (color=='b')  //(color,line,col,lineDirection,colDirection,l,c);
   while (l > 0 && l < 8 && c > 0 && c < 8) {
     if (arr[l][c] === color) {
       stat = true;
       lineEnd = l;
       colEnd = c;
 
-      // if (color=='b')  console.log(color,line,col,lineDirection,colDirection,l,c)
+      // if (color=='b')  //(color,line,col,lineDirection,colDirection,l,c)
 
       break;
     }
@@ -207,8 +207,8 @@ function getLoactions(line, col, curBoard, player, openentColor) {
    The piece must be laid adjacent to an opponent’s piece so that the opponent’s piece or a row of opponent’s pieces is flanked by the new piece and another piece of the player’s color.*/
 
   let optionsL = [];
-  // console.log('getLoactions');
-  // console.log(optionsL);
+  // //('getLoactions');
+  // //(optionsL);
 
   // checkUp - not 0 line && empty spot up && player piece somewhere down
   if (
@@ -278,7 +278,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   )
     optionsL.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
 
-  // console.log(optionsL);
+  // //(optionsL);
 
   return optionsL;
 }
@@ -294,8 +294,8 @@ function findPotentialNextPosition(
   let optionsL = [];
   let test = board;
   let allPlayerLocations = [];
-  // console.log("findPotentialNextPosition");
-  // console.log(playerColor, openentColor);
+  // //("findPotentialNextPosition");
+  // //(playerColor, openentColor);
 
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++)
@@ -305,9 +305,9 @@ function findPotentialNextPosition(
   }
 
   //
-  // console.log(options);
+  // //(options);
   for (let i = 0; i < allPlayerLocations.length; i++) {
-    // console.log('allplayer loop',allPlayerLocations[i],i);
+    // //('allplayer loop',allPlayerLocations[i],i);
     optionsL.push(
       ...getLoactions(
         ...allPlayerLocations[i],
@@ -316,7 +316,7 @@ function findPotentialNextPosition(
         openentColor
       )
     );
-    // console.log(options);
+    // //(options);
   }
   if (!noShow) {
     for (let x = 0; x < optionsL.length; x++) {
@@ -331,7 +331,7 @@ function findPotentialNextPosition(
 function initGame() {
   board = initBoard();
   options = findPotentialNextPosition(player, computer, board, false);
-  // console.log(options);
+  // //(options);
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++) {
       if (board[line][col] == "wo" || board[line][col] == "bo") {
@@ -339,7 +339,7 @@ function initGame() {
       }
     }
   }
-  // console.log(calculateBoardValueForComputerMove(player,computer, board));
+  // //(calculateBoardValueForComputerMove(player,computer, board));
 }
 
 /*-------------- Cumputer Move Execuation ---------------*/
@@ -410,7 +410,7 @@ function flipLineToNewColorOnlyBoard(
   // let LocalBoard = JSON.parse(JSON.stringify(Board));
   let LocalBoard = Board;
 
-  console.log("input", l, c, lineEnd, colEnd, lineDirection, colDirection);
+  //("input", l, c, lineEnd, colEnd, lineDirection, colDirection);
   while (c != colEnd || l != lineEnd) {
     // positionNewPiece(l, c, player);
     LocalBoard[l][c] = color;
@@ -457,11 +457,11 @@ function playerMove(option, tempBoard, level, color, openentColor) {
   [value, line, col]
   
   */
-  // console.log("result2 - ", result);
+  // //("result2 - ", result);
   let nResult = calculateOptioTopGrade(result);
   nResult[0] += grade;
 
-  // console.log("result1 - ", result);
+  // //("result1 - ", result);
   debugDataSave(localBoard, level);
 
   return nResult;
@@ -475,7 +475,7 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   if (level == 0) return 0; //end recursion
 
   // tempBoard[option[0]][option[1]] = color;
-  console.log(option.length > 0);
+  //(option.length > 0);
 
   if (option.length > 0)
     flipLineToNewColorOnlyBoard(...option, localBoard, openentColor);
@@ -505,11 +505,12 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   [value, line, col]
   
   */
-  console.log("result2 - ", result);
+  //("result2 - ", result);
   let nResult = calculateOptioTopGrade(result);
   nResult[0] += grade;
 
-  console.log("result1 - ", result);
+  //("result1 - ", result);
+  
   debugDataSave(localBoard, level);
 
   return nResult;
@@ -517,13 +518,25 @@ function computerMove(option, tempBoard, level, color, openentColor) {
 
 function computerNextMove() {
   /* calculateBestOption will return update board with new move in Optional array   */
-  // console.log("computer turn");
+  // //("computer turn");
   let localBoard = JSON.parse(JSON.stringify(board));
   let result = [];
 
+  const startTime = performance.now();
   debugDataSave(localBoard, recursionLevel);
+  
+  
+  
+  
+  
   result = computerMove([], localBoard, recursionLevel, computer);
-  // console.log("result - ", result);
+  
+  const endTime = performance.now();
+  console.log(`Call took ${endTime - startTime} milliseconds`);
+
+  
+  //(`Call took ${endTime - startTime} milliseconds`);
+  // //("result - ", result);
 }
 
 /*-------------- Start Execuation ---------------*/
