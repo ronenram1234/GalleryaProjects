@@ -6,7 +6,7 @@ let computer = "b";
 let options = [];
 let lineEnd = 0;
 let colEnd = 0;
-let recursionLevel = 4;
+let recursionLevel = 3;
 let debugFlag = true;
 
 function positionNewPiece(row, col, color) {
@@ -473,7 +473,10 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   let result = [];
 
   if (level == 0) return 0; //end recursion
-
+  if (level == 1) {
+    console.log("top level");
+    console.log(nResult)
+  }
   // tempBoard[option[0]][option[1]] = color;
   //(option.length > 0);
 
@@ -508,9 +511,13 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   //("result2 - ", result);
   let nResult = calculateOptioTopGrade(result);
   nResult[0] += grade;
-
+  console.log(nResult)
+  if (level == recursionLevel) {
+    console.log("top level");
+    console.log(nResult)
+  }
   //("result1 - ", result);
-  
+
   debugDataSave(localBoard, level);
 
   return nResult;
@@ -524,17 +531,12 @@ function computerNextMove() {
 
   const startTime = performance.now();
   debugDataSave(localBoard, recursionLevel);
-  
-  
-  
-  
-  
+
   result = computerMove([], localBoard, recursionLevel, computer);
-  
+
   const endTime = performance.now();
   console.log(`Call took ${endTime - startTime} milliseconds`);
 
-  
   //(`Call took ${endTime - startTime} milliseconds`);
   // //("result - ", result);
 }
