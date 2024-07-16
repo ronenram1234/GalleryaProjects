@@ -1,6 +1,7 @@
 "use strict";
 
 let board = [];
+let savedBoard = [];
 let player = "w";
 let computer = "b";
 let options = [];
@@ -10,32 +11,62 @@ let recursionLevel = 3;
 let debugFlag = true;
 
 function positionNewPiece(row, col, color) {
-  // translate array value to screen
-  col++;
-  row++;
-  let cColor = color;
-  let textS = "";
-  if (cColor == "w") cColor = "White";
-  if (cColor == "b") cColor = "Black";
-  if (cColor == "White" || cColor == "Black") {
-    textS = ` <div class="centerCircle">
-                <div class="stone${cColor}"></div>
-              </div>`;
-  }
-  if (color == "Optional") {
-    textS = ` <div class="centerCircle">
-                <div class="stoneOptional"></div>
-              </div>`;
-  }
+  // translate boarday value to screen
+  let cColor;
+  let textS;
+  let temp;
+  let rowP
 
-  let rowP = document.querySelector(`#row${row}`);
-  rowP.children[col - 1].innerHTML = textS;
+  board.map((line, y) =>
+    line.map((col, x) => {
+      if (board[y][x] != savedBoard[y][x]) {
+        // console.log(y, col, x);
+        // console.log(board[y][x]);
+        savedBoard[y][x] = board[y][x];
+
+        cColor = board[y][x];
+        console.log(y, x, cColor);
+
+        textS = "";
+        if (cColor == "w") temp = "White";
+        if (cColor == "b") temp = "Black";
+        if (cColor == "wo") temp = "Optional";
+        textS = ` <div class="centerCircle">
+        <div class="stone${temp}"></div>
+      </div>`;
+        console.log(cColor, temp);
+        console.log(textS);
+        rowP = document.querySelector(`#row${y}`);
+        rowP.children[x].innerHTML = textS;
+      }
+    })
+  );
+
+  // col++;
+  // row++;
+  // cColor = color;
+  // textS = "";
+  // if (cColor == "w") cColor = "White";
+  // if (cColor == "b") cColor = "Black";
+  // if (cColor == "White" || cColor == "Black") {
+  //   textS = ` <div class="centerCircle">
+  //               <div class="stone${cColor}"></div>
+  //             </div>`;
+  // }
+  // if (color == "Optional") {
+  //   textS = ` <div class="centerCircle">
+  //               <div class="stoneOptional"></div>
+  //             </div>`;
+  // }
+
+  // let rowP = document.querySelector(`#row${row}`);
+  // rowP.children[col - 1].innerHTML = textS;
 }
 
 function removePiece(row, col) {
   /*following function remove the optional mark for next move from the board*/
 
-  // translate array value to screen
+  // translate boarday value to screen
   col++;
   row++;
   let textS = ` <div class="centerCircle">
@@ -60,35 +91,42 @@ function flipLineToNewColor(lineStart, colStart, color) {
       let colEnd = options[i][3];
 
       while (c != colEnd || l != lineEnd) {
-        positionNewPiece(l, c, player);
+        
         board[l][c] = color;
         l += lineDirection;
         c += colDirection;
       }
     }
   }
+  // positionNewPiece(1, 1, "d");
+  // clean other portential moves in board
+  board.map((line,y)=> line.map((cell,x)=>
+    {if (cell=="wo" || cell=="bo") {
+      console.log(y,x);
+      board[y][x]='e'}}
+  ))
 }
 
-function cleanBoardOptions() {
-  /* clean screen board  and clean also board array from all optuional*/
+// function cleanBoardOptions() {
+//   /* clean screen board  and clean also board boarday from all optuional*/
 
-  for (let line = 0; line < 8; line++)
-    for (let col = 0; col < 8; col++)
-      if (board[line][col] == "wo" || board[line][col] == "bo") {
-        board[line][col] = "e";
-        removePiece(line, col);
-      }
+//   for (let line = 0; line < 8; line++)
+//     for (let col = 0; col < 8; col++)
+//       if (board[line][col] == "wo" || board[line][col] == "bo") {
+//         board[line][col] = "e";
+//         removePiece(line, col);
+//       }
 
-  while (options.length > 0) {
-    options.pop();
-  }
-}
+//   while (options.length > 0) {
+//     options.pop();
+//   }
+// }
 
 function clickedCell(event) {
   /* accept user selection
          check if selection is valid
-          mark selectio in screen and array board
-          flip all line in scrren and arrat to new color
+          mark selectio in screen and boarday board
+          flip all line in scrren and boardat to new color
           activate options places cleanup procedure
           call computer move fuction
           present options on screen - findPotentialNextPosition /
@@ -104,14 +142,15 @@ function clickedCell(event) {
   }
   const parentTd = clickedElement.parentNode;
 
-  let col = Number(clickedElement.classList[1].slice(-1)) - 1;
-  let line = Number(parentTd.id.slice(-1)) - 1;
+  let col = Number(clickedElement.classList[1].slice(-1)) ;
+  let line = Number(parentTd.id.slice(-1)) ;
   //
   if (board[line][col] == "wo" || board[line][col] == "bo") {
-    positionNewPiece(line, col, player);
     board[line][col] = player;
     flipLineToNewColor(line, col, player);
-    cleanBoardOptions();
+    // cleanBoardOptions();
+    positionNewPiece(line, col, player);
+    
     //(board, options);
 
     computerNextMove();
@@ -128,22 +167,30 @@ function mouseOver() {
 function initBoard() {
   /* init game*/
 
-  let arr = [];
+  board = [];
   let oneLine = [];
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++) oneLine.push("e");
-    arr.push(oneLine);
+    board.push(oneLine);
 
     oneLine = [];
   }
-  arr[3][3] = "w";
-  arr[3][4] = "b";
-  arr[4][3] = "b";
-  arr[4][4] = "w";
+
+
+  savedBoard = JSON.parse(JSON.stringify(board));
+  board[3][3] = "w";
+  board[3][4] = "b";
+  board[4][3] = "b";
+  board[4][4] = "w";
   positionNewPiece(3, 3, "White");
-  positionNewPiece(3, 4, "Black");
-  positionNewPiece(4, 3, "Black");
-  positionNewPiece(4, 4, "White");
+  // board[3][3] = "w";
+  // board[3][4] = "b";
+  // board[4][3] = "b";
+  // board[4][4] = "w";
+  // positionNewPiece(3, 3, "White");
+  // positionNewPiece(3, 4, "Black");
+  // positionNewPiece(4, 3, "Black");
+  // positionNewPiece(4, 4, "White");
   // positionNewPiece(1, 1, "Optional");
 
   // positionNewPiece(0, 0, "White");
@@ -158,12 +205,12 @@ function initBoard() {
     cells[i].addEventListener("mouseover", mouseOver);
   }
 
-  return arr;
+  
 }
 
 function checkOtherDirectionForPlayer(
   color,
-  arr,
+  board,
   line,
   col,
   lineDirection,
@@ -183,7 +230,7 @@ function checkOtherDirectionForPlayer(
   //
   // if (color=='b')  //(color,line,col,lineDirection,colDirection,l,c);
   while (l > 0 && l < 8 && c > 0 && c < 8) {
-    if (arr[l][c] === color) {
+    if (board[l][c] === color) {
       stat = true;
       lineEnd = l;
       colEnd = c;
@@ -206,9 +253,9 @@ function getLoactions(line, col, curBoard, player, openentColor) {
 
    The piece must be laid adjacent to an opponent’s piece so that the opponent’s piece or a row of opponent’s pieces is flanked by the new piece and another piece of the player’s color.*/
 
-  let optionsL = [];
+  let options = [];
   // //('getLoactions');
-  // //(optionsL);
+  // //(options);
 
   // checkUp - not 0 line && empty spot up && player piece somewhere down
   if (
@@ -216,7 +263,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, 0)
   )
-    optionsL.push([line - 1, col, lineEnd, colEnd, +1, 0]);
+    options.push([line - 1, col, lineEnd, colEnd, +1, 0]);
 
   // checkdown
   if (
@@ -224,7 +271,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, 0)
   )
-    optionsL.push([line + 1, col, lineEnd, colEnd, -1, 0]);
+    options.push([line + 1, col, lineEnd, colEnd, -1, 0]);
 
   // checkRight
   if (
@@ -232,7 +279,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, 0, -1)
   )
-    optionsL.push([line, col + 1, lineEnd, colEnd, 0, -1]);
+    options.push([line, col + 1, lineEnd, colEnd, 0, -1]);
 
   // checkUp
   if (
@@ -240,7 +287,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, 0, +1)
   )
-    optionsL.push([line, col - 1, lineEnd, colEnd, 0, +1]);
+    options.push([line, col - 1, lineEnd, colEnd, 0, +1]);
 
   // checkDiagonalRightUp;
   if (
@@ -249,7 +296,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, -1)
   )
-    optionsL.push([line - 1, col + 1, lineEnd, colEnd, +1, -1]);
+    options.push([line - 1, col + 1, lineEnd, colEnd, +1, -1]);
 
   // checkDiagonalRightDown;
   if (
@@ -258,7 +305,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col + 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, -1)
   )
-    optionsL.push([line + 1, col + 1, lineEnd, colEnd, -1, -1]);
+    options.push([line + 1, col + 1, lineEnd, colEnd, -1, -1]);
 
   // checkDiagonalLefttUp;
   if (
@@ -267,7 +314,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line - 1][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, +1, +1)
   )
-    optionsL.push([line - 1, col - 1, lineEnd, colEnd, +1, +1]);
+    options.push([line - 1, col - 1, lineEnd, colEnd, +1, +1]);
 
   // checkDiagonalLeftDown;
   if (
@@ -276,11 +323,11 @@ function getLoactions(line, col, curBoard, player, openentColor) {
     curBoard[line + 1][col - 1] == "e" &&
     checkOtherDirectionForPlayer(player, curBoard, line, col, -1, +1)
   )
-    optionsL.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
+    options.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
 
-  // //(optionsL);
+  // //(options);
 
-  return optionsL;
+  return options;
 }
 
 function findPotentialNextPosition(
@@ -290,8 +337,8 @@ function findPotentialNextPosition(
   noShow
 ) {
   // find all potential positions
-  let arr = curBoard;
-  let optionsL = [];
+  // let board = curBoard; ---> board is global variable
+  options = [];
   let test = board;
   let allPlayerLocations = [];
   // //("findPotentialNextPosition");
@@ -299,7 +346,7 @@ function findPotentialNextPosition(
 
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++)
-      if (arr[line][col] == openentColor) {
+      if (board[line][col] == openentColor) {
         allPlayerLocations.push([line, col]);
       }
   }
@@ -308,7 +355,7 @@ function findPotentialNextPosition(
   // //(options);
   for (let i = 0; i < allPlayerLocations.length; i++) {
     // //('allplayer loop',allPlayerLocations[i],i);
-    optionsL.push(
+    options.push(
       ...getLoactions(
         ...allPlayerLocations[i],
         curBoard,
@@ -318,43 +365,47 @@ function findPotentialNextPosition(
     );
     // //(options);
   }
-  if (!noShow) {
-    for (let x = 0; x < optionsL.length; x++) {
-      arr[optionsL[x][0]][optionsL[x][1]] = `${playerColor}o`;
-      positionNewPiece(optionsL[x][0], optionsL[x][1], "Optional");
+  
+    for (let x = 0; x < options.length; x++) {
+      board[options[x][0]][options[x][1]] = `${playerColor}o`;
+      
+  
     }
-  }
+    positionNewPiece(1, 1, "Optional");
 
-  return optionsL;
+  
 }
 
 function initGame() {
-  board = initBoard();
-  options = findPotentialNextPosition(player, computer, board, false);
+  initBoard(); /*intialiaze board global variable*/
+  
+
+
+ findPotentialNextPosition(player, computer, board, false);
   // //(options);
-  for (let line = 0; line < 8; line++) {
-    for (let col = 0; col < 8; col++) {
-      if (board[line][col] == "wo" || board[line][col] == "bo") {
-        positionNewPiece(line, col, "Optional");
-      }
-    }
-  }
+  // for (let line = 0; line < 8; line++) {
+  //   for (let col = 0; col < 8; col++) {
+  //     if (board[line][col] == "wo" || board[line][col] == "bo") {
+  //       positionNewPiece(line, col, "Optional");
+  //     }
+  //   }
+  // }
   // //(calculateBoardValueForComputerMove(player,computer, board));
 }
 
 /*-------------- Cumputer Move Execuation ---------------*/
 let tableNumber = 1;
 
-function debugDataSave(arr, level) {
+function debugDataSave(board, level) {
   if (!debugFlag) return;
-  let arrString = "";
+  let boardString = "";
   let char = "";
   let lineString = "";
   const location = document.querySelector(".debugDiv");
   location.innerHTML += `<h1> Recursion Level - ${level}<br>  Table Number- ${tableNumber++}</h1><br>`;
   for (let l = 0; l < 8; l++) {
     for (let c = 1; c < 8; c++) {
-      switch (arr[l][c]) {
+      switch (board[l][c]) {
         case "b":
           char = "⚫";
           break;
@@ -367,13 +418,13 @@ function debugDataSave(arr, level) {
       }
       lineString += "|" + char + "|";
     }
-    arrString = "=".repeat(10 - level) + ">" + lineString + "\n";
+    boardString = "=".repeat(10 - level) + ">" + lineString + "\n";
     location.innerText += "=".repeat(20 - level * 3) + ">" + lineString;
     location.innerHTML += "<br>";
     lineString = "";
   }
   location.innerHTML += "<br>" + "<br>" + "<br>";
-  arrString = location.innerText + arrString + "\n";
+  boardString = location.innerText + boardString + "\n";
 }
 
 function calculateBoardValueForComputerMove(player, computer, localBoard) {
@@ -449,7 +500,7 @@ function playerMove(option, tempBoard, level, color, openentColor) {
     );
   }
   /*  
-  following will find the best next move from teh result array
+  following will find the best next move from teh result boarday
   
   result sructure example
   [5, 2, 4]
@@ -475,7 +526,7 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   if (level == 0) return 0; //end recursion
   if (level == 1) {
     console.log("top level");
-    console.log(nResult)
+    console.log(nResult);
   }
   // tempBoard[option[0]][option[1]] = color;
   //(option.length > 0);
@@ -500,7 +551,7 @@ function computerMove(option, tempBoard, level, color, openentColor) {
     ]);
   }
   /*  
-  following will find the best next move from teh result array
+  following will find the best next move from teh result boarday
   
   result sructure example
   [5, 2, 4]
@@ -511,10 +562,10 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   //("result2 - ", result);
   let nResult = calculateOptioTopGrade(result);
   nResult[0] += grade;
-  console.log(nResult)
+  console.log(nResult);
   if (level == recursionLevel) {
     console.log("top level");
-    console.log(nResult)
+    console.log(nResult);
   }
   //("result1 - ", result);
 
@@ -524,7 +575,7 @@ function computerMove(option, tempBoard, level, color, openentColor) {
 }
 
 function computerNextMove() {
-  /* calculateBestOption will return update board with new move in Optional array   */
+  /* calculateBestOption will return update board with new move in Optional boarday   */
   // //("computer turn");
   let localBoard = JSON.parse(JSON.stringify(board));
   let result = [];
