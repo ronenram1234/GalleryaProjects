@@ -199,37 +199,51 @@ function checkOtherDirectionForPlayer(
   line,
   col,
   lineDirection,
-  colDirection
+  colDirection,
+  optionsL
 ) {
   /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
   // if (color=='b') //('--------------------checkOtherDirectionForPlayer---------------');
-  let stat = false;
-  let lineEnd = 0;
-  let colEnd = 0;
-  let c = col + colDirection;
+  // let stat = false;
+  // let lineEnd = 0;
+  // let colEnd = 0;
   let l = line + lineDirection;
-  
+  let c = col + colDirection;
+  let lRevrese = line - lineDirection;
+  let cReverse = col - colDirection;
+
   // if (board[l][c]!=openentColor) return [stat, lineEnd, colEnd];
 
-  while (l > 0 && l < 8 && c > 0 && c < 8) {
-    // if (board[l][c] === color) {
-    //   stat = true;
-    //   lineEnd = l;
-    //   colEnd = c;
-    //   break;
-    // }
-    if (board[l][c] == openentColor) {
-      stat = true;
-      lineEnd = l;
-      colEnd = c;
-      break;
+  while (lRevrese >= 0 && lRevrese <= 7 && cReverse >= 0 && cReverse <= 7) {
+    // check counter direction if color exisit
+    if (board[lRevrese][cReverse] == "e") break;
+    if (board[lRevrese][cReverse] == color) {
+      while (l >= 0 && l <= 7 && c >= 0 && c <= 7) {
+        if (board[l][c] == "e") {
+          // stat = true;
+          
+          optionsL.push([
+            line + lineDirection,
+            col + colDirection,
+            lRevrese,
+            cReverse,
+            lineDirection*-1,
+            colDirection*-1,
+          ]);
+          return optionsL;
+        }
+        l += lineDirection;
+        c += colDirection;
+      }
+    } else {
+      lRevrese -= lRevrese;
+      cReverse -= cReverse;
     }
-    l += lineDirection;
-    c += colDirection;
   }
   //
   //
-  return [stat, lineEnd, colEnd];
+
+  return optionsL;
 }
 
 function getLoactions(line, col, curBoard, player, openentColor) {
@@ -245,114 +259,122 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   // checkUp - not 0 line && empty spot up && player piece somewhere down
   let stat, lineEnd, colEnd;
 
+  for (let lDirection = -1; lDirection <= +1; lDirection++)
+    for (let cDirection = -1; cDirection <= +1; cDirection++) {
+      optionsL = checkOtherDirectionForPlayer(
+        player,
+        openentColor,
+        curBoard,
+        line,
+        col,
+        lDirection,
+        cDirection,
+        optionsL
+      );
+    }
 
-  for (l=-1 ; l<0;l++)
-  for (c=-1 ; c<0;c++){
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   +1,
+  //   0
+  // );
+  // if (line > 0 && curBoard[line - 1][col] == "e" && stat)
+  //   optionsL.push([line - 1, col, lineEnd, colEnd, +1, 0]);
 
-  }
+  // // checkdown
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   -1,
+  //   0
+  // );
+  // if (line < 7 && curBoard[line + 1][col] == "e" && stat)
+  //   optionsL.push([line + 1, col, lineEnd, colEnd, -1, 0]);
 
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    +1,
-    0
-  );
-  if (line > 0 && curBoard[line - 1][col] == "e" && stat)
-    optionsL.push([line - 1, col, lineEnd, colEnd, +1, 0]);
+  // // checkRight
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   0,
+  //   -1
+  // );
+  // if (col < 7 && curBoard[line][col + 1] == "e" && stat)
+  //   optionsL.push([line, col + 1, lineEnd, colEnd, 0, -1]);
 
-  // checkdown
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    -1,
-    0
-  );
-  if (line < 7 && curBoard[line + 1][col] == "e" && stat)
-    optionsL.push([line + 1, col, lineEnd, colEnd, -1, 0]);
+  // // checkUp
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   0,
+  //   +1
+  // );
+  // if (col > 0 && curBoard[line][col - 1] == "e" && stat)
+  //   optionsL.push([line, col - 1, lineEnd, colEnd, 0, +1]);
 
-  // checkRight
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    0,
-    -1
-  );
-  if (col < 7 && curBoard[line][col + 1] == "e" && stat)
-    optionsL.push([line, col + 1, lineEnd, colEnd, 0, -1]);
+  // // checkDiagonalRightUp;
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   +1,
+  //   -1
+  // );
+  // if (line > 0 && col < 7 && curBoard[line - 1][col + 1] == "e" && stat)
+  //   optionsL.push([line - 1, col + 1, lineEnd, colEnd, +1, -1]);
 
-  // checkUp
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    0,
-    +1
-  );
-  if (col > 0 && curBoard[line][col - 1] == "e" && stat)
-    optionsL.push([line, col - 1, lineEnd, colEnd, 0, +1]);
+  // // checkDiagonalRightDown;
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   -1,
+  //   -1
+  // );
+  // if (line < 7 && col < 7 && curBoard[line + 1][col + 1] == "e" && stat)
+  //   optionsL.push([line + 1, col + 1, lineEnd, colEnd, -1, -1]);
 
-  // checkDiagonalRightUp;
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    +1,
-    -1
-  );
-  if (line > 0 && col < 7 && curBoard[line - 1][col + 1] == "e" && stat)
-    optionsL.push([line - 1, col + 1, lineEnd, colEnd, +1, -1]);
+  // // checkDiagonalLefttUp;
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   +1,
+  //   +1
+  // );
+  // if (line > 0 && col > 0 && curBoard[line - 1][col - 1] == "e" && stat)
+  //   optionsL.push([line - 1, col - 1, lineEnd, colEnd, +1, +1]);
 
-  // checkDiagonalRightDown;
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    -1,
-    -1
-  );
-  if (line < 7 && col < 7 && curBoard[line + 1][col + 1] == "e" && stat)
-    optionsL.push([line + 1, col + 1, lineEnd, colEnd, -1, -1]);
-
-  // checkDiagonalLefttUp;
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    +1,
-    +1
-  );
-  if (line > 0 && col > 0 && curBoard[line - 1][col - 1] == "e" && stat)
-    optionsL.push([line - 1, col - 1, lineEnd, colEnd, +1, +1]);
-
-  // checkDiagonalLeftDown;
-  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
-    player,
-    openentColor,
-    curBoard,
-    line,
-    col,
-    -1,
-    +1
-  );
-  if (line < 7 && col > 0 && curBoard[line + 1][col - 1] == "e" && stat)
-    optionsL.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
+  // // checkDiagonalLeftDown;
+  // [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+  //   player,
+  //   openentColor,
+  //   curBoard,
+  //   line,
+  //   col,
+  //   -1,
+  //   +1
+  // );
+  // if (line < 7 && col > 0 && curBoard[line + 1][col - 1] == "e" && stat)
+  //   optionsL.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
 
   return optionsL;
 }
