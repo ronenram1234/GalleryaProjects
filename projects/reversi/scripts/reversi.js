@@ -4,20 +4,41 @@ let board = [];
 let savedBoard = [];
 let player = "w";
 let computer = "b";
-function optionsLine(line, col, lineEnd, colEnd, directionLine, directionCol) {
-  this.line = line;
-  this.col = col;
-  this.lineEnd = lineEnd;
-  this.colEnd = colEnd;
-  this.directionLine = directionLine;
-  this.directionCol = directionCol;
-}
+// function optionsLine(line, col, lineEnd, colEnd, directionLine, directionCol) {
+//   this.line = line;
+//   this.col = col;
+//   this.lineEnd = lineEnd;
+//   this.colEnd = colEnd;
+//   this.directionLine = directionLine;
+//   this.directionCol = directionCol;
+// }
 
 let options = [];
-let lineEnd = 0;
-let colEnd = 0;
+// let lineEnd = 0;
+// let colEnd = 0;
 let recursionLevel = 3;
 let debugFlag = true;
+let debugLogger = [];
+
+function debugRec(
+  recursionLevel,
+  currentOptionLine,
+  currentOption,
+  openentColor,
+  color,
+  grade,
+  allOptions,
+  board
+) {
+  (this.recursionLevel = recursionLevel),
+    (this.a_currentOptionLine = currentOptionLine),
+    (this.b_currentOption = currentOption),
+    (this.c_openentColor = openentColor),
+    (this.d_color = color),
+    (this.e_grade = grade),
+    (this.g_allOptions = allOptions),
+    (this.h_board = board);
+}
 
 function positionNewPiece() {
   // translate boarday value to screen
@@ -34,7 +55,7 @@ function positionNewPiece() {
         savedBoard[y][x] = board[y][x];
 
         cColor = board[y][x];
-        console.log(y, x, cColor);
+        // console.log(y, x, cColor);
 
         textS = "";
         if (cColor == "w") temp = "White";
@@ -43,8 +64,8 @@ function positionNewPiece() {
         textS = ` <div class="centerCircle">
         <div class="stone${temp}"></div>
       </div>`;
-        console.log(cColor, temp);
-        console.log(textS);
+        // console.log(cColor, temp);
+        // console.log(textS);
         rowP = document.querySelector(`#row${y}`);
         rowP.children[x].innerHTML = textS;
       }
@@ -173,6 +194,7 @@ function initBoard() {
 
 function checkOtherDirectionForPlayer(
   color,
+  openentColor,
   board,
   line,
   col,
@@ -182,24 +204,24 @@ function checkOtherDirectionForPlayer(
   /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
   // if (color=='b') //('--------------------checkOtherDirectionForPlayer---------------');
   let stat = false;
-  let sentenceL = "";
-  let sentenceC = "";
-  let sentence = "";
+  let lineEnd = 0;
+  let colEnd = 0;
   let c = col + colDirection;
   let l = line + lineDirection;
+  
+  // if (board[l][c]!=openentColor) return [stat, lineEnd, colEnd];
 
-  //
-  //
-  //
-  // if (color=='b')  //(color,line,col,lineDirection,colDirection,l,c);
   while (l > 0 && l < 8 && c > 0 && c < 8) {
-    if (board[l][c] === color) {
+    // if (board[l][c] === color) {
+    //   stat = true;
+    //   lineEnd = l;
+    //   colEnd = c;
+    //   break;
+    // }
+    if (board[l][c] == openentColor) {
       stat = true;
       lineEnd = l;
       colEnd = c;
-
-      // if (color=='b')  //(color,line,col,lineDirection,colDirection,l,c)
-
       break;
     }
     l += lineDirection;
@@ -207,7 +229,7 @@ function checkOtherDirectionForPlayer(
   }
   //
   //
-  return stat;
+  return [stat, lineEnd, colEnd];
 }
 
 function getLoactions(line, col, curBoard, player, openentColor) {
@@ -221,74 +243,116 @@ function getLoactions(line, col, curBoard, player, openentColor) {
   // //(optionsL);
 
   // checkUp - not 0 line && empty spot up && player piece somewhere down
-  if (
-    line > 0 &&
-    curBoard[line - 1][col] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, +1, 0)
-  )
+  let stat, lineEnd, colEnd;
+
+
+  for (l=-1 ; l<0;l++)
+  for (c=-1 ; c<0;c++){
+
+  }
+
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    +1,
+    0
+  );
+  if (line > 0 && curBoard[line - 1][col] == "e" && stat)
     optionsL.push([line - 1, col, lineEnd, colEnd, +1, 0]);
 
   // checkdown
-  if (
-    line < 7 &&
-    curBoard[line + 1][col] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, -1, 0)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    -1,
+    0
+  );
+  if (line < 7 && curBoard[line + 1][col] == "e" && stat)
     optionsL.push([line + 1, col, lineEnd, colEnd, -1, 0]);
 
   // checkRight
-  if (
-    col < 7 &&
-    curBoard[line][col + 1] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, 0, -1)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    0,
+    -1
+  );
+  if (col < 7 && curBoard[line][col + 1] == "e" && stat)
     optionsL.push([line, col + 1, lineEnd, colEnd, 0, -1]);
 
   // checkUp
-  if (
-    col > 0 &&
-    curBoard[line][col - 1] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, 0, +1)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    0,
+    +1
+  );
+  if (col > 0 && curBoard[line][col - 1] == "e" && stat)
     optionsL.push([line, col - 1, lineEnd, colEnd, 0, +1]);
 
   // checkDiagonalRightUp;
-  if (
-    line > 0 &&
-    col < 7 &&
-    curBoard[line - 1][col + 1] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, +1, -1)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    +1,
+    -1
+  );
+  if (line > 0 && col < 7 && curBoard[line - 1][col + 1] == "e" && stat)
     optionsL.push([line - 1, col + 1, lineEnd, colEnd, +1, -1]);
 
   // checkDiagonalRightDown;
-  if (
-    line < 7 &&
-    col < 7 &&
-    curBoard[line + 1][col + 1] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, -1, -1)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    -1,
+    -1
+  );
+  if (line < 7 && col < 7 && curBoard[line + 1][col + 1] == "e" && stat)
     optionsL.push([line + 1, col + 1, lineEnd, colEnd, -1, -1]);
 
   // checkDiagonalLefttUp;
-  if (
-    line > 0 &&
-    col > 0 &&
-    curBoard[line - 1][col - 1] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, +1, +1)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    +1,
+    +1
+  );
+  if (line > 0 && col > 0 && curBoard[line - 1][col - 1] == "e" && stat)
     optionsL.push([line - 1, col - 1, lineEnd, colEnd, +1, +1]);
 
   // checkDiagonalLeftDown;
-  if (
-    line < 7 &&
-    col > 0 &&
-    curBoard[line + 1][col - 1] == "e" &&
-    checkOtherDirectionForPlayer(player, curBoard, line, col, -1, +1)
-  )
+  [stat, lineEnd, colEnd] = checkOtherDirectionForPlayer(
+    player,
+    openentColor,
+    curBoard,
+    line,
+    col,
+    -1,
+    +1
+  );
+  if (line < 7 && col > 0 && curBoard[line + 1][col - 1] == "e" && stat)
     optionsL.push([line + 1, col - 1, lineEnd, colEnd, -1, +1]);
-
-  // //(optionsL);
 
   return optionsL;
 }
@@ -355,37 +419,6 @@ function initGame() {
 /*-------------- Cumputer Move Execuation ---------------*/
 let tableNumber = 1;
 
-function debugDataSave(board, level) {
-  if (!debugFlag) return;
-  let boardString = "";
-  let char = "";
-  let lineString = "";
-  const location = document.querySelector(".debugDiv");
-  location.innerHTML += `<h1> Recursion Level - ${level}<br>  Table Number- ${tableNumber++}</h1><br>`;
-  for (let l = 0; l < 8; l++) {
-    for (let c = 1; c < 8; c++) {
-      switch (board[l][c]) {
-        case "b":
-          char = "⚫";
-          break;
-        case "w":
-          char = "⚪";
-          break;
-        default:
-          char = String(`${l},${c}`);
-          break;
-      }
-      lineString += "|" + char + "|";
-    }
-    boardString = "=".repeat(10 - level) + ">" + lineString + "\n";
-    location.innerText += "=".repeat(20 - level * 3) + ">" + lineString;
-    location.innerHTML += "<br>";
-    lineString = "";
-  }
-  location.innerHTML += "<br>" + "<br>" + "<br>";
-  boardString = location.innerText + boardString + "\n";
-}
-
 function calculateBoardValueForComputerMove(player, computer, localBoard) {
   const gradeP = localBoard.flat().filter((item) => item === player).length;
   const gradeC = localBoard.flat().filter((item) => item === computer).length;
@@ -430,54 +463,16 @@ function flipLineToNewColorOnlyBoard(
   // return LocalBoard
 }
 
-function playerMove(option, tempBoard, level, color, openentColor) {
-  let localBoard = JSON.parse(JSON.stringify(tempBoard));
-  let grade = 0;
-  let result = [];
-
-  if (level == 0) return 0; //end recursion
-
-  // tempBoard[option[0]][option[1]] = color;
-
-  if (option.length > 0)
-    flipLineToNewColorOnlyBoard(...option, localBoard, openentColor);
-
-  grade = calculateBoardValueForComputerMove(computer, player, localBoard);
-
-  let cLocalOptions = findPotentialNextPosition(
-    player,
-    computer,
-    localBoard,
-    true
-  );
-
-  for (let i = 0; i < cLocalOptions.length; i++) {
-    result.push(
-      computerMove(cLocalOptions[i], localBoard, level - 1, computer, player),
-      cLocalOptions[i][0],
-      cLocalOptions[i][1]
-    );
-  }
-  /*  
-  following will find the best next move from teh result boarday
-  
-  result sructure example
-  [5, 2, 4]
-  [12,2, 4]
-  [value, line, col]
-  
-  */
-  // //("result2 - ", result);
-  let nResult = calculateOptioTopGrade(result);
-  nResult[0] += grade;
-
-  // //("result1 - ", result);
-  debugDataSave(localBoard, level);
-
-  return nResult;
+function decsionTreeLeaf() {
+  this.leavesGrade;
+  this.selectedCellY;
+  this.selectedCellX;
+  this.color;
+  this.currentGrade;
 }
 
-function computerMove(option, tempBoard, level, color, openentColor) {
+function move(option, tempBoard, level, color, openentColor) {
+  // function computerMove(option, tempBoard, level, color, openentColor) {
   let localBoard = JSON.parse(JSON.stringify(tempBoard));
   let grade = 0;
   let result = [];
@@ -501,33 +496,57 @@ function computerMove(option, tempBoard, level, color, openentColor) {
     let sendBoard = JSON.parse(JSON.stringify(localBoard));
     for (let n = 0; n < cLocalOptions.length; n++) {
       if (i != n) {
-        sendBoard[cLocalOptions[i][0]][cLocalOptions[i][1]] = "e";
+        sendBoard[cLocalOptions[n][0]][cLocalOptions[n][1]] = "e";
       } else {
-        sendBoard[cLocalOptions[i][0]][cLocalOptions[i][1]] = color;
+        sendBoard[cLocalOptions[n][0]][cLocalOptions[n][1]] = color;
       }
     }
 
-    flipLineToNewColorOnlyBoard(...option, sendBoard, openentColor);
+    flipLineToNewColorOnlyBoard(...cLocalOptions[i], sendBoard, color);
 
     grade = calculateBoardValueForComputerMove(color, openentColor, sendBoard);
-    result.push([
-      playerMove(cLocalOptions[i], sendBoard, level - 1, player, computer),
-      cLocalOptions[i][0],
-      cLocalOptions[i][1],
-      grade,
-    ]);
+    if (debugFlag) {
+      debugLogger.push(
+        new debugRec(
+          level,
+          cLocalOptions[i],
+          i,
+          openentColor,
+          color,
+          grade,
+          cLocalOptions,
+          sendBoard
+        )
+      );
+      console.log(debugLogger);
+    }
+    let leavesGrade = move(
+      cLocalOptions[i],
+      sendBoard,
+      level - 1,
+      openentColor,
+      color
+    );
+    result.push(
+      new decsionTreeLeaf(
+        leavesGrade,
+        cLocalOptions[i][0],
+        cLocalOptions[i][1],
+        color,
+        grade
+      )
+    );
   }
 
   /*  
   following will find the best next move from teh result boarday
   
-  result sructure example
-  [5, 2, 4]
-  [12,2, 4]
-  [value, line, col]
+  result array of sructure 
+
+  [{value of leaves, line, col,color,grade}, ]
   
   */
-  //("result2 - ", result);
+
   let nResult = calculateOptioTopGrade(result);
   nResult[0] += grade;
   console.log(nResult);
@@ -537,7 +556,7 @@ function computerMove(option, tempBoard, level, color, openentColor) {
   }
   //("result1 - ", result);
 
-  debugDataSave(localBoard, level);
+  // debugDataSave(localBoard, level);
 
   return nResult;
 }
@@ -549,9 +568,9 @@ function computerNextMove() {
   let result = [];
 
   const startTime = performance.now();
-  debugDataSave(board, recursionLevel);
+  // debugDataSave(board, recursionLevel);
 
-  result = computerMove([], board, recursionLevel, computer, player);
+  result = move([], board, recursionLevel, computer, player);
 
   const endTime = performance.now();
   console.log(`Call took ${endTime - startTime} milliseconds`);
