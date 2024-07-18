@@ -16,8 +16,10 @@ let computer = "b";
 let options = [];
 // let lineEnd = 0;
 // let colEnd = 0;
-let recursionLevel = 3;
-let debugFlag = true;
+let recursionLevel = 5;
+let debugFlag = false;
+let debugFlagDisplay = false;
+let debugResultFlag = false;
 let debugLogger = [];
 
 function debugRec(
@@ -40,7 +42,7 @@ function debugRec(
     (this.h_board = board);
 }
 
-function positionNewPiece() {
+function positionNewPiece(board) {
   // translate boarday value to screen
   let cColor;
   let textS;
@@ -50,11 +52,9 @@ function positionNewPiece() {
   board.map((line, y) =>
     line.map((col, x) => {
       if (board[y][x] != savedBoard[y][x]) {
-        
         savedBoard[y][x] = board[y][x];
 
         cColor = board[y][x];
-        
 
         textS = "";
         if (cColor == "w") temp = "White";
@@ -63,7 +63,7 @@ function positionNewPiece() {
         textS = ` <div class="centerCircle">
         <div class="stone${temp}"></div>
       </div>`;
-        
+
         rowP = document.querySelector(`#row${y}`);
         rowP.children[x].innerHTML = textS;
       }
@@ -105,12 +105,12 @@ function flipLineToNewColor(lineStart, colStart, color) {
       }
     }
   }
-  
+
   // clean other portential moves in board
   board.map((line, y) =>
     line.map((cell, x) => {
       if (cell == "wo" || cell == "bo") {
-        console.log(y, x);
+        // console.log(y, x);
         board[y][x] = "e";
       }
     })
@@ -140,20 +140,15 @@ function clickedCell(event) {
 
   let col = Number(clickedElement.classList[1].slice(-1));
   let line = Number(parentTd.id.slice(-1));
-  //
+
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     board[line][col] = player;
+    
     flipLineToNewColor(line, col, player);
-    // cleanBoardOptions();
-    positionNewPiece();
-
-    //(board, options);
+    positionNewPiece(board);
 
     computerNextMove();
-    // findPotentialNextPosition()
   }
-
-  //
 }
 
 function mouseOver() {
@@ -177,7 +172,7 @@ function initBoard() {
   board[3][4] = "b";
   board[4][3] = "b";
   board[4][4] = "w";
-  positionNewPiece();
+  positionNewPiece(board);
 
   const cells = document.querySelectorAll(".cellR");
 
@@ -201,7 +196,7 @@ function checkOtherDirectionForPlayer(
   optionsL
 ) {
   /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
-  
+
   let l = line + lineDirection;
   let c = col + colDirection;
   let lRevrese = line - lineDirection;
@@ -216,14 +211,14 @@ function checkOtherDirectionForPlayer(
       while (l >= 0 && l <= 7 && c >= 0 && c <= 7) {
         if (board[l][c] == "e") {
           // stat = true;
-          
+
           optionsL.push([
             line + lineDirection,
             col + colDirection,
             lRevrese,
             cReverse,
-            lineDirection*-1,
-            colDirection*-1,
+            lineDirection * -1,
+            colDirection * -1,
           ]);
           return optionsL;
         }
@@ -268,8 +263,6 @@ function getLoactions(line, col, curBoard, player, openentColor) {
       );
     }
 
-
-
   return optionsL;
 }
 
@@ -306,8 +299,9 @@ function findPotentialNextPosition(
         openentColor
       )
     );
-    // //(options);
   }
+
+  if (options.length == 0) return [];
 
   for (let x = 0; x < options.length; x++) {
     curBoard[options[x][0]][options[x][1]] = `${playerColor}o`;
@@ -320,32 +314,29 @@ function initGame() {
   initBoard(); /*intialiaze board global variable*/
 
   let options = findPotentialNextPosition(player, computer, board, false);
-  positionNewPiece();
-
+  positionNewPiece(board);
 }
 
 /*-------------- Cumputer Move Execuation ---------------*/
 let tableNumber = 1;
 
-function calculateBoardValueForComputerMove(player, computer, localBoard) {
+function calculateBoardValueForComputerMove(localBoard) {
   const gradeP = localBoard.flat().filter((item) => item === player).length;
   const gradeC = localBoard.flat().filter((item) => item === computer).length;
   return gradeP - gradeC;
 }
 
 function calculateOptioTopGrade(result) {
-  
-  let resultLine = [];
-  const grade = result.flat().filter((item) => item === computer).length;
-  let i = 0;
-  while (i < result.length) {
-    if (grade === result[i][0]) {
-      resultLine.push(result[i]);
-      break;
+  let maxGrade = result[0].currentGrade;
+  let maxGradeIndex = 0;
+  for (let i = 1; i < result.length; i++) {
+    if (maxGrade < result[i].currentGrade) {
+      maxGrade = result[i].currentGrade;
+      maxGradeIndex = i;
     }
-    i++;
   }
-  return [grade, resultLine];
+
+  return result[maxGradeIndex];
 }
 
 function flipLineToNewColorOnlyBoard(
@@ -358,40 +349,35 @@ function flipLineToNewColorOnlyBoard(
   Board,
   color
 ) {
-  
   let LocalBoard = Board;
 
-  
   while (c != colEnd || l != lineEnd) {
-  
     LocalBoard[l][c] = color;
     l += lineDirection;
     c += colDirection;
   }
-  
 }
 
-function decsionTreeLeaf() {
-  this.leavesGrade;
-  this.selectedCellY;
-  this.selectedCellX;
-  this.color;
-  this.currentGrade;
+function decsionTreeLeaf(
+  leavesGrade,
+  selectedCellY,
+  selectedCellX,
+  color,
+  currentGrade
+) {
+  this.leavesGrade = leavesGrade;
+  this.selectedCellY = selectedCellY;
+  this.selectedCellX = selectedCellX;
+  this.color = color;
+  this.currentGrade = currentGrade;
 }
 
 function move(option, tempBoard, level, color, openentColor) {
   // function computerMove(option, tempBoard, level, color, openentColor) {
   let localBoard = JSON.parse(JSON.stringify(tempBoard));
   let grade = 0;
-  let result = [];
 
-  if (level == 0) 
-    return 0; //end recursion
-  if (level == 1) {
-    console.log("top level");
-    // console.log(nResult);
-  }
-  
+  if (level == 0) return 0; //end recursion
 
   let cLocalOptions = findPotentialNextPosition(
     color,
@@ -399,9 +385,15 @@ function move(option, tempBoard, level, color, openentColor) {
     localBoard,
     true
   );
+  if (cLocalOptions.length == 0) {
+    return new decsionTreeLeaf(0, 0, 0, color, 0);
+  }
 
+  let result = [];
   for (let i = 0; i < cLocalOptions.length; i++) {
     let sendBoard = JSON.parse(JSON.stringify(localBoard));
+
+    // let result = JSON.parse(JSON.stringify(result));
     for (let n = 0; n < cLocalOptions.length; n++) {
       if (i != n) {
         sendBoard[cLocalOptions[n][0]][cLocalOptions[n][1]] = "e";
@@ -412,7 +404,7 @@ function move(option, tempBoard, level, color, openentColor) {
 
     flipLineToNewColorOnlyBoard(...cLocalOptions[i], sendBoard, color);
 
-    grade = calculateBoardValueForComputerMove(color, openentColor, sendBoard);
+    grade = calculateBoardValueForComputerMove(sendBoard);
     if (debugFlag) {
       debugLogger.push(
         new debugRec(
@@ -426,7 +418,19 @@ function move(option, tempBoard, level, color, openentColor) {
           sendBoard
         )
       );
+      console.log(
+        "".padStart(5 * (i + 1), "----") +
+          ` level-${level}, iteration-${i}, grade-${grade}, numberOfIterations-${cLocalOptions.length}`,
+        debugLogger
+      );
       console.log(debugLogger);
+    }
+
+    if (debugFlagDisplay) {
+      positionNewPiece(sendBoard);
+
+      console.log(level);
+      console.log(cLocalOptions[i]);
     }
     let leavesGrade = move(
       cLocalOptions[i],
@@ -435,15 +439,22 @@ function move(option, tempBoard, level, color, openentColor) {
       openentColor,
       color
     );
+    if (debugFlagDisplay) {
+      console.log(leavesGrade);
+    }
+
     result.push(
       new decsionTreeLeaf(
-        leavesGrade,
+        leavesGrade.currentGrade,
         cLocalOptions[i][0],
         cLocalOptions[i][1],
         color,
         grade
       )
     );
+    if (debugFlag) {
+      console.log(`++++++++++++++leavesGrade=${level} grade=${grade} `, result);
+    }
   }
 
   /*  
@@ -456,13 +467,17 @@ function move(option, tempBoard, level, color, openentColor) {
   */
 
   let nResult = calculateOptioTopGrade(result);
-  nResult[0] += grade;
-  console.log(nResult);
-  if (level == recursionLevel) {
-    console.log("top level");
-    console.log(nResult);
+  if (debugResultFlag) {
+    console.log(
+      `_________________level=${level}, grade=${grade}, leave max grade=${nResult.currentGrade} `
+    );
   }
-  
+  nResult.currentGrade += grade;
+  // console.log(nResult);
+  // if (level == recursionLevel) {
+  //   console.log("top level");
+  //   console.log(nResult);
+  // }
 
   return nResult;
 }
@@ -470,18 +485,22 @@ function move(option, tempBoard, level, color, openentColor) {
 function computerNextMove() {
   /* calculateBestOption will return update board with new move in Optional boarday   */
   // //("computer turn");
-  
+
   let result = [];
 
   const startTime = performance.now();
-  
 
   result = move([], board, recursionLevel, computer, player);
 
+  should use --- flipLineToNewColorOnlyBoard
+  // flipLineToNewColor(result.selectedCellY, result.selectedCellX, computer);
+
+
+
+  positionNewPiece(board);
   const endTime = performance.now();
   console.log(`Call took ${endTime - startTime} milliseconds`);
 
-  
   // //("result - ", result);
 }
 
