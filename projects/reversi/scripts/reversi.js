@@ -143,7 +143,7 @@ function clickedCell(event) {
 
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     board[line][col] = player;
-    
+
     flipLineToNewColor(line, col, player);
     positionNewPiece(board);
 
@@ -346,8 +346,8 @@ function flipLineToNewColorOnlyBoard(
   colEnd,
   lineDirection,
   colDirection,
-  Board,
-  color
+  color,
+  Board
 ) {
   let LocalBoard = Board;
 
@@ -359,16 +359,26 @@ function flipLineToNewColorOnlyBoard(
 }
 
 function decsionTreeLeaf(
-  leavesGrade,
-  selectedCellY,
-  selectedCellX,
+  
+  l,
+  c,
+  lineEnd,
+  colEnd,
+  lDirection,
+  cDirection,
   color,
+  leavesGrade,
   currentGrade
 ) {
-  this.leavesGrade = leavesGrade;
-  this.selectedCellY = selectedCellY;
-  this.selectedCellX = selectedCellX;
+  
+  this.l = l;
+  this.c = c;
+  this.lineEnd = lineEnd;
+  this.colEnd = colEnd;
+  this.lineDirection = lDirection;
+  this.colDirection = cDirection;
   this.color = color;
+  this.leavesGrade = leavesGrade;
   this.currentGrade = currentGrade;
 }
 
@@ -402,7 +412,7 @@ function move(option, tempBoard, level, color, openentColor) {
       }
     }
 
-    flipLineToNewColorOnlyBoard(...cLocalOptions[i], sendBoard, color);
+    flipLineToNewColorOnlyBoard(...cLocalOptions[i], color, sendBoard);
 
     grade = calculateBoardValueForComputerMove(sendBoard);
     if (debugFlag) {
@@ -445,10 +455,14 @@ function move(option, tempBoard, level, color, openentColor) {
 
     result.push(
       new decsionTreeLeaf(
-        leavesGrade.currentGrade,
         cLocalOptions[i][0],
         cLocalOptions[i][1],
+        cLocalOptions[i][2],
+        cLocalOptions[i][3],
+        cLocalOptions[i][4],
+        cLocalOptions[i][5],
         color,
+        leavesGrade.currentGrade,
         grade
       )
     );
@@ -491,11 +505,18 @@ function computerNextMove() {
   const startTime = performance.now();
 
   result = move([], board, recursionLevel, computer, player);
-
-  should use --- flipLineToNewColorOnlyBoard
+  flipLineToNewColorOnlyBoard(
+    result.l,
+    result.c,
+    result.lineEnd,
+    result.colEnd,
+    result.lineDirection,
+    result.colDirection,
+    result.color,
+    board
+  );
+  // should use --- flipLineToNewColorOnlyBoard
   // flipLineToNewColor(result.selectedCellY, result.selectedCellX, computer);
-
-
 
   positionNewPiece(board);
   const endTime = performance.now();
