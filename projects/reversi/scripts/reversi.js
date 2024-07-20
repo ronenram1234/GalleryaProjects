@@ -146,17 +146,17 @@ function clickedCell(event) {
 
   let col = Number(clickedElement.classList[1].slice(-1));
   let line = Number(parentTd.id.slice(-1));
-  // console.log('clickedCell before if');
+  // console.log("clickedCell before if");
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     board[line][col] = player;
-    // console.log('clickedCell before flipLineToNewColor');
+    // console.log("clickedCell before flipLineToNewColor");
     flipLineToNewColor(line, col, player);
-    // console.log('clickedCell before positionNewPiece');
+    // console.log("clickedCell before positionNewPiece");
     positionNewPiece(board);
-    console.log("clickedCell before computerNextMove");
+    // console.log("clickedCell before computerNextMove");
 
     computerNextMove();
-    console.log("clickedCell after computerNextMove");
+    // console.log("clickedCell after computerNextMove");
   }
   if (debugFlag) {
     console.log("end clickedCell");
@@ -197,6 +197,8 @@ function initBoard() {
   }
 }
 
+let countCheckOtherDirectionForPlayer = 0;
+
 function checkOtherDirectionForPlayer(
   color,
   openentColor,
@@ -214,13 +216,13 @@ function checkOtherDirectionForPlayer(
     console.log(
       color,
       openentColor,
-      board,
       line,
       col,
       lineDirection,
-      colDirection,
-      optionsL
+      colDirection
+      // optionsL
     );
+    countCheckOtherDirectionForPlayer++;
   }
   let l = line + lineDirection;
   let c = col + colDirection;
@@ -229,6 +231,8 @@ function checkOtherDirectionForPlayer(
 
   // if (board[l][c]!=openentColor) return [stat, lineEnd, colEnd];
 
+  if (l < 0 || l > 7 || c < 0 || c > 7) return optionsL;
+  if (board[l][c] != "e") return optionsL;
   while (lRevrese >= 0 && lRevrese <= 7 && cReverse >= 0 && cReverse <= 7) {
     // console.log('lRevrese -',lRevrese);
     // console.log('cReverse -',cReverse);
@@ -290,6 +294,18 @@ function getLoactions(line, col, curBoard, player, openentColor) {
         console.log(
           player,
           openentColor,
+          // curBoard,
+          line,
+          col,
+          lDirection,
+          cDirection
+          // optionsL
+        );
+      }
+      if (!(lDirection == 0 && cDirection == 0)) {
+        optionsL = checkOtherDirectionForPlayer(
+          player,
+          openentColor,
           curBoard,
           line,
           col,
@@ -298,16 +314,6 @@ function getLoactions(line, col, curBoard, player, openentColor) {
           optionsL
         );
       }
-      optionsL = checkOtherDirectionForPlayer(
-        player,
-        openentColor,
-        curBoard,
-        line,
-        col,
-        lDirection,
-        cDirection,
-        optionsL
-      );
     }
   if (debugFlag) {
     console.log("getLoactions after getLoactions");
@@ -416,7 +422,8 @@ function decsionTreeLeaf(
   cDirection,
   color,
   leavesGrade,
-  currentGrade
+  currentGrade,
+  endGameFlag
 ) {
   this.l = l;
   this.c = c;
@@ -427,15 +434,16 @@ function decsionTreeLeaf(
   this.color = color;
   this.leavesGrade = leavesGrade;
   this.currentGrade = currentGrade;
+  this.endGameFlag = endGameFlag;
 }
-
+// let countMove = 0;
 function move(option, tempBoard, level, color, openentColor) {
   // function computerMove(option, tempBoard, level, color, openentColor) {
   let localBoard = JSON.parse(JSON.stringify(tempBoard));
   let grade = 0;
 
   if (level == 0) return 0; //end recursion
-  console.log("move before cLocalOptions");
+  // console.log("move before cLocalOptions");
 
   let cLocalOptions = findPotentialNextPosition(
     color,
@@ -443,9 +451,9 @@ function move(option, tempBoard, level, color, openentColor) {
     localBoard,
     true
   );
-  console.log("move after  cLocalOptions");
+  // console.log("move after  cLocalOptions");
   if (cLocalOptions.length == 0) {
-    return new decsionTreeLeaf(0, 0, 0, color, 0);
+    return new decsionTreeLeaf(0, 0, 0, color, 0, true);
   }
 
   let result = [];
@@ -491,6 +499,8 @@ function move(option, tempBoard, level, color, openentColor) {
       console.log(level);
       console.log(cLocalOptions[i]);
     }
+    // countMove++;
+    // console.log(countMove);
     let leavesGrade = move(
       cLocalOptions[i],
       sendBoard,
@@ -512,7 +522,8 @@ function move(option, tempBoard, level, color, openentColor) {
         cLocalOptions[i][5],
         color,
         leavesGrade.currentGrade,
-        grade
+        grade,
+        false
       )
     );
     if (debugFlag) {
@@ -555,7 +566,21 @@ function computerNextMove() {
   // console.log('computerNextMove  before move');
 
   result = move([], board, recursionLevel, computer, player);
+  console.log(result.endGameFlag,result.l,result.c);
   // console.log('computerNextMove  before flipLineToNewColorOnlyBoard');
+  if (result.endGameFlag) {
+    const cells = document.querySelectorAll(".cellR");
+
+    for (let i = 0; i < cells.length; i++) {
+      //
+
+      cells[i].removeEventListener("click", clickedCell);
+
+      cells[i].removeEventListener("mouseover", mouseOver);
+    }
+    console.log("game end");
+    return;
+  }
   flipLineToNewColorOnlyBoard(
     result.l,
     result.c,
