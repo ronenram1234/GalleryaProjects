@@ -16,8 +16,9 @@ let computer = "b";
 let options = [];
 // let lineEnd = 0;
 // let colEnd = 0;
-let recursionLevel = 5;
+let recursionLevel = 3;
 let debugFlag = false;
+let debugPlayerTurn = 0;
 let debugFlagDisplay = false;
 let debugResultFlag = false;
 let debugLogger = [];
@@ -60,10 +61,11 @@ function positionNewPiece(board) {
         if (cColor == "w") temp = "White";
         if (cColor == "b") temp = "Black";
         if (cColor == "wo") temp = "Optional";
-        textS = ` <div class="centerCircle">
-        <div class="stone${temp}"></div>
-      </div>`;
+        textS = ` <div class="centerCircle"><div class="stone${temp}"></div>  </div>`;
+        if (cColor == "e")
+          textS = ` <div class="centerCircle"> <div ></div> </div>`;
 
+        // console.log(y, x);
         rowP = document.querySelector(`#row${y}`);
         rowP.children[x].innerHTML = textS;
       }
@@ -129,6 +131,10 @@ function clickedCell(event) {
           */
 
   //
+  if (debugFlag) {
+    debugPlayerTurn++;
+    console.log("start clickedCell");
+  }
 
   let clickedElement;
   if (event.target.classList[0] == "stoneOptional") {
@@ -140,14 +146,20 @@ function clickedCell(event) {
 
   let col = Number(clickedElement.classList[1].slice(-1));
   let line = Number(parentTd.id.slice(-1));
-
+  // console.log('clickedCell before if');
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     board[line][col] = player;
-
+    // console.log('clickedCell before flipLineToNewColor');
     flipLineToNewColor(line, col, player);
+    // console.log('clickedCell before positionNewPiece');
     positionNewPiece(board);
+    console.log("clickedCell before computerNextMove");
 
     computerNextMove();
+    console.log("clickedCell after computerNextMove");
+  }
+  if (debugFlag) {
+    console.log("end clickedCell");
   }
 }
 
@@ -196,7 +208,20 @@ function checkOtherDirectionForPlayer(
   optionsL
 ) {
   /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
-
+  if (debugFlag) {
+    console.log("----------start checkOtherDirectionForPlayer");
+    console.log(`----------debugPlayerTurn=${debugPlayerTurn}`);
+    console.log(
+      color,
+      openentColor,
+      board,
+      line,
+      col,
+      lineDirection,
+      colDirection,
+      optionsL
+    );
+  }
   let l = line + lineDirection;
   let c = col + colDirection;
   let lRevrese = line - lineDirection;
@@ -205,16 +230,23 @@ function checkOtherDirectionForPlayer(
   // if (board[l][c]!=openentColor) return [stat, lineEnd, colEnd];
 
   while (lRevrese >= 0 && lRevrese <= 7 && cReverse >= 0 && cReverse <= 7) {
+    // console.log('lRevrese -',lRevrese);
+    // console.log('cReverse -',cReverse);
     // check counter direction if color exisit
     if (board[lRevrese][cReverse] == "e") break;
     if (board[lRevrese][cReverse] == color) {
       while (l >= 0 && l <= 7 && c >= 0 && c <= 7) {
+        // console.log('l -',l);
+        // console.log('c -',c);
+        if (board[l][c] == color) return optionsL;
         if (board[l][c] == "e") {
           // stat = true;
 
           optionsL.push([
-            line + lineDirection,
-            col + colDirection,
+            // line + lineDirection,
+            // col + colDirection,
+            l,
+            c,
             lRevrese,
             cReverse,
             lineDirection * -1,
@@ -226,8 +258,8 @@ function checkOtherDirectionForPlayer(
         c += colDirection;
       }
     } else {
-      lRevrese -= lRevrese;
-      cReverse -= cReverse;
+      lRevrese -= lineDirection;
+      cReverse -= colDirection;
     }
   }
   //
@@ -251,6 +283,21 @@ function getLoactions(line, col, curBoard, player, openentColor) {
 
   for (let lDirection = -1; lDirection <= +1; lDirection++)
     for (let cDirection = -1; cDirection <= +1; cDirection++) {
+      if (debugFlag) {
+        console.log("----------start getLoactions");
+        console.log(`----------debugPlayerTurn=${debugPlayerTurn}`);
+
+        console.log(
+          player,
+          openentColor,
+          curBoard,
+          line,
+          col,
+          lDirection,
+          cDirection,
+          optionsL
+        );
+      }
       optionsL = checkOtherDirectionForPlayer(
         player,
         openentColor,
@@ -262,7 +309,9 @@ function getLoactions(line, col, curBoard, player, openentColor) {
         optionsL
       );
     }
-
+  if (debugFlag) {
+    console.log("getLoactions after getLoactions");
+  }
   return optionsL;
 }
 
@@ -313,7 +362,7 @@ function findPotentialNextPosition(
 function initGame() {
   initBoard(); /*intialiaze board global variable*/
 
-  let options = findPotentialNextPosition(player, computer, board, false);
+  findPotentialNextPosition(player, computer, board, false);
   positionNewPiece(board);
 }
 
@@ -359,7 +408,6 @@ function flipLineToNewColorOnlyBoard(
 }
 
 function decsionTreeLeaf(
-  
   l,
   c,
   lineEnd,
@@ -370,7 +418,6 @@ function decsionTreeLeaf(
   leavesGrade,
   currentGrade
 ) {
-  
   this.l = l;
   this.c = c;
   this.lineEnd = lineEnd;
@@ -388,6 +435,7 @@ function move(option, tempBoard, level, color, openentColor) {
   let grade = 0;
 
   if (level == 0) return 0; //end recursion
+  console.log("move before cLocalOptions");
 
   let cLocalOptions = findPotentialNextPosition(
     color,
@@ -395,6 +443,7 @@ function move(option, tempBoard, level, color, openentColor) {
     localBoard,
     true
   );
+  console.log("move after  cLocalOptions");
   if (cLocalOptions.length == 0) {
     return new decsionTreeLeaf(0, 0, 0, color, 0);
   }
@@ -501,10 +550,12 @@ function computerNextMove() {
   // //("computer turn");
 
   let result = [];
-
-  const startTime = performance.now();
+  // console.log('start computerNextMove ');
+  // const startTime = performance.now();
+  // console.log('computerNextMove  before move');
 
   result = move([], board, recursionLevel, computer, player);
+  // console.log('computerNextMove  before flipLineToNewColorOnlyBoard');
   flipLineToNewColorOnlyBoard(
     result.l,
     result.c,
@@ -517,10 +568,15 @@ function computerNextMove() {
   );
   // should use --- flipLineToNewColorOnlyBoard
   // flipLineToNewColor(result.selectedCellY, result.selectedCellX, computer);
-
+  // console.log('computerNextMove  before positionNewPiece');
   positionNewPiece(board);
-  const endTime = performance.now();
-  console.log(`Call took ${endTime - startTime} milliseconds`);
+  // console.log('computerNextMove  before findPotentialNextPosition');
+  findPotentialNextPosition(player, computer, board, false);
+  // console.log('computerNextMove  before positionNewPiece');
+  positionNewPiece(board);
+  // console.log('computerNextMove  before performance');
+  // const endTime = performance.now();
+  // console.log(`Call took ${endTime - startTime} milliseconds`);
 
   // //("result - ", result);
 }
