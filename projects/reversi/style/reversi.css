@@ -1,8 +1,8 @@
 :root {
-  --circle-width: 50px;
-  --circle-hight: 50px;
-  --optional-w: 20px;
-  --optional-h: 20px;
+  --circle-width: 25px;
+  --circle-hight: 25px;
+  --optional-w: 10px;
+  --optional-h: 10px;
   --cell-width: 70px;
   --cell-hight: 70px;
 }
@@ -12,22 +12,33 @@
   box-sizing: border-box;
 }
 
-.stoneWhite {
-  /* stone */
+.stoneWhite, .stoneBlack {
   width: var(--circle-width);
   height: var(--circle-hight);
-  background-color: white;
+
   border-radius: 50%;
   border: 2px solid black;
+  transform: scale(2);
+  transition: transform 2s ease-in-out;
+  transition-duration: 30s;
 }
+
+.stoneWhite {
+  /* stone */
+
+  background-color: white;
+}
+/* .stoneOptional:hover {
+  transform: scale(2);
+}
+.stoneWhite:hover {
+  transform: scale(2);
+} */
 
 .stoneBlack {
   /* stone */
-  width: var(--circle-width);
-  height: var(--circle-hight);
+
   background-color: black;
-  border-radius: 50%;
-  border: 2px solid black;
 }
 
 .stoneOptional {
@@ -40,6 +51,8 @@
 
   border-radius: 50%;
   border: 3px solid #612525;
+  transform: scale(2);
+  transition: transform 2s ease-in-out;
 }
 
 table {
@@ -74,6 +87,13 @@ table {
   display: flex;
   justify-content: center;
 }
+.full-screen {
+  display: flex;
+  /* justify-content: center; */
+  /* align-content: center; */
+  align-items: center;
+  flex-direction: column;
+}
 
 .centerCircle {
   display: flex;
@@ -84,4 +104,48 @@ table {
 .customCol {
   border: 1px solid grey;
   padding: 5px;
+}
+
+.score-board{
+  /* width: 200px; */
+  /* height: 100px; */
+  background-color: burlywood;
+  background-image: linear-gradient(to right, #e7c395, #aca7a0);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.board-pieces{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.board-pieces-p{
+  margin-right: 10%;
+  font-size: 1.5rem;
+}
+.board-pieces-i{
+  /* height: 80%; */
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+
+.score-board-result{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2%;
+
+}
+
+.score-board-computer-digit, .score-board-player-digit{
+font-size: 3rem;
+display: flex;
+flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
