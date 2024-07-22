@@ -155,8 +155,9 @@ function clickedCell(event) {
     // console.log("clickedCell before positionNewPiece");
     positionNewPiece(board);
     // console.log("clickedCell before computerNextMove");
-
+confirm('computer start') 
     computerNextMove();
+    confirm('computer end')
     // console.log("clickedCell after computerNextMove");
   }
   if (debugFlag) {
@@ -389,19 +390,20 @@ function initGame() {
 
 function calculateBoardValueForComputerMove(localBoard) {
   let rulesImprovments1 = 0;
-// let rulesImprovments2 = 1;
+let rulesImprovments2 = 1;
 
 for (let i=0;i<8;i++)
   for (let x=0;x<8;x++)
     if (localBoard[i][x]=='b' && (i==7 || i==0 || x==0 || x==7)) {
       rulesImprovments1++
     }
-  
+    rulesImprovments2= (localBoard[0][0]==='b') ? 1 : 0 + (localBoard[0][7]==='b') ? 1 : 0 +(localBoard[7][0]==='b') ? 1 : 0 +(localBoard[7][7]==='b') ? 1 : 0
   
 // if (rulesImprovments1 > 0) console.log(rulesImprovments1);
 
   const gradeP = localBoard.flat().filter((item) => item === player).length;
-  const gradeC = localBoard.flat().filter((item) => item === computer).length+rulesImprovments1;
+  let gradeC = localBoard.flat().filter((item) => item === computer).length ;
+  gradeC= gradeC*(1+rulesImprovments2/4)+rulesImprovments1*2 // add rules grading
   return gradeC - gradeP;
 }
 
