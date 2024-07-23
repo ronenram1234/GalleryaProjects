@@ -155,9 +155,9 @@ function clickedCell(event) {
     // console.log("clickedCell before positionNewPiece");
     positionNewPiece(board);
     // console.log("clickedCell before computerNextMove");
-confirm('computer start') 
+// confirm('computer start') 
     computerNextMove();
-    confirm('computer end')
+    // confirm('computer end')
     // console.log("clickedCell after computerNextMove");
   }
   if (debugFlag) {
