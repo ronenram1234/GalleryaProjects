@@ -18,9 +18,9 @@
 
   border-radius: 50%;
   border: 2px solid black;
-  transform: scale(2);
-  transition: transform 2s ease-in-out;
-  transition-duration: 30s;
+  /* transform: scale(2);
+  transition: transform 1s ease-in-out; */
+  /* transition-duration: .5s; */
 }
 
 .stoneWhite {
@@ -52,7 +52,7 @@
   border-radius: 50%;
   border: 3px solid #612525;
   transform: scale(2);
-  transition: transform 2s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 
 table {

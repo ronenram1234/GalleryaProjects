@@ -53,6 +53,10 @@ function positionNewPiece(board) {
 
   board.map((line, y) =>
     line.map((col, x) => {
+
+  
+      // setTimeout(function(){
+
       if (board[y][x] != savedBoard[y][x]) {
         savedBoard[y][x] = board[y][x];
 
@@ -62,16 +66,21 @@ function positionNewPiece(board) {
         if (cColor == "w") temp = "White";
         if (cColor == "b") temp = "Black";
         if (cColor == "wo") temp = "Optional";
-        textS = ` <div class="centerCircle"><div class="stone${temp}"></div>  </div>`;
+        textS = ` <div class="centerCircle"><div class="stone${temp}" style="  transform: scale(2);  transition: transform 1s ease-in-out;"></div>  </div>`;
         if (cColor == "e")
           textS = ` <div class="centerCircle"> <div ></div> </div>`;
 
-        // console.log(y, x);
+  
+    
+  // }, 3000)
+        
         rowP = document.querySelector(`#row${y}`);
         rowP.children[x].innerHTML = textS;
       }
+    // }, 1000)
     })
   );
+  // requestAnimationFrame (positionNewPiece)
 }
 
 function removePiece(row, col) {
@@ -147,18 +156,20 @@ function clickedCell(event) {
 
   let col = Number(clickedElement.classList[1].slice(-1));
   let line = Number(parentTd.id.slice(-1));
-  // console.log("clickedCell before if");
+  
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     board[line][col] = player;
-    // console.log("clickedCell before flipLineToNewColor");
+    
     flipLineToNewColor(line, col, player);
-    // console.log("clickedCell before positionNewPiece");
+    
     positionNewPiece(board);
-    // console.log("clickedCell before computerNextMove");
-// confirm('computer start') 
-    computerNextMove();
-    // confirm('computer end')
-    // console.log("clickedCell after computerNextMove");
+  setTimeout(function(){
+    console.log('computerNextMove');
+    computerNextMove()
+    
+  }, 2000)
+    
+  
   }
   if (debugFlag) {
     console.log("end clickedCell");
