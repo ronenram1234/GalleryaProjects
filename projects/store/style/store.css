@@ -1,0 +1,12 @@
+.carousel-img {
+
+    height: 70vh; /* Set your desired height */
+    width: 70vw; /* Set your desired width */
+    object-fit: contain;
+}
+
+.page1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
