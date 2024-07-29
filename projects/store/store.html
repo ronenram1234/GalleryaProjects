@@ -34,7 +34,10 @@
         <div class="collapse navbar-collapse" id="navbarsExample03">
           <ul class="navbar-nav me-auto mb-2 mb-sm-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="#product-line-id"
                 >Products</a
               >
             </li>
@@ -60,91 +63,190 @@
               <a class="nav-link" href="#">Contact Us</a>
             </li>
           </ul>
-          
         </div>
       </div>
     </nav>
-
-    <div class="page1">
-      <div id="carouselExampleIndicators" class="carousel slide">
-        <div class="carousel-indicators">
+    <div class="full-page">
+      <div class="page1">
+        <div id="carouselExampleIndicators" class="carousel slide">
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide-to="3"
+              aria-label="Slide 4"
+            ></button>
+          </div>
+          <div class="carousel-inner carousel-inner-set">
+            <div class="carousel-item active">
+              <img
+                src="./images/c-d-x-PDX_a_82obo-unsplash.jpg"
+                class="d-block w-100 carousel-img"
+                alt="..."
+                onclick="headPhone()"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./images/pexels-lastly-699122.jpg"
+                class="d-block w-100 carousel-img"
+                alt="..."
+                onclick="cellPhone()"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./images/pexels-xexusdesigner-777001.jpg"
+                class="d-block w-100 carousel-img"
+                alt="..."
+                onclick="monitor()"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="./images/kari-shea-1SAnrIxw5OY-unsplash.jpg"
+                class="d-block w-100 carousel-img"
+                alt="..."
+                onclick="laptop()"
+              />
+            </div>
+          </div>
           <button
+            class="carousel-control-prev"
             type="button"
             data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
+            data-bs-slide="prev"
+            st
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
           <button
+            class="carousel-control-next"
             type="button"
             data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide-to="3"
-            aria-label="Slide 4"
-          ></button>
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="./images/c-d-x-PDX_a_82obo-unsplash.jpg"
-              class="d-block w-100 carousel-img"
-              alt="..."
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./images/pexels-lastly-699122.jpg"
-              class="d-block w-100 carousel-img"
-              alt="..."
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./images/pexels-xexusdesigner-777001.jpg"
-              class="d-block w-100 carousel-img"
-              alt="..."
-            />
-          </div>
-          <div class="carousel-item">
-            <img
-              src="./images/kari-shea-1SAnrIxw5OY-unsplash.jpg"
-              class="d-block w-100 carousel-img"
-              alt="..."
-            />
-          </div>
-        </div>
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <div><h2>New Products</h2></div>
       </div>
-      <div><p>New Products</p></div>
+      <div class="product-line" id="product-line-id">
+        <!-- <div class="card card-r" style="width: 18rem">
+          <img src="./images/Lenovo1.jpg" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">Lenovo</h5>
+            <p class="card-text">
+              Laptop with touch screen "14 Lenovo IdeaPad Flex 5 82R900E9IV
+              Ryzen 5 5500U 512GB SSD drive, 16GB memory and AMD Radeon Graphics
+            </p>
+          </div>
+
+          <div
+            class="modal fade"
+            id="ModalToggle1"
+            aria-hidden="true"
+            aria-labelledby="exampleModalToggleLabel"
+            tabindex="-1"
+          >
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalToggleLabel">
+                    Modal 1
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  Show a second modal and hide this one with the button below.
+                </div>
+                <div class="modal-footer">
+                  <button
+                    class="btn btn-primary"
+                    data-bs-target="#exampleModalToggle2"
+                    data-bs-toggle="modal"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" data-bs-toggle="modal" type="button" href="#ModalToggle1">
+              More Info
+            </button>
+          </div>
+        </div> -->
+
+        <!-- <div class="card card-r" style="width: 18rem">
+          <img
+            src="./images/Lenovo2.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Lenovo</h5>
+            <p class="card-text ">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="button">More Info</button>
+            
+          </div>
+        </div>
+        <div class="card card-r" style="width: 18rem">
+          <img
+            src="./images/Lenovo3.jpg"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text ">
+              Some quick example text to build on the card title and make up the
+              bulk of the card's content.
+            </p>
+            
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="button">More Info</button>
+            
+          </div>
+        </div> -->
+      </div>
     </div>
   </body>
   <script
