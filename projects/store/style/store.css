@@ -48,3 +48,27 @@
 font: bold;
 color: aliceblue;
 }
+
+
+@media only screen and (max-width: 600px) {
+    body {
+      /* background-color: lightblue; */
+    }
+
+.newText{
+    font-size: medium;
+}
+
+
+.product-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin-top: 50px;
+  }
+  .card-r {
+    margin-bottom: 10px;
+  }
+
+  }
