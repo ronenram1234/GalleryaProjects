@@ -8,38 +8,36 @@ class Task {
   }
 }
 
-let taskArray = [];
+// let taskArray = [];
+
 class TaskManager {
-  // constructor() {
-  // }
+  constructor() {
+    this.taskArray = []
+  }
 
   addTask(desc) {
-    taskArray.push(new Task(desc));
+    this.taskArray.push(new Task(desc));
   }
 
   findInd(id) {
-    return taskArray.findIndex((item) => item.id == id);
-    // return taskArray.filter((t, ind) => {
-    //   t.id == id;
-    //   console.log(ind, taskArray[ind]);
-    //   return ind;
-    // });
+    return this.taskArray.findIndex((item) => item.id == id);
+
   }
   deleteTask(id) {
     let pos = this.findInd(id);
 
-    taskArray.splice(pos, 1);
+    this.taskArray.splice(pos, 1);
   }
 
   updateTaskDescription(id, desc) {
     let pos = this.findInd(id);
 
-    taskArray[pos].description = desc;
+    this.taskArray[pos].description = desc;
   }
 
   completeTask(id) {
     let pos = this.findInd(id);
-    taskArray[pos].complete = true;
+    this.taskArray[pos].complete = true;
   }
 }
 
@@ -51,9 +49,9 @@ tM.addTask("buy millk");
 tM.addTask("buy food for weekend");
 tM.addTask("return laundry");
 tM.addTask("clean yard");
-console.log(taskArray, taskArray[0].id);
-tM.deleteTask(taskArray[0].id);
-console.log(taskArray);
+console.log(tM.taskArray, tM.taskArray[0].id);
+tM.deleteTask(tM.taskArray[0].id);
+console.log(tM.taskArray);
 
-tM.updateTaskDescription(taskArray[1].id,"test 12 3")
-tM.completeTask(taskArray[1].id)
+tM.updateTaskDescription(tM.taskArray[1].id,"test 12 3")
+tM.completeTask(tM.taskArray[1].id)
