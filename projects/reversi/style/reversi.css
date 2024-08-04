@@ -18,33 +18,24 @@
 
   border-radius: 50%;
   border: 2px solid black;
-  /* transform: scale(2);
-  transition: transform 1s ease-in-out; */
-  /* transition-duration: .5s; */
+  
 }
 
 .stoneWhite {
-  /* stone */
+  
 
   background-color: white;
 }
-/* .stoneOptional:hover {
-  transform: scale(2);
-}
-.stoneWhite:hover {
-  transform: scale(2);
-} */
+
 
 .stoneBlack {
-  /* stone */
+  
 
   background-color: black;
 }
 
 .stoneOptional {
-  /* stone */
-  /* width: var(--circle-width);
-  height: var(--circle-hight); */
+  
   width: var(--optional-w);
   height: var(--optional-h);
   background-color: greenyellow;
@@ -56,24 +47,19 @@
 }
 
 table {
-  border-collapse: collapse; /* Removes space between cells */
+  border-collapse: collapse; 
 }
 
 .cellR {
   border: 2px solid black;
   width: var(--cell-width);
   height: var(--cell-hight);
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* 
-    text-align: center;
-    vertical-align: middle; */
+  
 }
 .tableReversi {
-  /* position: absolute; */
+  
 
-  background-color: rgba(255, 255, 255, 0.5); /*Adjust the color and opacity*/
+  background-color: rgba(255, 255, 255, 0.5); 
 }
 .divTable {
   background-image: url("./../images/background1.jpg");
@@ -89,8 +75,7 @@ table {
 }
 .full-screen {
   display: flex;
-  /* justify-content: center; */
-  /* align-content: center; */
+  
   align-items: center;
   flex-direction: column;
 }
@@ -107,8 +92,7 @@ table {
 }
 
 .score-board{
-  /* width: 200px; */
-  /* height: 100px; */
+  
   background-color: burlywood;
   background-image: linear-gradient(to right, #e7c395, #aca7a0);
   display: flex;
@@ -152,28 +136,7 @@ flex-direction: row;
 .restart{
   font-size: 2rem;
 }
-/* 
-.overlay {
-  
 
-  opacity: 80%;
-  background-color: lightblue;
-  content-visibility:hidden;
-  text-align: center;
-}
-.overlay > span{
-  font-size: 3rem;
-  font-weight: bolder;
-  
-}
-
-#containerID{
-  position: absolute;
-  top: 30%;
-  left: 25%;
-  background-color: lightblue;
-  border: 2px solid black; 
-} */
 
 
 
@@ -184,7 +147,7 @@ flex-direction: row;
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: lightgrey; /* Red */
+  background-color: lightgrey; 
   color: black;
   border-radius: 5px;
   

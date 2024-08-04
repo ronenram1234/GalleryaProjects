@@ -4,18 +4,9 @@ let board = [];
 let savedBoard = [];
 let player = "w";
 let computer = "b";
-// function optionsLine(line, col, lineEnd, colEnd, directionLine, directionCol) {
-//   this.line = line;
-//   this.col = col;
-//   this.lineEnd = lineEnd;
-//   this.colEnd = colEnd;
-//   this.directionLine = directionLine;
-//   this.directionCol = directionCol;
-// }
 
 let options = [];
-// let lineEnd = 0;
-// let colEnd = 0;
+
 let recursionLevel = 4;
 let debugFlag = false;
 let debugPlayerTurn = 0;
@@ -113,7 +104,7 @@ function flipLineToNewColor(lineStart, colStart, color) {
   board.map((line, y) =>
     line.map((cell, x) => {
       if (cell == "wo" || cell == "bo") {
-        // console.log(y, x);
+        
         board[y][x] = "e";
       }
     })
@@ -155,7 +146,7 @@ function clickedCell(event) {
 
     positionNewPiece(board);
     setTimeout(function () {
-      console.log("computerNextMove");
+      
       computerNextMove();
     }, 1000);
   }
@@ -221,7 +212,7 @@ function checkOtherDirectionForPlayer(
       col,
       lineDirection,
       colDirection
-      // optionsL
+      
     );
     countCheckOtherDirectionForPlayer++;
   }
@@ -230,26 +221,22 @@ function checkOtherDirectionForPlayer(
   let lRevrese = line - lineDirection;
   let cReverse = col - colDirection;
 
-  // if (board[l][c]!=openentColor) return [stat, lineEnd, colEnd];
+ 
 
   if (l < 0 || l > 7 || c < 0 || c > 7) return optionsL;
   if (board[l][c] != "e") return optionsL;
   while (lRevrese >= 0 && lRevrese <= 7 && cReverse >= 0 && cReverse <= 7) {
-    // console.log('lRevrese -',lRevrese);
-    // console.log('cReverse -',cReverse);
-    // check counter direction if color exisit
+   
     if (board[lRevrese][cReverse] == "e") break;
     if (board[lRevrese][cReverse] == color) {
       while (l >= 0 && l <= 7 && c >= 0 && c <= 7) {
-        // console.log('l -',l);
-        // console.log('c -',c);
+        
         if (board[l][c] == color) return optionsL;
         if (board[l][c] == "e") {
-          // stat = true;
+          
 
           optionsL.push([
-            // line + lineDirection,
-            // col + colDirection,
+           
             l,
             c,
             lRevrese,
@@ -270,14 +257,7 @@ function checkOtherDirectionForPlayer(
       cReverse -= colDirection;
     }
   }
-  //
-  //
-  // document.querySelector("#player-digit").innerText = board
-  //   .flat()
-  //   .filter((item) => item === player).length;
-  // document.querySelector("#computer-digit").innerText = board
-  //   .flat()
-  //   .filter((item) => item === computer).length;
+
 
   return optionsL;
 }
@@ -406,7 +386,7 @@ function calculateBoardValueForComputerMove(localBoard) {
       ? 1
       : 0;
 
-  // if (rulesImprovments1 > 0) console.log(rulesImprovments1);
+  
 
   const gradeP = localBoard.flat().filter((item) => item === player).length;
   let gradeC = localBoard.flat().filter((item) => item === computer).length;
@@ -489,7 +469,7 @@ function move(option, tempBoard, level, color, openentColor) {
     localBoard,
     true
   );
-  // console.log("move after  cLocalOptions");
+  
   if (cLocalOptions.length == 0) {
     return new decsionTreeLeaf(0, 0, 0, color, 0, true);
   }
@@ -615,8 +595,8 @@ function computerNextMove() {
   let noMorePlayerOptions = false;
 
   result = move([], board, recursionLevel, computer, player);
-  // console.log(result.endGameFlag,result.l,result.c);
-  console.log(result);
+  
+  
   if (result == undefined || result.leavesGrade == 0) {
     gameEnd();
   }
@@ -630,7 +610,7 @@ function computerNextMove() {
 
       cells[i].removeEventListener("mouseover", mouseOver);
     }
-    // console.log("game end");
+    
     return;
   }
   flipLineToNewColorOnlyBoard(
@@ -662,37 +642,30 @@ function computerNextMove() {
     .flat()
     .filter((item) => item === computer).length;
 
-  
+  gameEnd(); //test
 }
 
 function gameEnd() {
-  
   const gameGrade =
     document.querySelector("#player-digit").innerText -
     document.querySelector("#computer-digit").innerText;
 
-  let message="Game End\n\n"  
-  switch (gameGrade) {
-    case gameGrade > 0:
-      message += "Player Win";
-      break;
-    case gameGrade < 0:
-      message +=  "Player Lost";
-      break;
+  let message = "Game End\n\n";
 
-    default:
-      message += "No Winner";
-      break;
+  if (gameGrade > 0) {
+    message += "Player Won";
+  } else if (gameGrade < 0) {
+    message += "Player Lost";
+  } else {
+    message += "No Winner";
   }
-  
-  document.getElementById('customAlert').style.display = 'block';
-  document.getElementById('paId').innerText=message
 
+  document.getElementById("customAlert").style.display = "block";
+  document.getElementById("paId").innerText = message;
 }
 
 function closeAlert() {
-  document.getElementById('customAlert').style.display = 'none';
-
+  document.getElementById("customAlert").style.display = "none";
 }
 
 /*-------------- reStart Execuation ---------------*/
