@@ -53,10 +53,6 @@ function positionNewPiece(board) {
 
   board.map((line, y) =>
     line.map((col, x) => {
-
-  
-      // setTimeout(function(){
-
       if (board[y][x] != savedBoard[y][x]) {
         savedBoard[y][x] = board[y][x];
 
@@ -70,14 +66,9 @@ function positionNewPiece(board) {
         if (cColor == "e")
           textS = ` <div class="centerCircle"> <div ></div> </div>`;
 
-  
-    
-  // }, 3000)
-        
         rowP = document.querySelector(`#row${y}`);
         rowP.children[x].innerHTML = textS;
       }
-    // }, 1000)
     })
   );
   // requestAnimationFrame (positionNewPiece)
@@ -156,20 +147,17 @@ function clickedCell(event) {
 
   let col = Number(clickedElement.classList[1].slice(-1));
   let line = Number(parentTd.id.slice(-1));
-  
+
   if (board[line][col] == "wo" || board[line][col] == "bo") {
     board[line][col] = player;
-    
+
     flipLineToNewColor(line, col, player);
-    
+
     positionNewPiece(board);
-  setTimeout(function(){
-    console.log('computerNextMove');
-    computerNextMove()
-    
-  }, 2000)
-    
-  
+    setTimeout(function () {
+      console.log("computerNextMove");
+      computerNextMove();
+    }, 1000);
   }
   if (debugFlag) {
     console.log("end clickedCell");
@@ -398,23 +386,31 @@ function initGame() {
 
 /*-------------- Cumputer Move Execuation ---------------*/
 
-
 function calculateBoardValueForComputerMove(localBoard) {
   let rulesImprovments1 = 0;
-let rulesImprovments2 = 1;
+  let rulesImprovments2 = 1;
 
-for (let i=0;i<8;i++)
-  for (let x=0;x<8;x++)
-    if (localBoard[i][x]=='b' && (i==7 || i==0 || x==0 || x==7)) {
-      rulesImprovments1++
-    }
-    rulesImprovments2= (localBoard[0][0]==='b') ? 1 : 0 + (localBoard[0][7]==='b') ? 1 : 0 +(localBoard[7][0]==='b') ? 1 : 0 +(localBoard[7][7]==='b') ? 1 : 0
-  
-// if (rulesImprovments1 > 0) console.log(rulesImprovments1);
+  for (let i = 0; i < 8; i++)
+    for (let x = 0; x < 8; x++)
+      if (localBoard[i][x] == "b" && (i == 7 || i == 0 || x == 0 || x == 7)) {
+        rulesImprovments1++;
+      }
+  rulesImprovments2 =
+    localBoard[0][0] === "b"
+      ? 1
+      : 0 + (localBoard[0][7] === "b")
+      ? 1
+      : 0 + (localBoard[7][0] === "b")
+      ? 1
+      : 0 + (localBoard[7][7] === "b")
+      ? 1
+      : 0;
+
+  // if (rulesImprovments1 > 0) console.log(rulesImprovments1);
 
   const gradeP = localBoard.flat().filter((item) => item === player).length;
-  let gradeC = localBoard.flat().filter((item) => item === computer).length ;
-  gradeC= gradeC*(1+rulesImprovments2/4)+rulesImprovments1*2 // add rules grading
+  let gradeC = localBoard.flat().filter((item) => item === computer).length;
+  gradeC = gradeC * (1 + rulesImprovments2 / 4) + rulesImprovments1 * 2; // add rules grading
   return gradeC - gradeP;
 }
 
@@ -616,10 +612,14 @@ function computerNextMove() {
   // //("computer turn");
 
   let result = [];
+  let noMorePlayerOptions = false;
 
   result = move([], board, recursionLevel, computer, player);
   // console.log(result.endGameFlag,result.l,result.c);
-
+  console.log(result);
+  if (result == undefined || result.leavesGrade == 0) {
+    gameEnd();
+  }
   if (result.endGameFlag) {
     const cells = document.querySelectorAll(".cellR");
 
@@ -630,7 +630,7 @@ function computerNextMove() {
 
       cells[i].removeEventListener("mouseover", mouseOver);
     }
-    console.log("game end");
+    // console.log("game end");
     return;
   }
   flipLineToNewColorOnlyBoard(
@@ -649,7 +649,10 @@ function computerNextMove() {
   positionNewPiece(board);
 
   findPotentialNextPosition(player, computer, board, false);
-
+  noMorePlayerOptions = board.flat().indexOf("wo") == -1;
+  if (noMorePlayerOptions) {
+    gameEnd();
+  }
   positionNewPiece(board);
 
   document.querySelector("#player-digit").innerText = board
@@ -658,8 +661,44 @@ function computerNextMove() {
   document.querySelector("#computer-digit").innerText = board
     .flat()
     .filter((item) => item === computer).length;
+
+  
 }
 
+function gameEnd() {
+  
+  const gameGrade =
+    document.querySelector("#player-digit").innerText -
+    document.querySelector("#computer-digit").innerText;
+
+  let message="Game End\n\n"  
+  switch (gameGrade) {
+    case gameGrade > 0:
+      message += "Player Win";
+      break;
+    case gameGrade < 0:
+      message +=  "Player Lost";
+      break;
+
+    default:
+      message += "No Winner";
+      break;
+  }
+  
+  document.getElementById('customAlert').style.display = 'block';
+  document.getElementById('paId').innerText=message
+
+}
+
+function closeAlert() {
+  document.getElementById('customAlert').style.display = 'none';
+
+}
+
+/*-------------- reStart Execuation ---------------*/
+function restart() {
+  location.reload();
+}
 /*-------------- Start Execuation ---------------*/
 
 initGame();
