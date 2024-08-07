@@ -137,7 +137,9 @@ flex-direction: row;
   font-size: 2rem;
 }
 
-
+.help-mod{
+  min-height:100px
+}
 
 
 .custom-alert {
@@ -170,3 +172,52 @@ flex-direction: row;
 #helpModalWindows{
   visibility: hidden;
 }
+
+ @media only screen and (max-width: 600px) {
+  /* body {
+      background-color: lightblue;
+  } */
+
+  :root {
+    --circle-width: 15px;
+    --circle-hight: 15px;
+    --optional-w: 7px;
+    --optional-h: 7px;
+    --cell-width: 35px;
+    --cell-hight: 35px;
+  }
+
+  .stoneOptional {
+  
+    border: 1px solid #612525;
+  
+  }
+
+  .board-pieces-p{
+    margin-right: 5%;
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+  
+  .board-pieces-i{
+    /* height: 80%; */
+    margin-top: 1%;
+    margin-bottom: 1%;
+    width: 30px;
+  }
+
+  .score-board-computer-digit, .score-board-player-digit{
+    font-size: 2rem;
+    display: flex;
+    flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .help-mod{
+      /* min-height:10px */
+      /* height: 400px; */
+    }
+    
+
+} 

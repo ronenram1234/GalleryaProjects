@@ -656,7 +656,7 @@ function computerNextMove() {
     .flat()
     .filter((item) => item === computer).length;
 
-  gameEnd(); //test
+  
 }
 
 function gameEnd() {
