@@ -7,12 +7,12 @@
     <!-- <title><i class="fa-solid fa-circle-dot" style="color: #0a0a0a;"></i>Reversi - Game</title> -->
     <title>Reversi - Game</title>
     <link rel="stylesheet" href="./style/reversi.css" />
-    <!-- <link
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
-    /> -->
+    />
   </head>
   <body>
     <br />
@@ -134,9 +134,7 @@
     <div>
       <button type="button" class="btn btn-dark btn-xlg restart" onclick="restart()">Restart</button>
     </div>
-    
-    
-    
+          
   </div>
 
 
@@ -144,6 +142,65 @@
 <div id="customAlert" class="custom-alert">
   <span class="closebtn" onclick="closeAlert()">&times;</span>
   <p id="paId"></p>
+</div>
+
+
+
+<!-- Help screen modal -->
+<!-- <div style="visibility: visible;"> -->
+<div id="helpModalWindows" >
+  <div
+    class="modal fade show"
+    id="exampleModalLong"
+    tabindex="-1"
+    aria-labelledby="exampleModalLongTitle"
+    aria-modal="true"
+    role="dialog"
+    style="display: block; padding-left: 0px"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLongTitle">
+            Reversi
+          </h1>
+          
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" style="min-height: 100px">
+          <img src="./images/reversi.jpg" alt="reversi">
+          <h2>Rules</h2>
+          <p>
+            Two players compete, using 64 identical game pieces ("disks") that are light on one side and dark on the other. Each player chooses one color to use throughout the game. Players take turns placing one disk on an empty square, with their assigned color facing up. After a play is made, any disks of the opponent's color that lie in a straight line bounded by the one just played and another one in the current player's color are turned over. When all playable empty squares are filled, the player with more disks showing in their own color wins the game.
+          </p>
+          <h2>History - Original version</h2>
+          <p>
+            Englishmen Lewis Waterman and John W. Mollett[citation needed] both claim to have invented the game of reversi in 1883, each denouncing the other as a fraud. The game gained considerable popularity in England at the end of the 19th century.[1] The game's first reliable mention is in the 21 August 1886 edition of The Saturday Review. Later mention includes an 1895 article in The New York Times, which describes reversi as "something like Go Bang, [...] played with 64 pieces."[2] In 1893, the German games publisher Ravensburger started producing the game as one of its first titles. Two 18th century continental European books dealing with a game that may or may not be reversi are mentioned on page fourteen of the Spring 1989 Othello Quarterly, and there has been speculation, so far without documentation, that the game has older origins.[citation needed]
+
+            A Japanese publication in 1907 titled World Games Rules Complete Collection (世界遊戯法大全) describes the board game reversi with the same rules as Othello where the first four pieces go in the center in a diagonal pattern and the player who cannot make a move simply passes.[3]
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            onclick="removeModalWindow()"
+          >
+            Close
+          </button>
+          <!-- <button type="button" class="btn btn-primary">
+            Save changes
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
   </body>

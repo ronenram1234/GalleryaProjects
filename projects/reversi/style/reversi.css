@@ -166,3 +166,7 @@ flex-direction: row;
   
   cursor: pointer;
 }
+
+#helpModalWindows{
+  visibility: hidden;
+}

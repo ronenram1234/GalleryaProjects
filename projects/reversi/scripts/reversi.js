@@ -362,9 +362,23 @@ function initGame() {
 
   findPotentialNextPosition(player, computer, board, false);
   positionNewPiece(board);
+  // display help screen
+showModalWindow()
 }
 
+/*-------------- Display and remove help screen ---------------*/
+function showModalWindow(){
+  document.querySelector("#helpModalWindows").style.visibility='visible'
+}
+
+function removeModalWindow(){
+  document.querySelector("#helpModalWindows").style.visibility='hidden'
+}
+
+
 /*-------------- Cumputer Move Execuation ---------------*/
+
+
 
 function calculateBoardValueForComputerMove(localBoard) {
   let rulesImprovments1 = 0;
