@@ -1,5 +1,9 @@
 #changeModalWindows{
-    visibility: hidden;
+    /* visibility: hidden; */
     /* visibility: visible; */
-    display: block;
+    /* display: block; */
+  }
+
+  #recID{
+    visibility: hidden;
   }

@@ -11,7 +11,7 @@ class TaskManager {
     // let desc = document.querySelector("#description").value;
     // let t = new Task(desc);
     this.taskArray.push(new Task(desc));
-    console.log(this.taskArray);
+    // console.log(this.taskArray);
   
   };
 
@@ -27,11 +27,6 @@ class TaskManager {
   updateTaskDescription  (id, desc) {
 
     
-  
-  
-  
-    // document.querySelector("#helpModalWindows").style.visibility='hidden'
-
     let pos = this.findInd(id);
 
     this.taskArray[pos].description = desc;
