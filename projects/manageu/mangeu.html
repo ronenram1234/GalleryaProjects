@@ -22,91 +22,232 @@
     <link rel="stylesheet" href="./style/manageu.css" />
   </head>
   <body>
-    
-      <div class="container text-center">
-        <h1 class="display-4 text-light text-bg-secondary">
-          MANAGE-U <i class="fa-solid fa-check-double text-warning"></i>
-        </h1>
-        <div class="form-floating mb-3 d-inline-block w-50">
-          <input
-            type="text"
-            class="form-control border-primary border-3"
-            id="description"
-            placeholder="Task description"
-          />
-          <label for="description">Task description</label>
+    <!-- Button trigger modal -->
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+      Launch static backdrop modal
+    </button> -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Manage-U Help
+            </h1>
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div style="display: flex; flex-direction: row">
+              <button
+                class="btn btn-success me-1"
+                onclick="completeTask(${task.id})"
+              >
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <p>Complete task - Once a task completed it can not reopen</p>
+            </div>
+            <br />
+            <div style="display: flex; flex-direction: row">
+              <button class="btn btn-primary me-1">
+                <i class="text-light fa-sharp fa-solid fa-pencil"></i>
+              </button>
+              <p>Edit description field</p>
+            </div>
+            <br />
+            <div style="display: flex; flex-direction: row">
+              <button class="btn btn-danger me-1">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <p>Delete Task</p>
+            </div>
+            <br />
+
+            <div style="display: flex; flex-direction: row">
+              <button
+                type="button"
+                class="btn btn-primary mx-1 filter"
+                onclick="filterDate('all',this)"
+              >
+                All dates
+              </button>
+              <p>Display all Records</p>
+            </div>
+            <br />
+
+            <div style="display: flex; flex-direction: row">
+              <button
+                type="button"
+                class="btn btn-secondary mx-1 filter"
+                onclick="filterDate('week',this)"
+              >
+                Older than 7 Days
+              </button>
+              <p>Display Records older than 7 days</p>
+            </div>
+            <br />
+            <div style="display: flex; flex-direction: row">
+              <button
+                type="button"
+                class="btn btn-secondary mx-1 filter"
+                onclick="filterDate('month',this)"
+              >
+                Older than 30 Days
+              </button>
+              <p>Display Records older than 30 days</p>
+            </div>
+            <br />
+
+            <div style="display: flex; flex-direction: row">
+              <button
+                type="button"
+                class="btn btn-secondary mx-1"
+                onclick="saveLocal()"
+              >
+                Save To Local Host
+              </button>
+              <p>Save all Records to Local Host</p>
+            </div>
+            <br />
+
+            <div style="display: flex; flex-direction: row">
+              <button
+                type="button"
+                class="btn btn-secondary mx-1"
+                onclick="loadLocal()"
+              >
+                Load from Local Host
+              </button>
+              <p>Load all Records to Local Host</p>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+          </div>
         </div>
+      </div>
+    </div>
 
-        <!-- <button class="btn btn-warning" id="newTaskB">+</button> -->
-        <button class="btn btn-warning" onclick="addNewTask()">+</button>
+    <div class="container text-center">
+      <h1 class="display-4 text-light text-bg-secondary">
+        MANAGE-U <i class="fa-solid fa-check-double text-warning"></i>
+      </h1>
+      <div class="form-floating mb-3 d-inline-block w-50">
+        <input
+          type="text"
+          class="form-control border-primary border-3"
+          id="description"
+          placeholder="Task description"
+        />
+        <label for="description">Task description</label>
+      </div>
 
+      <!-- <button class="btn btn-warning" id="newTaskB">+</button> -->
+      <button class="btn btn-warning" onclick="addNewTask()">+</button>
+      <!-- Button trigger modal help -->
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop"
+      >
+        ?
+      </button>
+
+      <br />
+      <div class="btn-group border" role="group">
+        <button
+          type="button"
+          class="btn btn-primary mx-1 filter"
+          onclick="filterDate('all',this)"
+        >
+          All dates
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary mx-1 filter"
+          onclick="filterDate('week',this)"
+        >
+          Older than 7 Days
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary mx-1 filter"
+          onclick="filterDate('month',this)"
+        >
+          Older than 30 Days
+        </button>
+      </div>
+      <br /><br />
+
+      <div>
+        <h5 class="display-5 text-success">Active</h5>
+
+        <ul id="activeTasks" class="list-group mb-4">
+          <div>
+            <li class="list-group-item d-inline-block w-50">
+              ${task.description}
+            </li>
+            <button
+              class="btn btn-success me-1"
+              onclick="completeTask(${task.id})"
+            >
+              <i class="fa-solid fa-check"></i></button
+            ><button class="btn btn-primary me-1">
+              <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
+            ><button class="btn btn-danger me-1">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </ul>
+      </div>
+      <div>
+        <h5 class="display-5 text-danger">Completed</h5>
+        <ul id="completedTasks" class="list-group mb-4">
+          <div>
+            <li class="list-group-item d-inline-block w-50">
+              ${task.description}
+            </li>
+            <button
+              class="btn btn-success me-1"
+              onclick="completeTask(${task.id})"
+            >
+              <i class="fa-solid fa-check"></i></button
+            ><button class="btn btn-primary me-1">
+              <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
+            ><button class="btn btn-danger me-1">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </ul>
         <br />
-        <div class="btn-group border" role="group">
-          <button
-            type="button"
-            class="btn btn-primary mx-1 filter"
-            onclick="filterDate('all',this)"
-          >
-            All dates
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary mx-1 filter"
-            onclick="filterDate('week',this)"
-          >
-            Older than 7 Days
-          </button>
-          <button
-            type="button"
-            class="btn btn-secondary mx-1 filter"
-            onclick="filterDate('month',this)"
-          >
-            Older than 30 Days
-          </button>
-        </div>
-        <br /><br />
-
-        <div>
-          <h5 class="display-5 text-success">Active</h5>
-
-          <ul id="activeTasks" class="list-group mb-4">
-            <div>
-              <li class="list-group-item d-inline-block w-50">
-                ${task.description}
-              </li>
-              <button
-                class="btn btn-success me-1"
-                onclick="completeTask(${task.id})"
-              >
-                <i class="fa-solid fa-check"></i></button
-              ><button class="btn btn-primary me-1">
-                <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
-              ><button class="btn btn-danger me-1">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </ul>
-        </div>
-        <div>
-          <h5 class="display-5 text-danger">Completed</h5>
-          <ul id="completedTasks" class="list-group mb-4">
-            <div>
-              <li class="list-group-item d-inline-block w-50">
-                ${task.description}
-              </li>
-              <button
-                class="btn btn-success me-1"
-                onclick="completeTask(${task.id})"
-              >
-                <i class="fa-solid fa-check"></i></button
-              ><button class="btn btn-primary me-1">
-                <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
-              ><button class="btn btn-danger me-1">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </ul>
-          <br />
         <div class="btn-group border" role="group">
           <button
             type="button"
@@ -115,16 +256,15 @@
           >
             Save To Local Host
           </button>
-         
+
           <button
             type="button"
             class="btn btn-secondary mx-1"
             onclick="loadLocal()"
           >
-          Load from Local Host
+            Load from Local Host
           </button>
         </div>
-        
       </div>
 
       <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >1</button> -->
