@@ -22,96 +22,176 @@
     <link rel="stylesheet" href="./style/manageu.css" />
   </head>
   <body>
-    <div class="container text-center">
-      <h1 class="display-4 text-light text-bg-secondary">
-        MANAGE-U <i class="fa-solid fa-check-double text-warning"></i>
-      </h1>
-      <div class="form-floating mb-3 d-inline-block w-50">
-        <input
-          type="text"
-          class="form-control"
-          id="description"
-          placeholder="Task description"
-        />
-        <label for="description">Task description</label>
+    
+      <div class="container text-center">
+        <h1 class="display-4 text-light text-bg-secondary">
+          MANAGE-U <i class="fa-solid fa-check-double text-warning"></i>
+        </h1>
+        <div class="form-floating mb-3 d-inline-block w-50">
+          <input
+            type="text"
+            class="form-control border-primary border-3"
+            id="description"
+            placeholder="Task description"
+          />
+          <label for="description">Task description</label>
+        </div>
+
+        <!-- <button class="btn btn-warning" id="newTaskB">+</button> -->
+        <button class="btn btn-warning" onclick="addNewTask()">+</button>
+
+        <br />
+        <div class="btn-group border" role="group">
+          <button
+            type="button"
+            class="btn btn-primary mx-1 filter"
+            onclick="filterDate('all',this)"
+          >
+            All dates
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary mx-1 filter"
+            onclick="filterDate('week',this)"
+          >
+            Older than 7 Days
+          </button>
+          <button
+            type="button"
+            class="btn btn-secondary mx-1 filter"
+            onclick="filterDate('month',this)"
+          >
+            Older than 30 Days
+          </button>
+        </div>
+        <br /><br />
+
+        <div>
+          <h5 class="display-5 text-success">Active</h5>
+
+          <ul id="activeTasks" class="list-group mb-4">
+            <div>
+              <li class="list-group-item d-inline-block w-50">
+                ${task.description}
+              </li>
+              <button
+                class="btn btn-success me-1"
+                onclick="completeTask(${task.id})"
+              >
+                <i class="fa-solid fa-check"></i></button
+              ><button class="btn btn-primary me-1">
+                <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
+              ><button class="btn btn-danger me-1">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </ul>
+        </div>
+        <div>
+          <h5 class="display-5 text-danger">Completed</h5>
+          <ul id="completedTasks" class="list-group mb-4">
+            <div>
+              <li class="list-group-item d-inline-block w-50">
+                ${task.description}
+              </li>
+              <button
+                class="btn btn-success me-1"
+                onclick="completeTask(${task.id})"
+              >
+                <i class="fa-solid fa-check"></i></button
+              ><button class="btn btn-primary me-1">
+                <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
+              ><button class="btn btn-danger me-1">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </ul>
+          <br />
+        <div class="btn-group border" role="group">
+          <button
+            type="button"
+            class="btn btn-secondary mx-1"
+            onclick="saveLocal()"
+          >
+            Save To Local Host
+          </button>
+         
+          <button
+            type="button"
+            class="btn btn-secondary mx-1"
+            onclick="loadLocal()"
+          >
+          Load from Local Host
+          </button>
+        </div>
+        
       </div>
-      <!-- <button class="btn btn-warning" id="newTaskB">+</button> -->
-      <button class="btn btn-warning" onclick="addNewTask()">+</button>
 
-      <div>
-        <h5 class="display-5 text-success">Active</h5>
+      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >1</button> -->
 
-        <ul id="activeTasks" class="list-group mb-4">
-          <div>
-            <li class="list-group-item d-inline-block w-50">
-              ${task.description}
-            </li>
-            <button
-              class="btn btn-success me-1"
-              onclick="completeTask(${task.id})"
-            >
-              <i class="fa-solid fa-check"></i></button
-            ><button class="btn btn-primary me-1">
-              <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
-            ><button class="btn btn-danger me-1">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </ul>
-      </div>
-      <div>
-        <h5 class="display-5 text-danger">Completed</h5>
-        <ul id="completedTasks" class="list-group mb-4">
-          <div>
-            <li class="list-group-item d-inline-block w-50">
-              ${task.description}
-            </li>
-            <button
-              class="btn btn-success me-1"
-              onclick="completeTask(${task.id})"
-            >
-              <i class="fa-solid fa-check"></i></button
-            ><button class="btn btn-primary me-1">
-              <i class="text-light fa-sharp fa-solid fa-pencil"></i></button
-            ><button class="btn btn-danger me-1">
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </div>
-        </ul>
-      </div>
-    </div>
-
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >1</button> -->
-
-
-<div class="modal fade" id="changeModalWindows" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Description update</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Please Update Description</label>
-            <input type="text" class="form-control" id="desc-update" data-autofocus autofocus>
-          </div>
-          <!-- <div class="mb-3">
+      <div
+        class="modal fade"
+        id="changeModalWindows"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Description update
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="mb-3">
+                  <label for="recipient-name" class="col-form-label"
+                    >Please Update Description</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="desc-update"
+                    data-autofocus
+                    autofocus
+                  />
+                </div>
+                <!-- <div class="mb-3">
             <label for="message-text" class="col-form-label">Message:</label>
             <textarea class="form-control" id="message-text"></textarea>
           </div> -->
-        </form>
-      </div>
-      <div id="recID" >11</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="lastItem" class="btn btn-primary" data-bs-dismiss="modal" onclick="completeUpdateTaskDescription()">Update</button>
+              </form>
+            </div>
+            <div id="recID">11</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                id="lastItem"
+                class="btn btn-primary"
+                data-bs-dismiss="modal"
+                onclick="completeUpdateTaskDescription()"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
   </body>
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

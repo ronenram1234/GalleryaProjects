@@ -1,9 +1,22 @@
-#changeModalWindows{
-    /* visibility: hidden; */
-    /* visibility: visible; */
-    /* display: block; */
-  }
+
+body {
+  background-image: url('../images/background.jpg');
+  
+}
+
 
   #recID{
     visibility: hidden;
+  }
+
+
+  
+  @media only screen and (max-width: 600px) {
+    .textFont {
+      font-size: 7px;
+    }
+
+    .detailedLine{
+      margin-bottom: 5px;
+    }
   }
