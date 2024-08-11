@@ -5,7 +5,7 @@ import TaskManager from "./TaskManager.js";
 var tM;
 var filterList = 0;
 
-function test() {
+function addTestData() {
   document.querySelector("#description").value = "buy food for weekend";
   addNewTask();
 
@@ -235,15 +235,8 @@ function init() {
 
   let targetElement = document.querySelector("#lastItem");
   observer.observe(targetElement);
-  //-----------------------------
 
-  //-----------------------------
-  // test section
-  test();
+  addTestData();
 
-  //  const b=document.querySelector("#update")
-  // console.log(b);
-  // b.click()
-  // test section - end
 }
 init();
