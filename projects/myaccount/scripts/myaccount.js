@@ -101,11 +101,11 @@ window.calcBalance = function calcBalance() {
   document.querySelector("#balance").innerText = "$" + balance;
 };
 
-function refreshTable() {
+function refreshTable(arr = actionA.actionArray) {
   const line = document.querySelector("#table-lines");
   let rec;
   line.innerHTML = "";
-  for (rec of actionA.actionArray) {
+  for (rec of arr) {
     line.innerHTML += addLine(rec);
   }
   calcBalance();
@@ -117,11 +117,40 @@ window.addAction = function addAction() {
   const amountF = document.querySelector("#amount");
   actionA.addAction(typeActionF.value, descriptionF.value, amountF.value);
   refreshTable();
+  document.querySelector("#description").value = "";
+  document.querySelector("#amount").value = "";
 };
 
-window.filterIncome = function filterIncome() {};
-window.filterExpense = function filterExpense() {};
-window.nofilter= function nofilter(){}
+window.filterIncome = function filterIncome() {
+  let rec;
+  const line = document.querySelector("#table-lines");
+  const arr = [...actionA.actionArray].filter(
+    (rec) => rec.actionType == "income"
+  );
+
+  line.innerHTML = "";
+
+  for (rec of arr) {
+    line.innerHTML += addLine(rec);
+  }
+};
+window.filterExpense = function filterExpense() {
+  let rec;
+  const line = document.querySelector("#table-lines");
+  const arr = [...actionA.actionArray].filter(
+    (rec) => rec.actionType == "expense"
+  );
+
+  line.innerHTML = "";
+
+  for (rec of arr) {
+    line.innerHTML += addLine(rec);
+  }
+};
+
+window.nofilter = function nofilter() {
+  refreshTable();
+};
 window.sortAmountType = function sortAmountType() {};
 window.sortAmount = function sortAmount() {};
 window.saving = function saving() {};
