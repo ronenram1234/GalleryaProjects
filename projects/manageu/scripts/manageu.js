@@ -120,9 +120,12 @@ window.saveLocal = function saveLocal() {
 window.loadLocal = function loadLocal() {
   tM.taskArray = [];
   for (let i = 0; i < localStorage.length; i++) {
-    const rec = JSON.parse(localStorage.getItem(localStorage.key(i)));
-    rec.date = new Date(rec.date);
-    tM.taskArray.push(rec);
+    const key = localStorage.key(i);
+    if (key.startsWith('manageu')) {
+      const rec = JSON.parse(localStorage.getItem(key));
+      rec.date = new Date(rec.date);
+      tM.taskArray.push(rec);
+    }
   }
   refreshList();
 };
@@ -235,7 +238,10 @@ function init() {
 
   let targetElement = document.querySelector("#lastItem");
   observer.observe(targetElement);
+  //-----------------------------
 
+  //-----------------------------
+  // test section
   addTestData();
 
 }

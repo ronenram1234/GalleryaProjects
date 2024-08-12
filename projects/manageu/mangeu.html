@@ -60,7 +60,7 @@
             <div style="display: flex; flex-direction: row">
               <button
                 class="btn btn-success me-1"
-                onclick="completeTask(${task.id})"
+                
               >
                 <i class="fa-solid fa-check"></i>
               </button>
@@ -86,7 +86,7 @@
               <button
                 type="button"
                 class="btn btn-primary mx-1 filter"
-                onclick="filterDate('all',this)"
+                
               >
                 All dates
               </button>
@@ -98,7 +98,7 @@
               <button
                 type="button"
                 class="btn btn-secondary mx-1 filter"
-                onclick="filterDate('week',this)"
+                
               >
                 Older than 7 Days
               </button>
@@ -109,7 +109,7 @@
               <button
                 type="button"
                 class="btn btn-secondary mx-1 filter"
-                onclick="filterDate('month',this)"
+                
               >
                 Older than 30 Days
               </button>
@@ -133,7 +133,7 @@
               <button
                 type="button"
                 class="btn btn-secondary mx-1"
-                onclick="loadLocal()"
+                
               >
                 Load from Local Host
               </button>
@@ -267,14 +267,13 @@
         </div>
       </div>
 
-      <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >1</button> -->
-
       <div
         class="modal fade"
         id="changeModalWindows"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
-        aria-hidden="true"      >
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -302,10 +301,6 @@
                     autofocus
                   />
                 </div>
-                <!-- <div class="mb-3">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
-          </div> -->
               </form>
             </div>
             <div id="recID"></div>

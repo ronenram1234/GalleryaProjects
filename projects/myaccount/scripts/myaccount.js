@@ -121,40 +121,92 @@ window.addAction = function addAction() {
   document.querySelector("#amount").value = "";
 };
 
-window.filterIncome = function filterIncome() {
-  let rec;
+function updateFilterButton(button) {
+  const buttons = document.querySelectorAll(".filter");
+  buttons.forEach((btn) => {
+    btn.classList.remove("btn-primary");
+    btn.classList.add("btn-secondary");
+  });
+
+  // Add 'btn-primary' class to the clicked button and remove 'btn-secondary'
+  button.classList.add("btn-primary");
+  button.classList.remove("btn-secondary");
+}
+
+function filltable(arr) {
   const line = document.querySelector("#table-lines");
+  let rec;
+  line.innerHTML = "";
+  for (rec of arr) {
+    line.innerHTML += addLine(rec);
+  }
+}
+
+window.filterIncome = function filterIncome(button) {
   const arr = [...actionA.actionArray].filter(
     (rec) => rec.actionType == "income"
   );
-
-  line.innerHTML = "";
-
-  for (rec of arr) {
-    line.innerHTML += addLine(rec);
-  }
+  filltable(arr);
+  updateFilterButton(button);
 };
-window.filterExpense = function filterExpense() {
-  let rec;
-  const line = document.querySelector("#table-lines");
+
+window.filterExpense = function filterExpense(button) {
   const arr = [...actionA.actionArray].filter(
     (rec) => rec.actionType == "expense"
   );
+  filltable(arr);
+  updateFilterButton(button);
+};
 
-  line.innerHTML = "";
+window.nofilter = function nofilter(button) {
+  refreshTable();
+  updateFilterButton(button);
+};
+window.sortAmountType = function sortAmountType() {
+  const arr = [...actionA.actionArray].sort((recA, recB) =>
+    recA.actionType.toLowerCase().localeCompare(recB.actionType.toLowerCase())
+  );
+  filltable(arr);
+};
+window.sortAmount = function sortAmount() {
+  const arr = [...actionA.actionArray].sort((recA, recB) => {
+    let a = recA.amount * (recA.actionType == "expense" ? -1 : 1);
+    let b = recB.amount * (recB.actionType == "expense" ? -1 : 1);
+    return a - b;
+  });
+  filltable(arr);
+};
+function cleanLocalHost() {
+  let length = localStorage.length;
+  for (let i = 0; i < length; i++) {
+    const key = localStorage.key(0);
+    console.log(key);
+    if (key.startsWith("myaccount")) {
+      console.log(key);
+      localStorage.removeItem(key);
+    }
+  }
+}
 
-  for (rec of arr) {
-    line.innerHTML += addLine(rec);
+window.saving = function saving() {
+  cleanLocalHost();
+  for (let action of actionA.actionArray) {
+    // task = tM.taskArray[ind];
+
+    localStorage.setItem(`myaccount${action.id}`, JSON.stringify(action));
   }
 };
-
-window.nofilter = function nofilter() {
+window.loading = function loading() {
+  actionA.actionArray = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith("myaccount")) {
+      const rec = JSON.parse(localStorage.getItem(key));
+      actionA.actionArray.push(rec);
+    }
+  }
   refreshTable();
 };
-window.sortAmountType = function sortAmountType() {};
-window.sortAmount = function sortAmount() {};
-window.saving = function saving() {};
-window.loading = function loading() {};
 
 function init() {
   actionA = new ActionManager();
