@@ -27,18 +27,18 @@ header {
   align-items: center;
 }
 
-#profileImage {
+#profile-Image {
   width: 62px;
   margin-left: 15%;
   border-radius: 31px;
 }
 
-#myName {
+#my-Name {
   width: 79px;
   height: 35px;
 }
 
-.menueItem {
+.menue-Item {
   font-size: 1.2rem;
   color: #639;
   font-family: "Heebo";
@@ -46,9 +46,9 @@ header {
 }
 
 /* ---------------------------------------- */
-/* openArea */
+/* open-Area */
 /* ---------------------------------------- */
-.openArea {
+.open-Area {
   padding-top: 100px;
   background: rgba(19, 232, 241, 0.3882352941) 0% 0% no-repeat padding-box;
   opacity: 1;
@@ -57,7 +57,7 @@ header {
   align-items: center;
 }
 
-#openAreaH2 {
+#open-AreaH2 {
   text-align: center;
   font-family: "Heebo";
   font-size: 5rem;
@@ -69,7 +69,7 @@ header {
   opacity: 1;
 }
 
-#openAreaP {
+#open-AreaP {
   width: 44%;
   text-align: center;
   font-family: "Heebo";
@@ -96,14 +96,14 @@ header {
   flex-wrap: wrap;
 }
 
-.techImage {
+.tech-Image {
   width: 100px;
   height: 100px;
 }
 
-/* rectangle56 */
+/* about */
 /* ---------------------------------------- */
-.rectangle56 {
+.about {
   width: 100%;
   background: #ffffff 0% 0% no-repeat padding-box;
   opacity: 1;
@@ -121,26 +121,26 @@ header {
   justify-content: space-around;
 }
 
-.profileImage1 {
+.profile-Image1 {
   width: 141px;
   border-radius: 141px;
   text-align: center;
 }
 
-.rectangle56H2 {
+.aboutH2 {
   width: 234px;
   text-align: center;
   font: normal normal 900 2rem Heebo;
   color: #3a3a3a;
 }
 
-#rectangle56P1 {
+#aboutP1 {
   text-align: center;
   font: normal normal normal 1.3rem Heebo;
   color: #3a3a3a;
 }
 
-#downloadResumeButton {
+#download-Resume-Button {
   width: 260px;
   text-align: center;
   background-color: #1ae0ec;
@@ -153,7 +153,7 @@ header {
   font: normal normal bold 1.3rem Heebo;
 }
 
-#rectangle56Button:hover {
+#aboutButton:hover {
   background-color: RoyalBlue;
 }
 
@@ -188,7 +188,7 @@ header {
   gap: 1rem;
 }
 
-.itemGrid {
+.item-grid {
   width: 405px;
   height: 518px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -197,12 +197,12 @@ header {
   opacity: 1;
 }
 
-.projectImage {
+.project-image {
   width: 405px;
   height: 223px;
 }
 
-.projectFlex {
+.project-flex {
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -210,20 +210,20 @@ header {
   justify-content: space-between;
 }
 
-.projectTitle {
+.project-title {
   font-family: "Heebo";
   font-size: 1.25em;
   text-align: center;
 }
 
-.projectText {
+.project-text {
   /* width: 20%; */
   font-family: "Heebo";
   font-size: 1em;
   text-align: center;
 }
 
-.projectImageTech {
+.project-imageTech {
   width: 122px;
   background: #ffffff 0% 0% no-repeat padding-box;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1607843137);
@@ -233,11 +233,11 @@ header {
   flex-wrap: nowrap;
 }
 
-.projectImageTechIcon {
+.project-imageTechIcon {
   width: 26px;
 }
 
-.projectLinkButton {
+.project-link-button {
   width: 150px;
   -webkit-appearance: button;
   -moz-appearance: button;
@@ -255,13 +255,13 @@ header {
   font-weight: bold;
 }
 
-.projectLinkButton:hover {
+.project-link-button:hover {
   background-color: RoyalBlue;
 }
 
 /* rectangle17 */
 /* ---------------------------------------- */
-.inputFormContainer {
+.input-form-container {
   background: #3a3a3a 0% 0% no-repeat padding-box;
 }
 
@@ -306,7 +306,7 @@ header {
   flex-wrap: wrap;
 }
 
-.socialMediaGrid {
+.social-media-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 50px 40px 40px 70px;
@@ -317,18 +317,18 @@ header {
   grid-row: 1;
 }
 
-.socialMediaItemGrid {
+.social-media-item-grid {
   text-align: center;
   font: normal normal normal 0.9rem Heebo;
   letter-spacing: 0px;
   color: #2c2c2c;
 }
 
-.socialMediaItemGridIcon {
+.social-media-item-gridIcon {
   justify-self: center;
 }
 
-.socialMediaItemGridText {
+.social-media-item-gridText {
   justify-self: center;
   font: normal normal normal 0.9rem Heebo;
   color: #2c2c2c;
@@ -371,14 +371,14 @@ header {
   .work_HTML_CSSGrid {
     grid-template-columns: repeat(2, 1fr);
   }
-  socialMediaGrid {
+  social-media-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
   }
 }
 @media only screen and (max-width: 820px) {
-  #profileImage {
+  #profile-Image {
     margin-left: 1%;
   }
   .work_HTML_CSSGrid {
@@ -404,7 +404,7 @@ header {
     grid-row: 1;
     display: none;
   }
-  .socialMediaGrid {
+  .social-media-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(6, 1fr);

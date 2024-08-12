@@ -1,23 +1,23 @@
-.inputFormContainer {
+.input-form-container {
   background: #3a3a3a 0% 0% no-repeat padding-box;
 }
 
 /* tobr remove start */
 /* .imageContainer { */
-  /* background-color: yellow; */
+/* background-color: yellow; */
 /* } */
 /* .formContainer { */
-  /* background-color: lightgreen; */
+/* background-color: lightgreen; */
 /* } */
 
 /* .formTextContainer { */
-  /* background-color: beige; */
+/* background-color: beige; */
 /* } */
 
 /* .formTextLabel { */
-  /* width: 100vw; */
-  /* float: right; */
-  /* background-color: lightcyan; */
+/* width: 100vw; */
+/* float: right; */
+/* background-color: lightcyan; */
 /* } */
 
 .h2Font {
@@ -39,10 +39,9 @@
   color: #ffffff;
   opacity: 1;
 }
-.submitFont{
-    font: normal normal bold 22px/30px Heebo;
-letter-spacing: 0.33px;
-color: #2C2C2C;
-opacity: 1;
+.submitFont {
+  font: normal normal bold 22px/30px Heebo;
+  letter-spacing: 0.33px;
+  color: #2c2c2c;
+  opacity: 1;
 }
-

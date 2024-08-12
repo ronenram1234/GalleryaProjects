@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="./style/testNewMain.css" />
   </head>
   <body>
-    <div class="container-fluid d-flex inputFormContainer">
+    <div class="container-fluid d-flex input-form-container">
       <div class="row">
         <div class="container col-md-1"></div>
         <div

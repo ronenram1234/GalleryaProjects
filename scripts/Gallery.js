@@ -5,10 +5,10 @@ console.log("gallery.js start");
 const navM = document.querySelector(".navM");
 
 const handleHover = function (e) {
-  if (e.target.classList.contains("menueItem")) {
+  if (e.target.classList.contains("menue-Item")) {
     const link = e.target;
     console.log(e);
-    const siblings = link.closest(".navM").querySelectorAll(".menueItem");
+    const siblings = link.closest(".navM").querySelectorAll(".menue-Item");
 
     siblings.forEach((el) => {
       if (el !== link) {

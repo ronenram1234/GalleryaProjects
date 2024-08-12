@@ -6,13 +6,13 @@
 /* Project Name2< */
 
 /* תפריט  */
-#profileImage {
+#profile-Image {
   width: 62px;
 
   border-radius: 31px;
 }
 
-#myName {
+#my-Name {
   width: 79px;
   height: 35px;
 }
@@ -24,7 +24,7 @@
 
 /* שם פרויקט */
 
-.mainSection {
+.main-section {
   padding-top: 10vh;
   /* height: 42vh; */
   width: 100%;
@@ -36,13 +36,13 @@
   justify-content: center;
   align-items: center;
 }
-.mainSectionH1 {
+.main-sectionH1 {
   padding-top: 7vh;
   font: normal normal 900 5em Heebo;
   color: #3a3a3a;
 }
 
-.mainSectionP {
+.main-sectionP {
   font: normal normal medium 1.25em Heebo;
   /* letter-spacing: 0px; */
   color: #3a3a3a;
@@ -65,13 +65,13 @@
   display: flex;
   justify-content: center;
 }
-.projectLinkButton {
+.project-link-button {
   background: #1ae0ec 0% 0% no-repeat padding-box;
   font: normal normal medium 1em Heebo;
   color: #2c2c2c;
   text-decoration: none;
 }
-.projectLinkButton:hover {
+.project-link-button:hover {
   background: lightskyblue;
 }
 
