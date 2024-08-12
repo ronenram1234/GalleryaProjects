@@ -15,7 +15,8 @@ class ActionManager {
   }
 
   findArrayId(id) {
-    this.actionArray.findIndex((element) => id == element.id);
+    return this.actionArray.findIndex((element) => 
+        id == element.id);
   }
 
   deleteAction(id) {
@@ -23,9 +24,9 @@ class ActionManager {
     this.actionArray.splice(index, 1);
   }
 
-  updateAction(id, desc, amount) {
+  updateAction(id,  amount) {
     const rec = this.actionArray[this.findArrayId(id)];
-    rec.desc = desc;
+    
     rec.amount = amount;
   }
 

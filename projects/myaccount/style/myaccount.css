@@ -1,0 +1,9 @@
+#add-on{
+    display: flex;
+    flex-direction: column;
+}
+#btn-add-on{
+    
+    font-size: 10px;
+    text-align: center;
+}

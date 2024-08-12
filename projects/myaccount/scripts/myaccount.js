@@ -40,9 +40,9 @@ function addTestData() {
 
   addAction();
 
-  document.querySelector("#description").value=""
-  document.querySelector("#amount").value=""
-  refreshTable();
+  document.querySelector("#description").value = "";
+  document.querySelector("#amount").value = "";
+  //   refreshTable();
 }
 
 function addLine(rec) {
@@ -53,35 +53,62 @@ function addLine(rec) {
                 <td>${rec.description}</td>
                 <td>${rec.amount}</td>
                 <td>
-                  <i class="fa-regular fa-pen-to-square text-success"></i>
+                  <i class="fa-regular fa-pen-to-square text-success" onclick="UpdateAction(${rec.id})" ></i>
                 </td>
-                <td><i class="fa-solid fa-trash-can text-success"></i></td>
+                <td><i class="fa-solid fa-trash-can text-success" onclick="deleteAction(${rec.id})" ></i></td>
               </tr>`;
   } else {
     str = ` <tr>
     <td class="text-danger">${rec.description}</td>
     <td class="text-danger">${rec.amount * -1}</td>
     <td class="text-danger">
-      <i class="fa-regular fa-pen-to-square"></i>
+      <i class="fa-regular fa-pen-to-square" onclick="UpdateAction(${
+        rec.id
+      })" ></i>
     </td class="text-danger">
-    <td><i class="fa-solid fa-trash-can"></i></td>
+    <td><i class="fa-solid fa-trash-can" onclick="deleteAction(${
+      rec.id
+    })"></i></td>
   </tr>`;
   }
   return str;
+
+  // data-bs-toggle="modal" data-bs-target="#changeModalWindows"
+  // data-bs-toggle="modal" data-bs-target="#changeModalWindows"
 }
 
-window.calcBalance=function calcBalance(){
-    let balance=actionA.calcBalance()
-    document.querySelector("#balance").innerText='$'+balance
-}
+window.deleteAction = function deleteAction(id) {
+  actionA.deleteAction(id);
+  refreshTable();
+};
+window.UpdateAction = function updateAction(id) {
+  document.querySelector("#recID").innerText = id;
+  var myModal = new bootstrap.Modal(
+    document.getElementById("changeModalWindows")
+  );
+  myModal.show();
+};
+
+window.completeUpdateAction = function completeUpdateAction() {
+  const newAmount = document.querySelector("#amount-update").value;
+  const id = document.querySelector("#recID").innerText;
+  actionA.updateAction(id, newAmount);
+  refreshTable();
+};
+
+window.calcBalance = function calcBalance() {
+  let balance = actionA.calcBalance();
+  document.querySelector("#balance").innerText = "$" + balance;
+};
 
 function refreshTable() {
   const line = document.querySelector("#table-lines");
-  let rec
+  let rec;
   line.innerHTML = "";
   for (rec of actionA.actionArray) {
     line.innerHTML += addLine(rec);
   }
+  calcBalance();
 }
 
 window.addAction = function addAction() {
@@ -89,13 +116,21 @@ window.addAction = function addAction() {
   const descriptionF = document.querySelector("#description");
   const amountF = document.querySelector("#amount");
   actionA.addAction(typeActionF.value, descriptionF.value, amountF.value);
+  refreshTable();
 };
+
+window.filterIncome = function filterIncome() {};
+window.filterExpense = function filterExpense() {};
+window.nofilter= function nofilter(){}
+window.sortAmountType = function sortAmountType() {};
+window.sortAmount = function sortAmount() {};
+window.saving = function saving() {};
+window.loading = function loading() {};
 
 function init() {
   actionA = new ActionManager();
 
-    addTestData();
-    calcBalance()
+  addTestData();
 }
 
 init();

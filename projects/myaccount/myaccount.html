@@ -37,11 +37,14 @@
     </div>
     <div class="container text-center">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-2 border border-secondary">
           <!-- form -->
 
-          <select class="form-select" id="typeAction" aria-label="Default select example">
-
+          <select
+            class="form-select"
+            id="typeAction"
+            aria-label="Default select example"
+          >
             <option selected value="income">Income</option>
             <option value="expense">Exepnse</option>
           </select>
@@ -67,9 +70,11 @@
 
             <label for="amount">Amount</label>
           </div>
-          <button class="btn btn-primary w-100 mt-3">Add</button>
+          <button class="btn btn-primary w-100 mt-3" onclick="addAction()">
+            Add
+          </button>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6 border border-primary border-2 ms-2">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -89,15 +94,114 @@
                 <td><i class="fa-solid fa-trash-can text-success"></i></td>
               </tr>
               <tr>
-                <td class="text-danger" >133</td>
+                <td class="text-danger">133</td>
                 <td class="text-danger">456</td>
                 <td class="text-danger">
-                  <i class="fa-regular fa-pen-to-square" ></i>
+                  <i class="fa-regular fa-pen-to-square"></i>
                 </td>
-                <td class="text-danger"><i class="fa-solid fa-trash-can"></i></td>
+                <td class="text-danger">
+                  <i class="fa-solid fa-trash-can"></i>
+                </td>
               </tr>
             </tbody>
           </table>
+        </div>
+        <div class="col-sm-3 border border-primary border-2 ms-2" id="add-on">
+          <!-- <div class="btn-group" id="add-on" role="group" aria-label="Basic example"> -->
+          
+            <div>Filter</div>
+            <button type="button" class="btn btn-secondary mb-1 filter " id="btn-add-on" onclick="filterIncome()">
+              Income
+            </button>
+            <button type="button" class="btn btn-secondary mb-1 filter" id="btn-add-on" onclick="filterExpense()">
+              Expenses
+            </button>
+            <button type="button" class="btn btn-primary mb-1 filter" id="btn-add-on" onclick="nofilter()">
+              All
+            </button>
+          
+
+          
+            <div>Sorting</div>
+            <button type="button" class="btn btn-primary mb-1" id="btn-add-on" onclick="sortAmountType()">
+              Amount Type
+            </button>
+            <button type="button" class="btn btn-primary mb-1" id="btn-add-on" onclick="sortAmount()">
+              By Amount
+            </button>
+
+            <div>Saving</div>
+            <button type="button" class="btn btn-primary mb-1" id="btn-add-on" onclick="saving()">
+                Save to Local Host
+              </button>
+              <button type="button" class="btn btn-primary mb-1" id="btn-add-on" onclick="loading()">
+                Load from Local Host
+              </button>
+
+          
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="changeModalWindows"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Description update
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Please Update Amount</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="amount-update"
+                  data-autofocus
+                  autofocus
+                />
+              </div>
+              <!-- <div class="mb-3">
+        <label for="message-text" class="col-form-label">Message:</label>
+        <textarea class="form-control" id="message-text"></textarea>
+      </div> -->
+            </form>
+          </div>
+          <div id="recID">11</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              id="lastItem"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              onclick="completeUpdateAction()"
+            >
+              Update
+            </button>
+          </div>
         </div>
       </div>
     </div>
