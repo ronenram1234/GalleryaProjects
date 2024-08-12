@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -45,9 +46,9 @@ header {
 }
 
 /* ---------------------------------------- */
-/* path1 */
+/* openArea */
 /* ---------------------------------------- */
-.path1 {
+.openArea {
   padding-top: 100px;
   background: rgba(19, 232, 241, 0.3882352941) 0% 0% no-repeat padding-box;
   opacity: 1;
@@ -56,7 +57,7 @@ header {
   align-items: center;
 }
 
-#path1H2 {
+#openAreaH2 {
   text-align: center;
   font-family: "Heebo";
   font-size: 5rem;
@@ -68,7 +69,7 @@ header {
   opacity: 1;
 }
 
-#path1P {
+#openAreaP {
   width: 44%;
   text-align: center;
   font-family: "Heebo";
@@ -81,9 +82,9 @@ header {
   opacity: 1;
 }
 
-/* rectangle22 */
+/* tech */
 /* ---------------------------------------- */
-.rectangle22 {
+.tech {
   top: 541px;
   left: 0px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -95,7 +96,7 @@ header {
   flex-wrap: wrap;
 }
 
-.rectangle22Image {
+.techImage {
   width: 100px;
   height: 100px;
 }
@@ -156,9 +157,9 @@ header {
   background-color: RoyalBlue;
 }
 
-/* rectangle55 */
+/* work_HTML_CSS */
 /* ---------------------------------------- */
-.rectangle55 {
+.work_HTML_CSS {
   padding-top: 150px;
   background: #f6f6f6 0% 0% no-repeat padding-box;
   display: flex;
@@ -167,13 +168,13 @@ header {
   /* justify-content: space-evenly; */
 }
 
-.rectangle55H2 {
+.work_HTML_CSSH2 {
   font: normal normal 900 2rem Heebo;
   letter-spacing: 0px;
   color: #3a3a3a;
 }
 
-#rectangle55P {
+#work_HTML_CSSP {
   width: 40%;
   font: normal normal normal 1.3rem Heebo;
   letter-spacing: 0px;
@@ -181,7 +182,7 @@ header {
   text-align: center;
 }
 
-.rectangle55Grid {
+.work_HTML_CSSGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -333,14 +334,6 @@ header {
   color: #2c2c2c;
 }
 
-/* rectangle43 */
-/* ---------------------------------------- */
-.rectangle43 {
-  width: 100%;
-  height: 51px;
-  /* UI Properties */
-  background: #000000 0% 0% no-repeat padding-box;
-} 
 @media only screen and (max-width: 1600px) {
   .rectangle17Input {
     margin-left: 10%;
@@ -372,10 +365,10 @@ header {
   input[type=checkbox]:checked ~ .dropDown {
     display: block;
   }
-  #rectangle55P {
+  #work_HTML_CSSP {
     width: 70%;
   }
-  .rectangle55Grid {
+  .work_HTML_CSSGrid {
     grid-template-columns: repeat(2, 1fr);
   }
   socialMediaGrid {
@@ -388,7 +381,7 @@ header {
   #profileImage {
     margin-left: 1%;
   }
-  .rectangle55Grid {
+  .work_HTML_CSSGrid {
     grid-template-columns: repeat(1, 1fr);
   }
   .socialMedia {
