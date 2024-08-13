@@ -1,0 +1,44 @@
+.btn-custome {
+  width: 60px;
+  
+}
+.main {
+  /* padding: 200px; */
+}
+
+.calc {
+  border-style: solid;
+  border-width: 10px;
+  border-color: #855e42;
+  border-style: inset;
+
+  background-color: lightcyan;
+  
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0;
+}
+
+#bg-image {
+  background-image: ;
+  background-image: url("./../images/table.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .calc {
+        width:80%
+    }
+
+    .btn-custome {
+        font-size: smaller;
+        width: 50px;
+      }
+  }
