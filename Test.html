@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Card with Overlay</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      visibility: hidden;
+      /* transform: translateY(20%);
+      transition: transform 1s ease-in-out; */
+      transform: scale(0);
+      transition: transform 0.5s ease-in-out, visibility 
+    }
+    .card:hover .overlay {
+      visibility: visible;
+      /* transform: translateY(0); */
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card" style="width: 18rem; position: relative;">
+      <img src="https://via.placeholder.com/150" class="card-img-top" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">Card Title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <button type="button" class="btn btn-primary" onclick="showOverlay()">Open Overlay</button>
+      </div>
+      <div class="overlay" id="overlay">
+        <p>Do you want to download?</p>
+        <button type="button" class="btn btn-success" onclick="downloadYes()">Yes</button>
+        <button type="button" class="btn btn-danger" onclick="hideOverlay()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showOverlay() {
+      document.getElementById('overlay').style.visibility = 'visible';
+    }
+
+    function hideOverlay() {
+      document.getElementById('overlay').style.visibility = 'hidden';
+    }
+
+    function downloadYes() {
+      alert('Download started!');
+      hideOverlay();
+    }
+  </script>
+</body>
+</html>
