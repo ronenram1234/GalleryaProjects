@@ -14,14 +14,22 @@ html {
 }
 
 .card {
-  margin: auto;
   height: 100%;
+  margin-bottom: 10px;
+}
+
+.grid-cards {
+  z-index: 1;
 }
 
 .card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.col-css {
+  margin-bottom: 10px;
 }
 
 .overlay {

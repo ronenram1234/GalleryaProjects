@@ -7,13 +7,20 @@
 html,
 body {
   overflow-x: hidden;
+  
 }
 html {
   scroll-behavior: smooth;
 }
 .card {
-  margin: auto; 
+  
   height: 100%;
+  margin-bottom: 10px;
+  
+}
+
+.grid-cards{
+  z-index: 1;
   
 }
 .card-body{
@@ -22,7 +29,10 @@ html {
   justify-content: space-between;
 }
 
-
+.col-css{
+  
+  margin-bottom: 10px;
+}
 
 
 .overlay {
