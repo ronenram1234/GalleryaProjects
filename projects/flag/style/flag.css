@@ -36,9 +36,7 @@
   border-color: black;
 }
 
-#cardId {
-  margin: 5vh;
-}
+
 
 #boarderCountries {
   display: flex;
@@ -50,40 +48,40 @@
   border: solid; */
 }
 #borders-country-header {
-  
   color: blue;
- 
 }
-#border{
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     background-color: rgb(227, 227, 223)
+#border {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(227, 227, 223);
 }
 
 #bg-image {
-     background-image: ;
-     background-image: url("./../image/old_map.jpg");
-     height: 100vh;
-     background-position: center;
-     background-repeat: no-repeat;
-     background-size: cover;
-   }
+  background-image: ;
+  background-image: url("./../image/old_map.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-   @media only screen and (max-width: 600px) {
-  
-     .container-div {
-          width: 100%;
-         
-        }
-    
-        #boarderCountries {
-   width: 100%;
-          flex-direction: column;
-          justify-content: center;
-   
-        }
-        
+@media only screen and (max-width: 600px) {
+  .container-div {
+    width: 100%;
+  }
+  .field-div {
+    margin-right: 0px;
+  }
 
-   }
- 
+  #boarderCountries {
+    /* width: 100%; */
+    flex-direction: column;
+
+    align-items: center;
+  }
+  #cardId {
+    margin: 0px;
+    padding: 0px;
+  }
+}

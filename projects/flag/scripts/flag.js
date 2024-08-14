@@ -44,7 +44,7 @@ async function buildBorderCards(countryShortName) {
     console.log(flag, country);
     
 
-    document.querySelector("#boarderCountries").innerHTML+= ` <div class="card card-border-div" style="width: 20rem">
+    document.querySelector("#boarderCountries").innerHTML+= ` <div class="card " style="width: 20rem">
         <img src="${flag}" class="card-img-top img-div" alt="flag" />
         <div class="card-body">
           <h5 class="card-title">${country}</h5>
