@@ -13,26 +13,39 @@
     <link rel="stylesheet" href="./style/flag.css" />
   </head>
   <body>
-    <div class="container border border-primary container-div">
-      <div class="input-group mb-3 input-div">
+    <div id="bg-image">
+    <div class="container container-div" >
+      <div class="input-group input-div">
         <input
           type="text"
-          class="form-control"
+          class="form-control field-div"
           placeholder="city"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           id="inputText"
         />
 
-        <button type="button" class="btn btn-light" onclick="getCountry()">
+        <button
+          type="button"
+          class="btn btn-secondary btn-div"
+          onclick="getCountry()"
+        >
           search
         </button>
       </div>
 
       <div class="container" id="cardId">
-   
+        <!-- js code will create the country card -->
       </div>
     </div>
+    <br />
+    <br />
+    <div class="container" id="border">
+      <div id="borders-country-header"></div>
+      <div class="container" id="boarderCountries"></div>
+    </div>
+  </div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
