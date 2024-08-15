@@ -35,26 +35,27 @@
   border-style: solid; /* Ensure the border is solid */
   border-color: black;
 }
-
-
+.img-div1{
+  height: 10vh;
+  
+}
 
 #boarderCountries {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   margin-top: 10px;
-  /* border-width: 2px;
-  border-color: black;
-  border: solid; */
 }
 #borders-country-header {
   color: blue;
 }
 #border {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: rgb(227, 227, 223);
+  border: 2px solid black;
 }
 
 #bg-image {

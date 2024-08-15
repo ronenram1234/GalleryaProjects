@@ -1,6 +1,5 @@
 "use strict";
 
-
 function buildCountryCard(res) {
   const flag = res.flags.png;
   const map = res.maps.googleMaps;
@@ -42,10 +41,11 @@ async function buildBorderCards(countryShortName) {
     const flag = countryData.flags.png;
     const country = countryData.name.common;
     console.log(flag, country);
-    
 
-    document.querySelector("#boarderCountries").innerHTML+= ` <div class="card " style="width: 20rem">
-        <img src="${flag}" class="card-img-top img-div" alt="flag" />
+    document.querySelector(
+      "#boarderCountries"
+    ).innerHTML += ` <div class="card " style="width: 20rem">
+        <img src="${flag}" class="card-img-top img-div img-div1" alt="flag" />
         <div class="card-body">
           <h5 class="card-title">${country}</h5>
           <p class="card-text">
@@ -55,8 +55,6 @@ async function buildBorderCards(countryShortName) {
   } catch (error) {
     console.error("Fetch Error:", error);
   }
-
-  
 }
 
 async function getCountry() {
@@ -83,14 +81,15 @@ async function getCountry() {
       let data = await response.json();
       const countryData = data[0];
       console.log(countryData.borders); // This will give you an array of neighboring country codes
-      
-      document.querySelector("#borders-country-header").innerHTML=`<h2>Borders Countries</h2>`
-      document.querySelector("#border").style.border = '2px solid black';
-      document.querySelector("#boarderCountries").innerHTML=""
-      // document.querySelector("#boarderCountries").style.border = '2px solid black';
+
+      document.querySelector(
+        "#borders-country-header"
+      ).innerHTML = `<h2>Borders Countries</h2>`;
+      document.querySelector("#border").style.visibility = "visible";
+      document.querySelector("#boarderCountries").innerHTML = "";
+
       for (let i = 0; i < countryData.borders.length; i++) {
         buildBorderCards(countryData.borders[i]);
-        
       }
     } catch (error) {
       console.error("Fetch Error:", error);
@@ -99,3 +98,6 @@ async function getCountry() {
     console.log(error);
   }
 }
+
+
+
