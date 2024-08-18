@@ -11,164 +11,153 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-    <style>
-
-.allTable:nth-child(odd):not(:first-child) {
-  background-color: lightgray; 
-  /* Light grey color */
-}
-
-/* Selects even rows */
-.allTable:nth-child(even) {
-  background-color: lightcyan; 
-  /* Darker grey color */
-}
-
-
-      .flex-img-container {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-      }
-
-      img {
-        width: 4rem;
-      }
-    </style>
+    <link rel="stylesheet" href="./style/product.css" />
   </head>
   <body>
-    <div class="py-5 text-center flex-img-container">
-      <h1>PR</h1>
-      <img src="./cart-shopping-solid.svg" alt="cart" />
-      <h1>DUCT</h1>
-    </div>
-    <div class="container" style="background-color: beige">
-      <form class="needs-validation" id="formID" novalidate="">
-        <div class="row g-3 first-line">
-          <div class="col-md-4">
-            <input
-              type="text"
-              class="form-control"
-              id="itemName"
-              placeholder="Item Name"
-              value=""
-              required=""
-            />
-            <div class="invalid-feedback">Valid first name is required.</div>
-          </div>
-
-          <div class="col-md-4">
-            <input
-              type="number"
-              class="form-control"
-              id="itemPrice"
-              placeholder="Item Price"
-              value=""
-              required=""
-            />
-            <div class="invalid-feedback">Valid price is required.</div>
-          </div>
-
-          <div class="col-md-4">
-            <button class="btn btn-primary btn-md w-100" type="button"  onclick="addNewLine()">
-              Add
-            </button>
-          </div>
-        </div>
-
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label for="itemCategory" class="form-label"></label>
-            <select class="form-select" id="itemCategory" required="">
-              <option value="">Item Category</option>
-              <option>Fruits</option>
-              <option>Vegetables</option>
-              <option>Canned Goods</option>
-              <option>Dairy</option>
-              <option>Deli</option>
-              <option>Meat</option>
-              <option>Fish & Seafood</option>
-              <option>Snacks</option>
-              <option>Beverages</option>
-              <option>Personal Care</option>
-            </select>
-            <div class="invalid-feedback">Please select a valid category.</div>
-          </div>
-
-          <div class="col-md-4">
-            <label for="description" class="form-label"></label>
-            <input
-              type="text"
-              class="form-control"
-              id="description"
-              placeholder="Description"
-              value=""
-              required=""
-            />
-            <div class="invalid-feedback">Valid first name is required.</div>
-          </div>
-
-          <div class="col-md-4">
-            <label for="grade" class="form-label"></label>
-            <select class="form-select" id="grade" required="">
-              <option value="">Grade</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-            <div class="invalid-feedback">Please select a valid grade.</div>
-          </div>
-        </div>
-
-        <div class="row g-3">
-          <div class="col-md-4">
-            <p class="h6">Availability</p>
-
-            <div class="form-check">
-              <input
-                id="inStockYes"
-                name="inStock"
-                type="radio"
-                class="form-check-input"
-                checked=""
-                required=""
-              />
-              <!-- <label class="form-check-label" for="credit">In Stock</label> -->
-            </div>
-            <div class="form-check">
-              <input
-                id="inStockNo"
-                name="inStock"
-                type="radio"
-                class="form-check-input"
-                required=""
-              />
-              <!-- <label class="form-check-label" for="debit">Missing</label> -->
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div style=" height: 2rem"></div>
-
-    <!-- <div class="container grid-container" id="tableLine" style="background-color: bisque"> -->
-    <div class="container grid-container" id="tableLine" >
-      <div class="row g-1 allTable" style="font-weight: bold;" >
-        <div class="col col-md-2">Name</div>
-        <div class="col col-md-2">Price</div>
-        <div class="col col-md-2">Category</div>
-        <div class="col col-md-2">Description</div>
-        <div class="col col-md-2">Grade</div>
-        <div class="col col-md-2">Availability</div>
+    <div id="main-section">
+      <div class="py-5 text-center flex-img-container">
+        <h1>PR</h1>
+        <img src="./images/cart-shopping-solid.svg" alt="cart" />
+        <h1>DUCT</h1>
       </div>
-  
-      
-      
-    </div>
+      <div class="container" style="background-color: beige">
+        <form class="needs-validation" id="formID" novalidate="">
+          <div class="row g-3 first-line">
+            <div class="col-md-4">
+              <input
+                type="text"
+                class="form-control"
+                id="itemName"
+                placeholder="Item Name"
+                value=""
+                required=""
+              />
+              <div class="invalid-feedback">Valid first name is required.</div>
+            </div>
 
-    <script src="product.js"></script>
+            <div class="col-md-4">
+              <input
+                type="number"
+                class="form-control"
+                id="itemPrice"
+                placeholder="Item Price"
+                value=""
+                required=""
+              />
+              <div class="invalid-feedback">Valid price is required.</div>
+            </div>
+
+            <div class="col-md-4">
+              <!-- <button
+                class="btn btn-primary btn-md w-100"
+                type="button"
+                onclick="addNewLine()"
+              >
+                Add
+              </button> -->
+
+              <select class="form-select" id="grade" required="">
+                <option value="">Grade</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label for="itemCategory" class="form-label"></label>
+              <select class="form-select" id="itemCategory" required="">
+                <option value="">Item Category</option>
+                <option>Fruits</option>
+                <option>Vegetables</option>
+                <option>Canned Goods</option>
+                <option>Dairy</option>
+                <option>Deli</option>
+                <option>Meat</option>
+                <option>Fish & Seafood</option>
+                <option>Snacks</option>
+                <option>Beverages</option>
+                <option>Personal Care</option>
+              </select>
+              <div class="invalid-feedback">
+                Please select a valid category.
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label for="description" class="form-label"></label>
+              <input
+                type="text"
+                class="form-control"
+                id="description"
+                placeholder="Description"
+                value=""
+                required=""
+              />
+              <div class="invalid-feedback">Valid first name is required.</div>
+            </div>
+
+            <div class="col-md-4">
+              <br>
+              <button
+                class="btn btn-primary btn-md w-100"
+                type="button"
+                onclick="addNewLine()"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-4">
+              <p class="h6">Availability</p>
+
+              <div class="form-check">
+                <input
+                  id="inStockYes"
+                  name="inStock"
+                  type="radio"
+                  class="form-check-input"
+                  checked=""
+                  required=""
+                />
+                <!-- <label class="form-check-label" for="credit">In Stock</label> -->
+              </div>
+              <div class="form-check">
+                <input
+                  id="inStockNo"
+                  name="inStock"
+                  type="radio"
+                  class="form-check-input"
+                  required=""
+                />
+                <!-- <label class="form-check-label" for="debit">Missing</label> -->
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div style="height: 2rem"></div>
+
+      <!-- <div class="container grid-container" id="tableLine" style="background-color: bisque"> -->
+      <div class="container grid-container" id="tableLine">
+        <div class="row g-1 allTable" style="font-weight: bold">
+          <div class="col col-md-2">Name</div>
+          <div class="col col-md-2">Price</div>
+          <div class="col col-md-2">Category</div>
+          <div class="col col-md-2">Description</div>
+          <div class="col col-md-2">Grade</div>
+          <div class="col col-md-2">Availability</div>
+        </div>
+      </div>
+
+      <script src="./scripts/product.js"></script>
+    </div>
   </body>
 </html>

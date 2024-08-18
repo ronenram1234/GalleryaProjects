@@ -1,0 +1,28 @@
+#{ main-section } .allTable:nth-child(odd):not(:first-child) {
+  background-color: lightgray;
+  /* Light grey color */
+}
+
+/* Selects even rows */
+.allTable:nth-child(even) {
+  background-color: lightcyan;
+  /* Darker grey color */
+}
+
+.flex-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+img {
+  width: 4rem;
+}
+
+#main-section {
+  background-image: url("./../images/shopping-list.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
