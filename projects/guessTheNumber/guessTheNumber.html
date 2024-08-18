@@ -17,51 +17,60 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="./css/guessTheNumber.css" />
   </head>
   <body>
-    <div class="main" id="div-css" >
-      <div class="containers" >
-        <div class="row">
-          <div class="col-12 col-md-6 text-center" id="leftColumn">
-            <h1 class="display-4" style="color: red">Guess the Number</h1>
-            <p>You have 5 attemps to guess number (1-10)</p>
+    <div id="all">
+      <div class="container main" id="main" >
+        <div class="containers" id="div-css">
+          <div class="row">
+            <div class="col-12 col-md-6 text-center" id="leftColumn">
+              <h1 class="display-4" style="color: red">Guess the Number</h1>
+              <p>You have 5 attemps to guess number (1-10)</p>
 
-            <div class="container">
-              <div class="row align-items-center">
-                <div class="col">
-                  <label for="input">Your Guess:</label>
-                </div>
-                <div class="col-6">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="inputGuess"
-                    placeholder="Enter Guess"
-                    required
-                  />
-                </div>
-                <div class="col">
-                  <button type="submit" class="btn btn-secondary" onclick="userGuess()">Check</button>
+              <div class="container">
+                <div class="row align-items-center">
+                  <div class="col">
+                    <label for="input">Your Guess:</label>
+                  </div>
+                  <div class="col-6">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="inputGuess"
+                      placeholder="Enter Guess"
+                      required
+                    />
+                  </div>
+                  <div class="col">
+                    <button
+                      type="submit"
+                      class="btn btn-secondary"
+                      onclick="userGuess()"
+                    >
+                      Check
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          
 
-          <div class="col-12 col-md-6  text-center" id="rightColumn">
-            <p class="rightSizeText">Please enter number between 1 and 10</p>
-            
-            <div class="answers"></div>
-            <button type="button" class="btn btn-primary b-start" onclick="startAgain()">
-              Start again
-            </button>
+            <div class="col-12 col-md-6 text-center" id="rightColumn">
+              <p class="rightSizeText">Please enter number between 1 and 10</p>
+
+              <div class="answers"></div>
+              <button
+                type="button"
+                class="btn btn-primary b-start"
+                onclick="startAgain()"
+              >
+                Start again
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="div-css">
-
-
+      <div ></div>
     </div>
   </body>
   <script src="./script/guessTheNumber.js"></script>
