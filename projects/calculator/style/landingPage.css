@@ -1,0 +1,150 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/* Project Name2< */
+
+/* תפריט  */
+#profile-Image {
+  width: 62px;
+
+  border-radius: 31px;
+}
+
+#my-Name {
+  width: 79px;
+  height: 35px;
+}
+.navProj2 {
+  font: normal normal normal 25px/37px Heebo;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+/* שם פרויקט */
+
+.main-section {
+  padding-top: 10vh;
+  /* height: 42vh; */
+  width: 100%;
+
+  background-color: #13e8f163;
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main-sectionH1 {
+  /* padding-top: 7vh; */
+  font: normal normal 900 5em Heebo;
+  color: #3a3a3a;
+}
+.fullPage{
+  background-color: beige;
+}
+.cont-page{
+  background-color: #fff;
+}
+
+#main{
+  display: flex;
+  flex-direction: column;
+}
+
+.main-sectionP {
+  font: normal normal medium 1.25em Heebo;
+  /* letter-spacing: 0px; */
+  color: #3a3a3a;
+  /* width: 90%; */
+  /* height: 30%;  */
+}
+.buttonContainer {
+  /* padding-bottom: 11vh; */
+}
+
+.buttonDiv {
+  display: flex;
+
+}
+.colProj2 {
+  /* margin-top: 5%; */
+margin-left: 10px;
+
+}
+.project-link-button {
+  background: #1ae0ec 0% 0% no-repeat padding-box;
+  font: normal normal medium 1em Heebo;
+  color: #2c2c2c;
+  text-decoration: none;
+}
+.project-link-button:hover {
+  background: lightskyblue;
+}
+
+/* שורת אייקונים */
+
+.iconBar {
+  height: 130px;
+}
+
+.imageIcon {
+  width: 100px;
+}
+
+/* actual web site */
+
+.imageOfWebSite {
+  /* height: 66vh; */
+  /* margin-top: 9vh; */
+  width: 50%;
+  background: #ebfeff 0% 0% no-repeat padding-box;
+}
+
+.imageDiv {
+  height: 60vh;
+
+  display: flex;
+  /* center hotizental */
+  justify-content: center;
+  /* center vertical */
+  align-items: center;
+}
+
+/* תחתית הענוד */
+.footerStyle {
+  height: 51px;
+
+  background: #000000 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+.img-proj{
+
+  /* height: 20vh; */
+}
+
+@media only screen and (max-width: 700px) {
+  .imageOfWebSite {
+    width: 80vw;
+  }
+
+  .colProj2 {
+    font-size: 1em;
+    margin-top: 5%;
+    width: 30vw;
+    background: #1ae0ec 0% 0% no-repeat padding-box;
+    border-radius: 5%;
+  }
+  .buttonDiv {
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 800px) {
+    
+  
+    .colProj2 {
+            width: 59vw;
+    }
+  
+}
