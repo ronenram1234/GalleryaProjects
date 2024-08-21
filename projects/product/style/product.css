@@ -20,9 +20,12 @@ img {
 }
 
 #main-section {
-  background-image: url("./../images/shopping-list.jpg");
+  background-image: url("./../images/products.jpg");
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+#tableLine{
+  background-color: white;
 }

@@ -13,197 +13,256 @@
     <link rel="stylesheet" href="./style/store.css" />
   </head>
   <body>
-    <nav
-      class="navbar navbar-expand-sm navbar-dark bg-dark"
-      aria-label="Third navbar example"
-    >
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">TechIt</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarsExample03"
-          aria-controls="navbarsExample03"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExample03">
-          <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="#product-line-id"
-                >Products</a
-              >
-            </li>
-
-            <!-- <li class="nav-item">
-                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-              </li> -->
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >Branches</a
-              >
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Branch1</a></li>
-                <li><a class="dropdown-item" href="#">Branch2</a></li>
-                <li><a class="dropdown-item" href="#">Branch3</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-bs-toggle="modal" href="#contactModal"
-                >Contact Us</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="full-page">
-      <div class="page1">
-        <div id="carouselExampleIndicators" class="carousel slide">
-          <div class="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="0"
-              class="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="3"
-              aria-label="Slide 4"
-            ></button>
-          </div>
-          <div class="carousel-inner carousel-inner-set">
-            <div class="carousel-item active">
-              <img
-                src="./images/c-d-x-PDX_a_82obo-unsplash.jpg"
-                class="d-block w-100 carousel-img"
-                alt="..."
-                onclick="headPhone()"
-              />
-              <h1 class="newText">Audio - New in Store</h1>
-            </div>
-            <div class="carousel-item">
-              <img
-                src="./images/pexels-lastly-699122.jpg"
-                class="d-block w-100 carousel-img"
-                alt="..."
-                onclick="cellPhone()"
-              />
-              <h1 class="newText">Cell Phone - New in Store</h1>
-            </div>
-            <div class="carousel-item">
-              <img
-                src="./images/pexels-xexusdesigner-777001.jpg"
-                class="d-block w-100 carousel-img"
-                alt="..."
-                onclick="monitor()"
-              />
-              <h1 class="newText">Monitor - New in Store</h1>
-            </div>
-            <div class="carousel-item">
-              <img
-                src="./images/kari-shea-1SAnrIxw5OY-unsplash.jpg"
-                class="d-block w-100 carousel-img"
-                alt="..."
-                onclick="laptop()"
-              />
-              <h1 class="newText">Laptop - New in Store</h1>
-            </div>
-          </div>
+    <div class="container">
+      <nav
+        class="navbar navbar-expand-sm navbar-dark bg-dark sticky"
+        aria-label="Third navbar example"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">TechIt</a>
           <button
-            class="carousel-control-prev"
+            class="navbar-toggler"
             type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev"
-            st
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample03"
+            aria-controls="navbarsExample03"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <button
-            class="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-        <!-- <div><h2>New Products</h2></div> -->
-      </div>
-      <div class="product-line" id="product-line-id"></div>
-    </div>
 
+          <div class="collapse navbar-collapse" id="navbarsExample03">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="#product-line-id"
+                  >Products</a
+                >
+              </li>
 
-
-    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <form>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="firstName"
-                placeholder="First Name"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="lastName"
-                placeholder="Last Name"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="exampleInputEmail1"
-                aria-describedby="emailHelp"
-                placeholder="email"
-                required
-              />
-            </div>
-            <div class="mb-3">
-              <textarea id="comment" name="shareText" rows="4" cols="50"  placeholder="Share with Us"></textarea>
               
-            </div>
-            <button type="submit" class="btn btn-primary">Send</button>
-          </form>
+
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="#branches"
+                  >Branches</a>
+              </li>
+           
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="modal" href="#contactModal"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+      </nav>
+      <div class="full-page">
+        <div class="page1">
+          <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="0"
+                class="active"
+                aria-current="true"
+                aria-label="Slide 1"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="1"
+                aria-label="Slide 2"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="2"
+                aria-label="Slide 3"
+              ></button>
+              <button
+                type="button"
+                data-bs-target="#carouselExampleIndicators"
+                data-bs-slide-to="3"
+                aria-label="Slide 4"
+              ></button>
+            </div>
+            <div class="carousel-inner carousel-inner-set">
+              <div class="carousel-item active">
+                <img
+                  src="./images/c-d-x-PDX_a_82obo-unsplash.jpg"
+                  class="d-block w-100 carousel-img"
+                  alt="..."
+                  onclick="headPhone()"
+                />
+
+                <p class="h5">Audio - New in Store</p>
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="./images/pexels-lastly-699122.jpg"
+                  class="d-block w-100 carousel-img"
+                  alt="..."
+                  onclick="cellPhone()"
+                />
+
+                <p class="h5">Cell Phone - New in Store</p>
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="./images/pexels-xexusdesigner-777001.jpg"
+                  class="d-block w-100 carousel-img"
+                  alt="..."
+                  onclick="monitor()"
+                />
+
+                <p class="h5">Monitor - New in Store</p>
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="./images/kari-shea-1SAnrIxw5OY-unsplash.jpg"
+                  class="d-block w-100 carousel-img"
+                  alt="..."
+                  onclick="laptop()"
+                />
+
+                <p class="h5">Laptop - New in Store</p>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="prev"
+              st
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleIndicators"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <!-- <div><h2>New Products</h2></div> -->
+        </div>
+        <div class="container">
+          <div
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center product-line"
+            id="product-line-id"
+          ></div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="contactModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  placeholder="First Name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  placeholder="Last Name"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                  placeholder="email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <textarea
+                  id="comment"
+                  name="shareText"
+                  rows="4"
+                  cols="50"
+                  placeholder="Share with Us"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+<br>
+      <div class="container border border-primary" id="branches">
+        <p class="h1">Store Directory in Atlanata</p>
+        <p class="h6">3 stores in Atlanta</p>
+
+        <p class="h3"></p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Loacation</th>
+              <th scope="col">Openning hours</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+
+              <td>Edgewood</td>
+              <td class="open-hours">
+                <p class="h6">Open Now - Closes at 8:00 PM</p>
+                <p>1210 Caroline St NE</p>
+                <p>Atlanta, GA 30307</p>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Buckhead</td>
+              <td class="open-hours">
+                <p class="h6">Open Now - Closes at 8:00 PM</p>
+                <p>3667 Walton Way Ext</p>
+                <p>Atlanta, GA 30324</p></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Magnolia Home Theater</td>
+              <td class="open-hours"><p class="h6">Open Now - Closes at 8:00 PM</p>
+                <p>2537 Piedmont Rd NEE</p>
+                <p>Atlanta, GA 303247</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </body>

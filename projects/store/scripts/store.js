@@ -41,7 +41,7 @@ class product {
   }
   setHTMLText() {
     const txt = ` 
-    <div class="card card-r" style="width: 18rem"> 
+    <div class="card card-r " style="width: 100%; max-width: 18rem;"> 
     <img src="${this.image}" class="card-img-top"  alt="laptop"  /> 
     <div class="card-body">
             <h5 class="card-title">${this.manufacture}</h5>

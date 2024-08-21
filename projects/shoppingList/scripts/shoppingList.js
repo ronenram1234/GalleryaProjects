@@ -10,8 +10,10 @@ function addNewLine() {
   }
 
   list.push(input.value);
+  
 
   document.querySelector(
     ".list-group"
-  ).innerHTML += `<li class="list-group-item">${input.value}</li>`;
+  ).innerHTML += `<li class="list-group-item  border border-primary">${input.value}</li>`;
+  input.value=""
 }
