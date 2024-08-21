@@ -34,6 +34,8 @@
   background-color: black;
 }
 
+
+
 .stoneOptional {
   
   width: var(--optional-w);
@@ -44,6 +46,18 @@
   border: 3px solid #612525;
   transform: scale(2);
   transition: transform 1s ease-in-out;
+}
+
+
+.stoneOptional-help {
+  
+  width: 15px;
+  height: 15px;
+  background-color: greenyellow;
+
+  border-radius: 50%;
+  border: 3px solid #612525;
+  
 }
 
 table {
@@ -94,7 +108,7 @@ table {
 .score-board{
   
   background-color: burlywood;
-  background-image: linear-gradient(to right, #e7c395, #aca7a0);
+
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -104,14 +118,22 @@ table {
   justify-content: center;
   align-items: center;
   justify-content: space-evenly;
+  
+}
+.help-piece{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  align-items: center;
 }
 
 .board-pieces-p{
-  margin-right: 10%;
+  margin-left: 10%;
   font-size: 1.5rem;
 }
 .board-pieces-i{
-  /* height: 80%; */
+  
   margin-top: 2%;
   margin-bottom: 2%;
 }
@@ -173,10 +195,12 @@ flex-direction: row;
   visibility: hidden;
 }
 
+#main{
+  background-color: beige;
+}
+
  @media only screen and (max-width: 600px) {
-  /* body {
-      background-color: lightblue;
-  } */
+
 
   :root {
     --circle-width: 15px;
@@ -215,8 +239,7 @@ flex-direction: row;
     }
 
     .help-mod{
-      /* min-height:10px */
-      /* height: 400px; */
+
     }
     
 
