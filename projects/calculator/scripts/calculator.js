@@ -138,7 +138,7 @@ function clickCalc(event) {
       initNewInput();
       break;
   }
-}
+} 
 
 const butt = document.querySelectorAll("button");
 
