@@ -8,10 +8,9 @@ class TaskManager {
   }
 
   addTask (desc)  {
-    // let desc = document.querySelector("#description").value;
-    // let t = new Task(desc);
+    
     this.taskArray.push(new Task(desc));
-    // console.log(this.taskArray);
+    
   
   };
 

@@ -218,15 +218,12 @@ header {
   background-color: RoyalBlue;
 }
 
-/* work_HTML_CSS */
-/* ---------------------------------------- */
 .work_HTML_CSS {
   padding-top: 150px;
   background: #f6f6f6 0% 0% no-repeat padding-box;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: space-evenly; */
 }
 
 .work_HTML_CSSH2 {
@@ -279,7 +276,6 @@ header {
 }
 
 .project-text {
-  /* width: 20%; */
   font-family: "Heebo";
   font-size: 1em;
   text-align: center;
@@ -321,8 +317,6 @@ header {
   background-color: RoyalBlue;
 }
 
-/* rectangle17 */
-/* ---------------------------------------- */
 .input-form-container {
   background: #3a3a3a 0% 0% no-repeat padding-box;
 }
@@ -355,10 +349,7 @@ header {
   opacity: 1;
 }
 
-/* rectangle6 */
-/* ---------------------------------------- */
 .socialMedia {
-  /* UI Properties */
   background: #1ae0ec 0% 0% no-repeat padding-box;
   display: flex;
   justify-content: center;

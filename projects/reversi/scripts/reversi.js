@@ -36,7 +36,7 @@ function debugRec(
 }
 
 function positionNewPiece(board) {
-  // translate boarday value to screen
+  // translate board value to screen
   let cColor;
   let textS;
   let temp;
@@ -62,7 +62,7 @@ function positionNewPiece(board) {
       }
     })
   );
-  // requestAnimationFrame (positionNewPiece)
+  
 }
 
 function removePiece(row, col) {
@@ -81,7 +81,7 @@ function removePiece(row, col) {
 
 function flipLineToNewColor(lineStart, colStart, color) {
   /* once colors are flank bu last move - chang all colors to colors in head and tail*/
-  //
+  
 
   for (let i = 0; i < options.length; i++) {
     if (options[i][0] == lineStart && options[i][1] == colStart) {
@@ -122,7 +122,7 @@ function clickedCell(event) {
           present options on screen - findPotentialNextPosition /
           */
 
-  //
+  
   if (debugFlag) {
     debugPlayerTurn++;
     console.log("start clickedCell");
@@ -181,7 +181,7 @@ function initBoard() {
   const cells = document.querySelectorAll(".cellR");
 
   for (let i = 0; i < cells.length; i++) {
-    //
+    
 
     cells[i].addEventListener("click", clickedCell);
 
@@ -269,8 +269,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
    The piece must be laid adjacent to an opponent’s piece so that the opponent’s piece or a row of opponent’s pieces is flanked by the new piece and another piece of the player’s color.*/
 
   let optionsL = [];
-  // //('getLoactions');
-  // //(optionsL);
+ 
 
   // checkUp - not 0 line && empty spot up && player piece somewhere down
   let stat, lineEnd, colEnd;
@@ -318,12 +317,11 @@ function findPotentialNextPosition(
   noShow
 ) {
   // find all potential positions
-  // let board = curBoard; ---> board is global variable
+  
   options = [];
-  // let test = board;
+  
   let allPlayerLocations = [];
-  // //("findPotentialNextPosition");
-  // //(playerColor, openentColor);
+  
 
   for (let line = 0; line < 8; line++) {
     for (let col = 0; col < 8; col++)
@@ -332,11 +330,9 @@ function findPotentialNextPosition(
       }
   }
 
-  //
-
-  // //(options);
+ 
   for (let i = 0; i < allPlayerLocations.length; i++) {
-    // //('allplayeclr loop',allPlayerLocations[i],i);
+    
 
     options.push(
       ...getLoactions(
@@ -353,7 +349,7 @@ function findPotentialNextPosition(
   for (let x = 0; x < options.length; x++) {
     curBoard[options[x][0]][options[x][1]] = `${playerColor}o`;
   }
-  // positionNewPiece(1, 1, "Optional");
+  
   return options;
 }
 
@@ -362,7 +358,7 @@ function initGame() {
 
   findPotentialNextPosition(player, computer, board, false);
   positionNewPiece(board);
-  // display help screen
+  
 showModalWindow()
 }
 
@@ -471,10 +467,9 @@ function decsionTreeLeaf(
 }
 
 function move(option, tempBoard, level, color, openentColor) {
-  // function computerMove(option, tempBoard, level, color, openentColor) {
+  
   let localBoard = JSON.parse(JSON.stringify(tempBoard));
   let grade = 0;
-
   if (level == 0) return 0; //end recursion
 
   let cLocalOptions = findPotentialNextPosition(
@@ -603,7 +598,7 @@ function move(option, tempBoard, level, color, openentColor) {
 
 function computerNextMove() {
   /* calculateBestOption will return update board with new move in Optional boarday   */
-  // //("computer turn");
+  
 
   let result = [];
   let noMorePlayerOptions = false;
@@ -618,7 +613,7 @@ function computerNextMove() {
     const cells = document.querySelectorAll(".cellR");
 
     for (let i = 0; i < cells.length; i++) {
-      //
+      
 
       cells[i].removeEventListener("click", clickedCell);
 

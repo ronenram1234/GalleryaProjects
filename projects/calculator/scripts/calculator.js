@@ -11,14 +11,14 @@ let multipleOperatorInput = false;
 let lastOperatorWasEquel = false;
 let selectedOperated = "";
 
-// calcDisplay.innerText = "0";
+
 
 function initNewInput() {
   charInput = 0;
   result = 0;
   stringInput = "";
   pointFlag = false;
-  //   calcDisplay.innerText="0"
+  
 }
 
 /*
@@ -38,11 +38,9 @@ HL design
 */
 
 function clickCalc(event) {
-  // console.log(event);
+  
   charInput = event.innerText;
-  // console.log(charInput);
-  // console.log(`firstnumber - ${firstNumber}`);
-  //   if (isNaN(Number(charInput))) {
+  
 
   switch (charInput) {
     case "C":
@@ -77,9 +75,7 @@ function clickCalc(event) {
       }
       break;
     case "=":
-      // console.log(selectedOperated);
-      // console.log(firstNumber);
-      // console.log(stringInput);
+      
       result = parseFloat(
         eval(
           `${firstNumber}${
@@ -91,7 +87,7 @@ function clickCalc(event) {
       calcDisplay.innerText = result;
       pointFlag = false;
       firstNumber = result;
-      // multipleOperatorInput = true;
+      
       lastOperatorWasEquel = true;
       selectedOperated = "";
       stringInput = "";
@@ -119,7 +115,7 @@ function clickCalc(event) {
           );
 
           calcDisplay.innerText = result;
-          // initNewInput();
+          
           firstNumber = result;
           stringInput = "";
         }
@@ -149,6 +145,6 @@ const butt = document.querySelectorAll("button");
 butt.forEach((b) =>
   b.addEventListener("click", function (e) {
     clickCalc(e.target);
-    // console.log(e.target);
+    
   })
 );

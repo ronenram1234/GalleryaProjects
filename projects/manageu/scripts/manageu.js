@@ -101,7 +101,7 @@ function cleanLocalHost() {
   let length = localStorage.length;
   for (let i = 0; i < length; i++) {
     const key = localStorage.key(0);
-    // console.log(key);
+    
     if (key.startsWith("manageu")) {
       localStorage.removeItem(key);
     }
@@ -111,7 +111,7 @@ function cleanLocalHost() {
 window.saveLocal = function saveLocal() {
   cleanLocalHost();
   for (let task of tM.taskArray) {
-    // task = tM.taskArray[ind];
+    
 
     localStorage.setItem(`manageu${task.id}`, JSON.stringify(task));
   }
@@ -152,7 +152,7 @@ function refreshActive() {
 
     if (filterList == 0 || olderThen7Days || olderThen30Days) {
       if (!task.complete) {
-        // console.log(task);
+        
         let str = `<div class="detailedLine"><div class="list-group-item d-inline-block border-dark border-1 text-start w-25 textFont">
            ${task.description}</div>
          
