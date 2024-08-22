@@ -84,7 +84,7 @@ async function getCountry() {
 
       document.querySelector(
         "#borders-country-header"
-      ).innerHTML = `<h2>Borders Countries</h2>`;
+      ).innerHTML = `<h2>Neighboring Countries</h2>`;
       document.querySelector("#border").style.visibility = "visible";
       document.querySelector("#boarderCountries").innerHTML = "";
 
