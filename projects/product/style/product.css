@@ -28,7 +28,13 @@ img {
 
 }
 
+.large-image {
+  height: 6rem; 
 
 #tableLine{
   background-color: white;
+}
+
+input::placeholder, option {
+  font-weight: bold;
 }

@@ -16,13 +16,13 @@
   <body>
     <div id="main-section">
       <div class="py-5 text-center flex-img-container">
-        <h1>PR</h1>
-        <img src="./images/cart-shopping-solid.svg" alt="cart" />
-        <h1>DUCT</h1>
+        <p class="display-1">PR</p>
+        <img src="./images/cart-shopping-solid.svg" alt="cart" class="large-image" />
+        <p class="display-1">DUCT</p>
       </div>
       <div
         class="container border border-5 border-secondary"
-        style="background-color: beige"
+        style="background-color: lightgray"
       >
         <form class="needs-validation" id="formID" novalidate="">
           <div class="row g-3 first-line">
@@ -107,7 +107,7 @@
               </button>
             </div>
           </div>
-
+<br>
           <div class="row g-3">
             <div class="col-md-4">
               <p class="h6">Availability</p>
@@ -121,6 +121,7 @@
                   checked=""
                   required=""
                 />
+                <label for="inStockYes" class="form-check-label">In Stock</label>
               </div>
               <div class="form-check">
                 <input
@@ -130,6 +131,7 @@
                   class="form-check-input"
                   required=""
                 />
+                <label for="inStockYes" class="form-check-label">Not in Stock</label>
               </div>
             </div>
           </div>

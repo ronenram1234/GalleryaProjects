@@ -242,7 +242,10 @@ function init() {
 
   //-----------------------------
   // test section
-  addTestData();
+  // addTestData();
+
+  // Bonus item - load from local hosting when user open application
+  window.loadLocal()
 
 }
 init();
