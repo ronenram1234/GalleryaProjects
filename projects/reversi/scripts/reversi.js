@@ -8,32 +8,11 @@ let computer = "b";
 let options = [];
 
 let recursionLevel = 4;
-let debugFlag = false;
-let debugPlayerTurn = 0;
-let debugFlagDisplay = false;
-let debugResultFlag = false;
-let recordID = 1;
-let debugLogger = [];
 
-function debugRec(
-  recursionLevel,
-  currentOptionLine,
-  currentOption,
-  openentColor,
-  color,
-  grade,
-  allOptions,
-  board
-) {
-  (this.recursionLevel = recursionLevel),
-    (this.a_currentOptionLine = currentOptionLine),
-    (this.b_currentOption = currentOption),
-    (this.c_openentColor = openentColor),
-    (this.d_color = color),
-    (this.e_grade = grade),
-    (this.g_allOptions = allOptions),
-    (this.h_board = board);
-}
+let recordID = 1;
+
+
+
 
 function positionNewPiece(board) {
   // translate board value to screen
@@ -123,10 +102,6 @@ function clickedCell(event) {
           */
 
   
-  if (debugFlag) {
-    debugPlayerTurn++;
-    console.log("start clickedCell");
-  }
 
   let clickedElement;
   if (event.target.classList[0] == "stoneOptional") {
@@ -150,9 +125,7 @@ function clickedCell(event) {
       computerNextMove();
     }, 1000);
   }
-  if (debugFlag) {
-    console.log("end clickedCell");
-  }
+
 }
 
 function mouseOver() {
@@ -201,21 +174,6 @@ function checkOtherDirectionForPlayer(
   colDirection,
   optionsL
 ) {
-  /* check  speciic direction specific  oponent piece on he board - report sucess if the selected direction can bo used as future move */
-  if (debugFlag) {
-    console.log("----------start checkOtherDirectionForPlayer");
-    console.log(`----------debugPlayerTurn=${debugPlayerTurn}`);
-    console.log(
-      color,
-      openentColor,
-      line,
-      col,
-      lineDirection,
-      colDirection
-      
-    );
-    countCheckOtherDirectionForPlayer++;
-  }
   let l = line + lineDirection;
   let c = col + colDirection;
   let lRevrese = line - lineDirection;
@@ -276,21 +234,6 @@ function getLoactions(line, col, curBoard, player, openentColor) {
 
   for (let lDirection = -1; lDirection <= +1; lDirection++)
     for (let cDirection = -1; cDirection <= +1; cDirection++) {
-      if (debugFlag) {
-        console.log("----------start getLoactions");
-        console.log(`----------debugPlayerTurn=${debugPlayerTurn}`);
-
-        console.log(
-          player,
-          openentColor,
-          // curBoard,
-          line,
-          col,
-          lDirection,
-          cDirection
-          // optionsL
-        );
-      }
       if (!(lDirection == 0 && cDirection == 0)) {
         optionsL = checkOtherDirectionForPlayer(
           player,
@@ -304,9 +247,7 @@ function getLoactions(line, col, curBoard, player, openentColor) {
         );
       }
     }
-  if (debugFlag) {
-    console.log("getLoactions after getLoactions");
-  }
+  
   return optionsL;
 }
 
@@ -517,34 +458,7 @@ function move(option, tempBoard, level, color, openentColor) {
 
     grade = calculateBoardValueForComputerMove(sendBoard);
 
-    if (debugFlag) {
-      debugLogger.push(
-        new debugRec(
-          level,
-          cLocalOptions[i],
-          i,
-          openentColor,
-          color,
-          grade,
-          cLocalOptions,
-          sendBoard
-        )
-      );
-      console.log(
-        "".padStart(5 * (i + 1), "----") +
-          ` level-${level}, iteration-${i}, grade-${grade}, numberOfIterations-${cLocalOptions.length}`,
-        debugLogger
-      );
-      console.log(debugLogger);
-    }
-
-    if (debugFlagDisplay) {
-      positionNewPiece(sendBoard);
-
-      console.log(level);
-      console.log(cLocalOptions[i]);
-    }
-
+  
     let leavesGrade = move(
       cLocalOptions[i],
       sendBoard,
@@ -552,10 +466,7 @@ function move(option, tempBoard, level, color, openentColor) {
       openentColor,
       color
     );
-    if (debugFlagDisplay) {
-      console.log(leavesGrade);
-    }
-
+  
     result.push(
       new decsionTreeLeaf(
         cLocalOptions[i][0],
@@ -571,9 +482,6 @@ function move(option, tempBoard, level, color, openentColor) {
         recordID++
       )
     );
-    if (debugFlag) {
-      console.log(`++++++++++++++leavesGrade=${level} grade=${grade} `, result);
-    }
   }
 
   /*  
@@ -587,11 +495,7 @@ function move(option, tempBoard, level, color, openentColor) {
 
   let nResult = calculateOptioTopGrade(result);
 
-  if (debugResultFlag) {
-    console.log(
-      `_________________level=${level}, grade=${grade}, leave max grade=${nResult.currentGrade} `
-    );
-  }
+  
 
   return nResult;
 }
