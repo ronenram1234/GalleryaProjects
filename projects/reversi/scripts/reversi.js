@@ -501,7 +501,13 @@ function move(option, tempBoard, level, color, openentColor) {
 }
 
 function computerNextMove() {
-  /* calculateBestOption will return update board with new move in Optional boarday   */
+  /**
+   * calculateBestOption will return update board with new move in Optional board
+   * @argument - none
+   * 
+   * @returns - none
+   */
+  
   
 
   let result = [];
