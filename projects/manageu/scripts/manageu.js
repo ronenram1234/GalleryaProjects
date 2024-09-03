@@ -50,7 +50,7 @@ window.updateTaskDescription = function updateTaskDescription(id) {
   document.querySelector("#recID").innerHTML = rec.id;
 };
 
-window.completeUpdateTaskDescription = function completeUpdateTaskDescription(
+window.completeUpdateAction = function completeUpdateAction(
   id
 ) {
   tM.updateTaskDescription(
@@ -241,11 +241,12 @@ function init() {
   //-----------------------------
 
   //-----------------------------
-  // test section
-  // addTestData();
+  
 
   // Bonus item - load from local hosting when user open application
   window.loadLocal()
+  // test section
+  addTestData();
 
 }
 init();

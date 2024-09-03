@@ -28,7 +28,7 @@ function buildCountryCard(res) {
 
 async function buildBorderCards(countryShortName) {
   const text = `https://restcountries.com/v3.1/name/${countryShortName}`;
-  console.log(text);
+  // console.log(text);
 
   try {
     let response = await fetch(text);
@@ -37,10 +37,10 @@ async function buildBorderCards(countryShortName) {
     }
     let data = await response.json();
     const countryData = data[0];
-    console.log(countryData);
+    // console.log(countryData);
     const flag = countryData.flags.png;
     const country = countryData.name.common;
-    console.log(flag, country);
+    // console.log(flag, country);
 
     document.querySelector(
       "#boarderCountries"
@@ -80,7 +80,7 @@ async function getCountry() {
       }
       let data = await response.json();
       const countryData = data[0];
-      console.log(countryData.borders); // This will give you an array of neighboring country codes
+      // console.log(countryData.borders); // This will give you an array of neighboring country codes
 
       document.querySelector(
         "#borders-country-header"

@@ -59,10 +59,10 @@ function clickCalc(event) {
     case "7":
     case "8":
     case "9":
-      if (!multipleOperatorInput) {
-        multipleOperatorInput = false;
-        stringInput = "";
-      }
+      // if (!multipleOperatorInput) {
+      //   multipleOperatorInput = false;
+      //   stringInput = "";
+      // }
       stringInput += charInput;
       calcDisplay.innerText = stringInput;
 
